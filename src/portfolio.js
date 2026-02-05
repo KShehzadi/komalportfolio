@@ -37,8 +37,8 @@ const socialMediaLinks = {
   linkedin: "https://www.linkedin.com/in/komal-shehzadi/",
   gmail: "shehzadikomal303@gmail.com@gmail.com",
   facebook: "https://www.facebook.com/komal.shehzadee",
-  instagram: 'https://www.instagram.com/komal.shehzadii',
-  twitter: 'https://www.twitter.com/komalshehzadi_',
+  instagram: "https://www.instagram.com/komal.shehzadii",
+  twitter: "https://www.twitter.com/komalshehzadi_",
   // Instagram, Twitter and Kaggle are also supported in the links!
   // To customize icons and social links, tweak src/components/SocialMedia
   display: true // Set true to display this section, defaults to false
@@ -48,7 +48,8 @@ const socialMediaLinks = {
 
 const skillsSection = {
   title: "What I do",
-  subTitle: "PASSIONATE FRONT-END DEVELOPER WHO WANTS TO EXPLORE EVERY TECH STACK AND FRAMEWORK",
+  subTitle:
+    "PASSIONATE FRONT-END DEVELOPER WHO WANTS TO EXPLORE EVERY TECH STACK AND FRAMEWORK",
   skills: [
     emoji(
       "⚡ Develop highly interactive Front end / User Interfaces for your web and mobile applications"
@@ -148,8 +149,10 @@ const educationInfo = {
       subHeader: "Bachelor of Science in Computer Science",
       duration: "2016 - 2020",
       desc: "Ranked top 10% in the program. Took courses about Software Engineering, Web Security, Operating Systems, ...",
-      descBullets: ["Awarded with Dean's Role of Honour in 3rd, 4th, 5th, 6th, 7th and 8th Semester",
-        "Won best Final Year Project award from COMSTATS and UET."]
+      descBullets: [
+        "Awarded with Dean's Role of Honour in 3rd, 4th, 5th, 6th, 7th and 8th Semester",
+        "Won best Final Year Project award from COMSTATS and UET."
+      ]
     }
   ]
 };
@@ -287,8 +290,8 @@ const achievementSection = {
           url: "https://www.linkedin.com/posts/komal-shehzadi_grateful-and-humbled-to-be-recognized-as-activity-7425277142315405312-nRMl?utm_source=share&utm_medium=member_desktop&rcm=ACoAACgQ5uEB0pFEncIg-6eYUVfo2_ceRVBJwTw"
         },
         {
-          name:"🌟 Ranked 3rd in AI Hackathon - 2024 🌟",
-          url:"https://www.linkedin.com/posts/komal-shehzadi_ai-hackathon2024-teamwork-activity-7223387312632586240-8rjQ?utm_source=share&utm_medium=member_desktop&rcm=ACoAACgQ5uEB0pFEncIg-6eYUVfo2_ceRVBJwTw"
+          name: "🌟 Ranked 3rd in AI Hackathon - 2024 🌟",
+          url: "https://www.linkedin.com/posts/komal-shehzadi_ai-hackathon2024-teamwork-activity-7223387312632586240-8rjQ?utm_source=share&utm_medium=member_desktop&rcm=ACoAACgQ5uEB0pFEncIg-6eYUVfo2_ceRVBJwTw"
         },
         {
           name: "🌟 Achiever of the Month - 2023 🌟",
@@ -297,9 +300,7 @@ const achievementSection = {
         {
           name: "🌟 Achiever of the Month - 2022 🌟",
           url: "https://www.linkedin.com/posts/komal-shehzadi_coc-techlogix-almusnet-activity-6925913612477685760-taDW?utm_source=share&utm_medium=member_desktop"
-        },
-
-
+        }
       ]
     },
     {
@@ -312,20 +313,21 @@ const achievementSection = {
         {
           name: "Node.JS, Express, MongoDB & More: The Complete Bootcamp 2022",
           url: "https://www.udemy.com/certificate/UC-c34d9ab6-8682-4746-9908-0013467298c0/"
-        },
+        }
       ]
     },
 
     {
       title: "Front-End Web UI Frameworks and Tools: Bootstrap 4",
-      subtitle: "Completed Certifcation from coursera for Front-End Web UI Frameworks and Tools using Bootstrap 4.",
+      subtitle:
+        "Completed Certifcation from coursera for Front-End Web UI Frameworks and Tools using Bootstrap 4.",
       image: require("./assets/images/coursera.png"),
       imageAlt: "coursera logo",
       footerLink: [
         {
           name: "Front-End Web UI Frameworks and Tools: Bootstrap 4",
           url: "https://www.coursera.org/account/accomplishments/certificate/F5V63UECGA69"
-        },
+        }
       ]
     }
   ],

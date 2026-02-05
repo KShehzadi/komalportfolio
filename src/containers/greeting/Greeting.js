@@ -48,10 +48,10 @@ export default function Greeting() {
             </div>
           </div>
           <div className="greeting-image-div">
-          <img
-                alt="man sitting on table"
-                src={require("../../assets/images/komal.JPG")}
-              ></img>
+            <img
+              alt="man sitting on table"
+              src={require("../../assets/images/komal.JPG")}
+            ></img>
           </div>
         </div>
       </div>
