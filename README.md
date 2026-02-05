@@ -1,3 +1,41 @@
+# Setup & Run (develop on main)
+
+Follow these steps to set up and run the project from the `main` branch for development and to create production builds.
+
+1. Clone the repository and switch to the `main` branch (if not already on main):
+
+```bash
+# Clone the repo
+git clone https://github.com/<your-username>/komalportfolio.git
+cd komalportfolio
+# Ensure you're on main
+git checkout main
+```
+
+2. Create environment file (if needed):
+
+```bash
+# Linux / macOS
+cp env.example .env
+# Windows (PowerShell / CMD)
+copy env.example .env
+```
+
+3. Install dependencies and start the dev server:
+
+```bash
+npm install
+npm start
+```
+
+4. Create a production build on `main`:
+
+```bash
+npm run build
+```
+
+This will produce a `build/` folder ready for deployment.
+
 # Personal deployment note
 
 I keep all source code and make changes on the `main` branch. To produce a production build, run:
