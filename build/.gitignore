@@ -1,0 +1,8 @@
+# Ignore all node_modules folders inside this build directory (and any nested ones)
+node_modules/
+**/node_modules/
+
+# Optional: ignore debug logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
