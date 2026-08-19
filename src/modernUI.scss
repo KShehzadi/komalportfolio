@@ -1,0 +1,860 @@
+/* =========================================================================
+   modernUI.scss — 2026 visual refresh layer
+   -------------------------------------------------------------------------
+   This file is imported LAST (from containers/Main.js) so it can refine the
+   base DeveloperFolio styles without having to rewrite them. Everything here
+   is additive: remove this single import to get the original look back.
+
+   Contents
+     1.  Design tokens
+     2.  Base / typography
+     3.  Aurora background + scroll progress
+     4.  Header (glass)
+     5.  Hero / greeting
+     6.  Section headings
+     7.  Skill icons + proficiency meters
+     8.  Cards (experience, education, achievement, blog, repo, profile)
+     9.  Buttons + social icons
+     10. Scroll-to-top button
+     11. Reduced motion
+   ========================================================================= */
+
+@import "./_globalColor";
+
+/* ------------------------------------------------------------------ *
+   1. Design tokens
+ * ------------------------------------------------------------------ */
+
+:root {
+  --mu-violet: #6c63ff;
+  --mu-purple: #a855f7;
+  --mu-cyan: #22d3ee;
+  --mu-pink: #ec4899;
+
+  --mu-accent-gradient: linear-gradient(
+    120deg,
+    var(--mu-violet) 0%,
+    var(--mu-purple) 45%,
+    var(--mu-pink) 100%
+  );
+  --mu-accent-gradient-soft: linear-gradient(
+    120deg,
+    rgba(108, 99, 255, 0.14) 0%,
+    rgba(168, 85, 247, 0.14) 50%,
+    rgba(236, 72, 153, 0.14) 100%
+  );
+
+  /* light surfaces */
+  --mu-surface: rgba(255, 255, 255, 0.72);
+  --mu-surface-solid: #ffffff;
+  --mu-border: rgba(17, 17, 26, 0.08);
+  --mu-border-strong: rgba(108, 99, 255, 0.28);
+  --mu-shadow-sm: 0 1px 2px rgba(17, 17, 26, 0.04),
+    0 4px 16px rgba(17, 17, 26, 0.06);
+  --mu-shadow-lg: 0 2px 4px rgba(17, 17, 26, 0.04),
+    0 18px 48px rgba(108, 99, 255, 0.18);
+
+  --mu-radius: 20px;
+  --mu-radius-lg: 26px;
+  --mu-ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* dark surfaces — .dark-mode is the outermost wrapper set by Main.js */
+.dark-mode {
+  --mu-surface: rgba(30, 38, 59, 0.62);
+  --mu-surface-solid: #1b2237;
+  --mu-border: rgba(255, 255, 255, 0.1);
+  --mu-border-strong: rgba(168, 85, 247, 0.4);
+  --mu-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3), 0 4px 18px rgba(0, 0, 0, 0.35);
+  --mu-shadow-lg: 0 2px 6px rgba(0, 0, 0, 0.35), 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+
+/* ------------------------------------------------------------------ *
+   2. Base / typography
+ * ------------------------------------------------------------------ */
+
+html {
+  scroll-behavior: smooth;
+  /* keep anchored sections clear of the sticky header */
+  scroll-padding-top: 6rem;
+}
+
+body {
+  background-color: #fbfaff;
+  letter-spacing: -0.01em;
+  text-rendering: optimizeLegibility;
+}
+
+/* The page background lives on <body>, not on the .dark-mode wrapper.
+   That matters: .dark-mode does not create a stacking context, so an opaque
+   background on it would paint *over* the negative-z-index aurora layer and
+   hide it. Body's background propagates to the canvas instead, which sits
+   below negative-z-index content. The class is toggled from Main.js. */
+body.mu-dark {
+  background-color: $darkBackground;
+  background-image: radial-gradient(
+      1200px 800px at 15% -10%,
+      rgba(108, 99, 255, 0.16),
+      transparent 60%
+    ),
+    radial-gradient(
+      1000px 700px at 90% 10%,
+      rgba(236, 72, 153, 0.12),
+      transparent 60%
+    );
+  color: $textColorDark;
+}
+
+.dark-mode {
+  min-height: 100vh;
+  background-color: transparent !important;
+}
+
+/* Slightly tighter, more modern heading rhythm across the whole page */
+h1,
+.greeting-text,
+.skills-heading,
+.experience-heading,
+.education-heading,
+.project-title,
+.blog-header-text,
+.achievement-heading,
+.prof-title,
+.contact-title {
+  letter-spacing: -0.03em;
+  font-weight: 800;
+}
+
+/* Text selection picks up the brand colour */
+::selection {
+  background: rgba(108, 99, 255, 0.28);
+}
+
+/* Custom scrollbar (WebKit) */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(var(--mu-violet), var(--mu-pink));
+  border-radius: 10px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+/* ------------------------------------------------------------------ *
+   3. Aurora background + scroll progress
+ * ------------------------------------------------------------------ */
+
+.aurora-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.aurora-bg span {
+  position: absolute;
+  display: block;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.32;
+  will-change: transform;
+}
+
+.aurora-bg span:nth-child(1) {
+  width: 44vw;
+  height: 44vw;
+  top: -12vw;
+  left: -8vw;
+  background: radial-gradient(circle, var(--mu-violet), transparent 70%);
+  animation: mu-drift-a 22s var(--mu-ease) infinite alternate;
+}
+.aurora-bg span:nth-child(2) {
+  width: 38vw;
+  height: 38vw;
+  top: 12vh;
+  right: -10vw;
+  background: radial-gradient(circle, var(--mu-cyan), transparent 70%);
+  animation: mu-drift-b 26s var(--mu-ease) infinite alternate;
+}
+.aurora-bg span:nth-child(3) {
+  width: 40vw;
+  height: 40vw;
+  bottom: -14vw;
+  left: 22vw;
+  background: radial-gradient(circle, var(--mu-pink), transparent 70%);
+  animation: mu-drift-c 30s var(--mu-ease) infinite alternate;
+}
+
+.dark-mode .aurora-bg span {
+  opacity: 0.34;
+}
+
+@keyframes mu-drift-a {
+  to {
+    transform: translate3d(8vw, 6vh, 0) scale(1.18);
+  }
+}
+@keyframes mu-drift-b {
+  to {
+    transform: translate3d(-7vw, 10vh, 0) scale(1.12);
+  }
+}
+@keyframes mu-drift-c {
+  to {
+    transform: translate3d(6vw, -8vh, 0) scale(1.22);
+  }
+}
+
+/* reading-progress bar pinned to the very top of the viewport */
+.mu-scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 100%;
+  transform-origin: 0 50%;
+  background: var(--mu-accent-gradient);
+  z-index: 100;
+  will-change: transform;
+}
+
+/* ------------------------------------------------------------------ *
+   4. Header (glass)
+ * ------------------------------------------------------------------ */
+
+.header {
+  background: var(--mu-surface) !important;
+  -webkit-backdrop-filter: saturate(180%) blur(14px);
+  backdrop-filter: saturate(180%) blur(14px);
+  border-bottom: 1px solid var(--mu-border);
+  box-shadow: var(--mu-shadow-sm);
+}
+
+.header .logo-name {
+  background: var(--mu-accent-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  font-weight: 800;
+}
+
+/* animated underline on nav links */
+.header .menu li a {
+  position: relative;
+  border-radius: 8px;
+  transition: color 0.25s var(--mu-ease);
+}
+
+.header .menu li a::after {
+  content: "";
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 6px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--mu-accent-gradient);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s var(--mu-ease);
+}
+
+.header .menu li a:hover::after {
+  transform: scaleX(1);
+}
+
+/* ------------------------------------------------------------------ *
+   5. Hero / greeting
+ * ------------------------------------------------------------------ */
+
+.greeting-text {
+  background: var(--mu-accent-gradient);
+  background-size: 220% 220%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent !important;
+  animation: mu-gradient-pan 9s ease infinite;
+}
+
+@keyframes mu-gradient-pan {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* the wave emoji is an <img> injected by react-easy-emoji — keep it visible
+   even though its parent uses -webkit-text-fill-color: transparent */
+.greeting-text .wave-emoji img,
+.greeting-text img {
+  -webkit-text-fill-color: initial;
+}
+
+/* staggered entrance for the hero column */
+.greeting-text-div > div > * {
+  animation: mu-rise 0.9s var(--mu-ease) both;
+}
+.greeting-text-div > div > *:nth-child(1) {
+  animation-delay: 0.05s;
+}
+.greeting-text-div > div > *:nth-child(2) {
+  animation-delay: 0.16s;
+}
+.greeting-text-div > div > *:nth-child(3) {
+  animation-delay: 0.27s;
+}
+.greeting-text-div > div > *:nth-child(4) {
+  animation-delay: 0.38s;
+}
+.greeting-text-div > div > *:nth-child(5) {
+  animation-delay: 0.49s;
+}
+
+@keyframes mu-rise {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* typing headline under the hero title.
+   The generous line-height matters: background-clip: text clips to the line
+   box, so a tight one shears the descenders off letters like g/p/y. */
+.mu-typewriter {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  line-height: 1.6;
+  min-height: 1.6em;
+  margin: 0 0 0.5rem;
+  padding-bottom: 0.1em;
+  font-size: clamp(1.1rem, 2.4vw, 1.9rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.mu-typewriter-prefix {
+  color: $subTitle;
+  font-weight: 600;
+  margin-right: 0.45rem;
+}
+
+.mu-typewriter-word {
+  background: var(--mu-accent-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.mu-typewriter-caret {
+  display: inline-block;
+  width: 2px;
+  height: 1.05em;
+  align-self: center;
+  margin-left: 3px;
+  background: var(--mu-purple);
+  animation: mu-blink 1s steps(2, start) infinite;
+}
+
+@keyframes mu-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+/* profile photo: rotating conic gradient ring + gentle float */
+.greeting-image-div {
+  position: relative;
+}
+
+/* The base theme sized this with `height: 64vh`, so the circle turned into an
+   ellipse on any viewport that was not roughly its own aspect ratio. Lock it to
+   a square box instead and let object-fit crop the photo. */
+.greeting-image-div > img {
+  border: none !important;
+  border-radius: 50%;
+  width: min(420px, 100%);
+  height: auto !important;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  padding: 6px;
+  background: var(--mu-accent-gradient);
+  box-shadow: 0 24px 60px rgba(108, 99, 255, 0.32);
+  animation: mu-float 7s ease-in-out infinite;
+  transition: transform 0.5s var(--mu-ease);
+}
+
+.greeting-image-div > img:hover {
+  transform: scale(1.03) rotate(1deg);
+}
+
+.greeting-image-div::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: min(460px, 100%);
+  aspect-ratio: 1 / 1;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: conic-gradient(
+    from 0deg,
+    var(--mu-violet),
+    var(--mu-cyan),
+    var(--mu-pink),
+    var(--mu-violet)
+  );
+  filter: blur(38px);
+  opacity: 0.4;
+  z-index: -1;
+  animation: mu-spin 14s linear infinite;
+}
+
+@keyframes mu-spin {
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+@keyframes mu-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-14px);
+  }
+}
+
+/* ------------------------------------------------------------------ *
+   6. Section headings — gradient accent rule underneath
+ * ------------------------------------------------------------------ */
+
+.skills-heading,
+.experience-heading,
+.education-heading,
+.project-title,
+.blog-header-text,
+.achievement-heading,
+.prof-title,
+.contact-title {
+  position: relative;
+}
+
+.skills-heading::after,
+.experience-heading::after,
+.education-heading::after,
+.project-title::after,
+.blog-header-text::after,
+.achievement-heading::after,
+.prof-title::after,
+.contact-title::after {
+  content: "";
+  display: block;
+  width: 78px;
+  height: 4px;
+  margin: 0.65rem auto 0;
+  border-radius: 999px;
+  background: var(--mu-accent-gradient);
+}
+
+/* "What I do" and "Proficiency" are left-aligned, so their rule is too */
+.skills-heading::after {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+/* ------------------------------------------------------------------ *
+   7. Skill icons + proficiency meters
+ * ------------------------------------------------------------------ */
+
+.software-skill-inline {
+  transition: transform 0.35s var(--mu-ease);
+}
+
+.software-skill-inline > i {
+  transition: color 0.3s var(--mu-ease), transform 0.35s var(--mu-ease),
+    filter 0.35s var(--mu-ease);
+}
+
+.software-skill-inline:hover {
+  transform: translateY(-10px);
+}
+
+.software-skill-inline:hover > i {
+  color: var(--mu-violet) !important;
+  transform: scale(1.14);
+  filter: drop-shadow(0 10px 18px rgba(108, 99, 255, 0.45));
+}
+
+.software-skill-inline > p {
+  font-size: 11px !important;
+  font-weight: 600;
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: opacity 0.3s var(--mu-ease), transform 0.3s var(--mu-ease);
+}
+
+.software-skill-inline:hover > p {
+  opacity: 1;
+  transform: none;
+}
+
+/* proficiency meters: gradient fill that grows in, plus a moving sheen */
+.skills-bar .meter {
+  height: 14px;
+  background: var(--mu-accent-gradient-soft);
+  border: 1px solid var(--mu-border);
+  overflow: hidden;
+}
+
+.skills-bar .meter > span {
+  background: var(--mu-accent-gradient) !important;
+  border-radius: 999px;
+  animation: mu-meter-fill 1.6s var(--mu-ease) both;
+}
+
+.skills-bar .meter > span::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.55),
+    transparent
+  );
+  transform: translateX(-100%);
+  animation: mu-sheen 2.6s ease-in-out 1.4s infinite;
+}
+
+@keyframes mu-meter-fill {
+  from {
+    width: 0 !important;
+  }
+}
+
+@keyframes mu-sheen {
+  to {
+    transform: translateX(100%);
+  }
+}
+
+/* the percentage label added in skillProgress.js */
+.mu-skill-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.mu-skill-percent {
+  font-size: 0.95rem;
+  font-weight: 700;
+  background: var(--mu-accent-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* ------------------------------------------------------------------ *
+   8. Cards — one shared glass treatment
+ * ------------------------------------------------------------------ */
+
+.experience-card,
+.experience-card-dark,
+.certificate-card,
+.education-card,
+.blog-container,
+.repo-card-div {
+  border-radius: var(--mu-radius) !important;
+  border: 1px solid var(--mu-border) !important;
+  background: var(--mu-surface) !important;
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  box-shadow: var(--mu-shadow-sm) !important;
+  transition: transform 0.4s var(--mu-ease), box-shadow 0.4s var(--mu-ease),
+    border-color 0.4s var(--mu-ease) !important;
+}
+
+.experience-card:hover,
+.experience-card-dark:hover,
+.certificate-card:hover,
+.education-card:hover,
+.blog-container:hover,
+.repo-card-div:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--mu-shadow-lg) !important;
+  border-color: var(--mu-border-strong) !important;
+}
+
+/* experience card: rounder banner, crisper logo */
+.experience-banner {
+  border-radius: var(--mu-radius) var(--mu-radius) 0 0 !important;
+  height: 10rem;
+}
+
+.experience-blurred_div {
+  border-radius: var(--mu-radius) var(--mu-radius) 0 0 !important;
+  height: 10rem;
+}
+
+.experience-roundedimg {
+  top: 6.2rem;
+  background: #fff;
+  padding: 6px;
+  border: 3px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 12px 28px rgba(17, 17, 26, 0.28);
+  transition: transform 0.45s var(--mu-ease);
+}
+
+.experience-card:hover .experience-roundedimg,
+.experience-card-dark:hover .experience-roundedimg {
+  transform: scale(1.07);
+}
+
+.experience-text-date {
+  background: var(--mu-accent-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent !important;
+  font-size: 1rem !important;
+  letter-spacing: 0.01em;
+}
+
+/* "Current role" pill — rendered by ExperienceCard.js for the active job */
+.mu-current-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin: 0.9rem auto 0;
+  padding: 0.3rem 0.85rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #fff;
+  background: var(--mu-accent-gradient);
+  box-shadow: 0 8px 20px rgba(108, 99, 255, 0.35);
+}
+
+.mu-current-badge::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #fff;
+  animation: mu-pulse 1.8s ease-out infinite;
+}
+
+@keyframes mu-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.9);
+  }
+  70% {
+    box-shadow: 0 0 0 9px rgba(255, 255, 255, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+  }
+}
+
+.mu-badge-wrap {
+  text-align: center;
+}
+
+/* achievement + blog cards */
+.certificate-card {
+  padding: 1.75rem !important;
+}
+
+.certificate-image-div > img {
+  transition: transform 0.5s var(--mu-ease);
+}
+
+.certificate-card:hover .certificate-image-div > img {
+  transform: scale(1.06);
+}
+
+.certificate-card-footer span.certificate-tag {
+  background: var(--mu-accent-gradient-soft);
+  color: var(--mu-violet);
+  border: 1px solid var(--mu-border-strong);
+  font-weight: 700;
+  height: auto;
+  padding: 0.45em 0.85em;
+  border-radius: 999px;
+  transition: transform 0.25s var(--mu-ease), box-shadow 0.25s var(--mu-ease);
+}
+
+.dark-mode .certificate-card-footer span.certificate-tag {
+  color: #cdb6ff;
+}
+
+.certificate-card-footer span.certificate-tag:hover {
+  background: var(--mu-accent-gradient);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 22px rgba(108, 99, 255, 0.35);
+}
+
+.achievement-cards-div,
+.blog-main-div > .blog-text-div {
+  gap: 1.6rem !important;
+}
+
+/* education card: turn the bare flex row into a real card and retire the
+   standalone underline element it used to rely on */
+.education-card {
+  padding: 1.5rem 1.75rem !important;
+  position: relative;
+  overflow: hidden;
+}
+
+.education-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 4px;
+  background: var(--mu-accent-gradient);
+}
+
+.education-card-border {
+  border-top: none !important;
+  height: 22px !important;
+}
+
+/* blog cards: the visual surface is .blog-container, .blog-card is the inner
+   anchor — keep the anchor transparent so the glass shows through */
+.blog-card {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+/* ------------------------------------------------------------------ *
+   9. Buttons + social icons
+ * ------------------------------------------------------------------ */
+
+.main-button {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  border: none !important;
+  border-radius: 999px !important;
+  padding: 14px 30px !important;
+  letter-spacing: 0.04em;
+  background: var(--mu-accent-gradient) !important;
+  color: #fff !important;
+  box-shadow: 0 10px 26px rgba(108, 99, 255, 0.34);
+  transition: transform 0.35s var(--mu-ease), box-shadow 0.35s var(--mu-ease) !important;
+}
+
+/* light sweep across the button on hover */
+.main-button::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.45),
+    transparent
+  );
+  transform: translateX(-110%);
+  transition: transform 0.7s var(--mu-ease);
+}
+
+.main-button:hover {
+  color: #fff !important;
+  background: var(--mu-accent-gradient) !important;
+  transform: translateY(-4px) !important;
+  box-shadow: 0 18px 38px rgba(108, 99, 255, 0.45);
+}
+
+.main-button:hover::after {
+  transform: translateX(110%);
+}
+
+/* social icons: pill buttons that lift and glow */
+.social-media-div .icon-button {
+  border-radius: 50%;
+  transition: transform 0.35s var(--mu-ease), box-shadow 0.35s var(--mu-ease);
+}
+
+.social-media-div .icon-button:hover {
+  transform: translateY(-6px) scale(1.08);
+  box-shadow: 0 14px 28px rgba(17, 17, 26, 0.28);
+}
+
+/* ------------------------------------------------------------------ *
+   10. Scroll-to-top button
+ * ------------------------------------------------------------------ */
+
+#topButton {
+  border: none !important;
+  border-radius: 50% !important;
+  width: 52px;
+  height: 52px;
+  background: var(--mu-accent-gradient) !important;
+  color: #fff !important;
+  box-shadow: 0 12px 30px rgba(108, 99, 255, 0.42) !important;
+  transition: transform 0.35s var(--mu-ease), box-shadow 0.35s var(--mu-ease);
+}
+
+#topButton:hover {
+  transform: translateY(-5px) scale(1.06);
+  box-shadow: 0 18px 40px rgba(108, 99, 255, 0.55) !important;
+}
+
+/* ------------------------------------------------------------------ *
+   11. Respect reduced-motion preferences
+ * ------------------------------------------------------------------ */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .aurora-bg span,
+  .greeting-image-div > img,
+  .greeting-image-div::before,
+  .greeting-text,
+  .greeting-text-div > div > *,
+  .skills-bar .meter > span,
+  .skills-bar .meter > span::after,
+  .mu-current-badge::before,
+  .mu-typewriter-caret,
+  .wave-emoji {
+    animation: none !important;
+  }
+
+  .greeting-text-div > div > * {
+    opacity: 1;
+    transform: none;
+  }
+
+  * {
+    transition-duration: 0.01ms !important;
+  }
+}

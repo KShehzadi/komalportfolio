@@ -4,6 +4,7 @@ import emoji from "react-easy-emoji";
 import "./Greeting.scss";
 import SocialMedia from "../../components/socialMedia/SocialMedia";
 import Button from "../../components/button/Button";
+import Typewriter from "../../components/typewriter/Typewriter";
 import {greeting} from "../../portfolio";
 import StyleContext from "../../contexts/StyleContext";
 
@@ -25,6 +26,9 @@ export default function Greeting() {
                 {greeting.title}{" "}
                 <span className="wave-emoji">{emoji("👋")}</span>
               </h1>
+              {greeting.typewriter && (
+                <Typewriter prefix="I'm a" words={greeting.typewriter} />
+              )}
               <p
                 className={
                   isDark

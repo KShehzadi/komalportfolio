@@ -23,8 +23,15 @@ const greeting = {
   username: "Komal Shehzadi",
   title: "Hi all, I'm Komal",
   subTitle: emoji(
-    "🚀 Passionate Frontend Engineer — I craft pixel-perfect, accessible UIs with React and Angular. I love building fast, responsive single‑page apps using JavaScript & TypeScript, turning complex problems into delightful user experiences. 💡🔥"
+    "🚀 Principal Software Engineer — I craft pixel-perfect, accessible UIs with React and Angular. I love building fast, responsive single‑page apps using JavaScript & TypeScript, turning complex problems into delightful user experiences. 💡🔥"
   ),
+  // Words cycled by the animated typing effect in the hero section
+  typewriter: [
+    "Principal Software Engineer",
+    "Frontend Architect",
+    "React & Angular Specialist",
+    "UI/UX Enthusiast"
+  ],
   resumeLink:
     "https://drive.google.com/file/d/1sP2i0K1kBzQ-iY3bdaYF22e_4hSMdgf2/view?usp=drive_link", // Set to empty to hide the button
   displayGreeting: true // Set false to hide this section, defaults to true
@@ -35,7 +42,7 @@ const greeting = {
 const socialMediaLinks = {
   github: "https://github.com/kshehzadi",
   linkedin: "https://www.linkedin.com/in/komal-shehzadi/",
-  gmail: "shehzadikomal303@gmail.com@gmail.com",
+  gmail: "shehzadikomal303@gmail.com",
   facebook: "https://www.facebook.com/komal.shehzadee",
   instagram: "https://www.instagram.com/komal.shehzadii",
   twitter: "https://www.twitter.com/komalshehzadi_",
@@ -140,7 +147,7 @@ const educationInfo = {
       duration: "2021 -  2023",
       desc: "Participated in the research of network security and wrote 1 SLR and 2 papers.",
       descBullets: [
-        "Awarded with Dean's Role of Honour in 3rd and 4th Semester."
+        "Awarded with Dean's Roll of Honour in 3rd and 4th Semester."
       ]
     },
     {
@@ -150,7 +157,7 @@ const educationInfo = {
       duration: "2016 - 2020",
       desc: "Ranked top 10% in the program. Took courses about Software Engineering, Web Security, Operating Systems, ...",
       descBullets: [
-        "Awarded with Dean's Role of Honour in 3rd, 4th, 5th, 6th, 7th and 8th Semester",
+        "Awarded with Dean's Roll of Honour in 3rd, 4th, 5th, 6th, 7th and 8th Semester",
         "Won best Final Year Project award from COMSTATS and UET."
       ]
     }
@@ -184,10 +191,22 @@ const workExperiences = {
   display: true, //Set it to true to show workExperiences Section
   experience: [
     {
+      role: "Principal Software Engineer",
+      company: "Techlogix",
+      companylogo: require("./assets/images/Techlogix-Logo.png"),
+      date: "December 2025 – Present",
+      desc: "Principal engineer driving front-end architecture, technical direction and engineering standards across multiple product teams.",
+      descBullets: [
+        "Own the front-end architecture and design system decisions across product teams.",
+        "Mentor and technically lead engineers through design reviews and code reviews.",
+        "Drive performance, accessibility and code-quality standards for Angular and React platforms."
+      ]
+    },
+    {
       role: "Senior Software Engineer",
       company: "Techlogix",
       companylogo: require("./assets/images/Techlogix-Logo.png"),
-      date: "March 2022 – Present",
+      date: "March 2022 – December 2025",
       desc: "Experienced frontend engineer at Techlogix, specializing in crafting intuitive user interfaces and enhancing user experiences.",
       descBullets: [
         "Front-end development of track and trace application using Angular for Authentix.",
@@ -320,7 +339,7 @@ const achievementSection = {
     {
       title: "Front-End Web UI Frameworks and Tools: Bootstrap 4",
       subtitle:
-        "Completed Certifcation from coursera for Front-End Web UI Frameworks and Tools using Bootstrap 4.",
+        "Completed Certification from Coursera for Front-End Web UI Frameworks and Tools using Bootstrap 4.",
       image: require("./assets/images/coursera.png"),
       imageAlt: "coursera logo",
       footerLink: [

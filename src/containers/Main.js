@@ -16,10 +16,13 @@ import ScrollToTopButton from "./topbutton/Top";
 import Twitter from "./twitter-embed/twitter";
 import Profile from "./profile/Profile";
 import SplashScreen from "./splashScreen/SplashScreen";
+import ScrollProgress from "../components/scrollProgress/ScrollProgress";
 import {splashScreen} from "../portfolio";
 import {StyleProvider} from "../contexts/StyleContext";
 import {useLocalStorage} from "../hooks/useLocalStorage";
 import "./Main.scss";
+// imported last so the 2026 refresh layer can refine the base component styles
+import "../modernUI.scss";
 
 const Main = () => {
   const darkPref = window.matchMedia("(prefers-color-scheme: dark)");
@@ -39,6 +42,12 @@ const Main = () => {
     }
   }, []);
 
+  // The page background is painted on <body> so the aurora layer (which sits at
+  // a negative z-index) is not covered by an opaque wrapper background.
+  useEffect(() => {
+    document.body.classList.toggle("mu-dark", !!isDark);
+  }, [isDark]);
+
   const changeTheme = () => {
     setIsDark(!isDark);
   };
@@ -50,6 +59,12 @@ const Main = () => {
           <SplashScreen />
         ) : (
           <>
+            <div className="aurora-bg" aria-hidden="true">
+              <span />
+              <span />
+              <span />
+            </div>
+            <ScrollProgress />
             <Header />
             <Greeting />
             <Skills />

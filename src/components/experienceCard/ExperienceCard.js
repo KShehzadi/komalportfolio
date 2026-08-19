@@ -75,6 +75,12 @@ export default function ExperienceCard({cardInfo, isDark}) {
         >
           {cardInfo.desc}
         </p>
+        {/* flag whichever role is the current one */}
+        {/Present/i.test(cardInfo.date || "") && (
+          <div className="mu-badge-wrap">
+            <span className="mu-current-badge">Current role</span>
+          </div>
+        )}
         <ul>
           <GetDescBullets descBullets={cardInfo.descBullets} isDark={isDark} />
         </ul>
