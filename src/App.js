@@ -1,13 +1,8 @@
 import React from "react";
-import "./App.scss";
-import Main from "./containers/Main";
+import Shell from "./layout/Shell";
 
 function App() {
-  return (
-    <div>
-      <Main />
-    </div>
-  );
+  return <Shell />;
 }
 
 export default App;

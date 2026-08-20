@@ -1,0 +1,77 @@
+/* =========================================================================
+   fx.scss — pointer-driven effects layer.
+   Loaded after app.scss. Purely decorative; the page works without it.
+   ========================================================================= */
+
+@import "./tokens";
+
+/* ------------------------------------------------------------------ *
+   Spotlight cards — a highlight that tracks the pointer.
+   Position comes from --mx / --my, written by useSpotlight().
+ * ------------------------------------------------------------------ */
+
+.card {
+  --mx: 50%;
+  --my: 50%;
+  isolation: isolate;
+}
+
+.card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: radial-gradient(
+    320px circle at var(--mx) var(--my),
+    rgba(145, 94, 255, 0.16),
+    transparent 62%
+  );
+  opacity: 0;
+  transition: opacity var(--dur) var(--ease);
+}
+
+.card:hover::after {
+  opacity: 1;
+}
+
+/* ------------------------------------------------------------------ *
+   3D tilt — used on the work cards
+ * ------------------------------------------------------------------ */
+
+.tilt-scene {
+  perspective: 1000px;
+}
+
+.tilt {
+  --rx: 0deg;
+  --ry: 0deg;
+  transform: rotateX(var(--rx)) rotateY(var(--ry));
+  transform-style: preserve-3d;
+  transition: transform 380ms var(--ease);
+  will-change: transform;
+}
+
+.tilt.is-tilting {
+  transition: transform 90ms linear;
+}
+
+/* ------------------------------------------------------------------ *
+   Section heading accent rule
+ * ------------------------------------------------------------------ */
+
+.section-head h2::after {
+  content: "";
+  display: block;
+  width: 88px;
+  height: 4px;
+  margin-top: 1rem;
+  border-radius: 999px;
+  background: var(--green-pink-gradient);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tilt {
+    transform: none !important;
+  }
+}

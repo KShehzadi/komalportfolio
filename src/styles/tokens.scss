@@ -1,0 +1,267 @@
+/* =========================================================================
+   tokens.scss — palette and scale.
+   -------------------------------------------------------------------------
+   Three themes, selected by `data-theme` on <html>:
+
+     dark    the reference palette (default)
+     day     light
+     purple  deep violet
+
+   Every colour used anywhere in the UI is a custom property declared in all
+   three blocks, so nothing has to be special-cased per theme. The dark values
+   come from the reference design
+   (github.com/ladunjexa/reactjs18-3d-portfolio, MIT © Liron Abutbul).
+   ========================================================================= */
+
+/* ---------------------------------------------------------------- *
+   Shared, theme-independent scale
+ * ---------------------------------------------------------------- */
+
+:root {
+  --r-sm: 10px;
+  --r-md: 16px;
+  --r-lg: 20px;
+  --r-xl: 24px;
+  --r-pill: 999px;
+
+  --gap: clamp(0.9rem, 1.4vw, 1.25rem);
+  --pad-card: clamp(1.15rem, 2vw, 1.5rem);
+  --section-y: clamp(3.5rem, 7vw, 6rem);
+  --shell: 1280px;
+
+  --font-sans: "Montserrat", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    Roboto, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", "Cascadia Mono", "JetBrains Mono", Menlo,
+    Consolas, monospace;
+
+  --t-hero: clamp(2.5rem, 7.5vw, 5rem);
+  --t-hero-sub: clamp(1rem, 2.4vw, 1.875rem);
+  --t-h2: clamp(1.875rem, 5.5vw, 3.75rem);
+  --t-h3: clamp(1.05rem, 1.6vw, 1.375rem);
+  --t-body: clamp(0.95rem, 1.05vw, 1.0625rem);
+  --t-small: 0.875rem;
+  --t-micro: 0.75rem;
+
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-fast: 160ms;
+  --dur: 280ms;
+  --dur-slow: 620ms;
+}
+
+/* ---------------------------------------------------------------- *
+   dark — the reference palette (also the default before JS runs)
+ * ---------------------------------------------------------------- */
+
+:root,
+html[data-theme="dark"] {
+  --primary: #050816;
+  --tertiary: #151030;
+  --black-100: #100d25;
+  --black-200: #090325;
+  --secondary: #aaa6c3;
+  --white-100: #f3f3f3;
+
+  --accent: #915eff;
+  --accent-strong: #a983ff;
+  --accent-soft: rgba(145, 94, 255, 0.14);
+  --on-accent: #ffffff;
+  --accent-ring: rgba(145, 94, 255, 0.36);
+  --hero-sub: #dfd9ff;
+  --stars: #f272c8;
+  --star-1: rgba(242, 114, 200, 0.9);
+  --star-2: rgba(255, 255, 255, 0.7);
+  --star-3: rgba(145, 94, 255, 0.8);
+
+  --text: #ffffff;
+  --text-muted: var(--secondary);
+  --text-subtle: #7e7a99;
+  --hairline: rgba(255, 255, 255, 0.08);
+  --hairline-strong: rgba(255, 255, 255, 0.18);
+
+  --nav-bg: rgba(5, 8, 22, 0.72);
+  --input-bg: #090325;
+  --scroll-track: #090325;
+  --scroll-thumb: #2a2350;
+  --logo-plate: #ffffff;
+
+  --indigo: #8b8bff;
+  --cyan: #00cea8;
+  --violet: #bf61ff;
+  --amber: #f5af19;
+  --pink: #f272c8;
+  --emerald: #38ef7d;
+
+  --shadow-card: 0px 35px 120px -15px #211e35;
+  --shadow-1: 0 2px 10px rgba(0, 0, 0, 0.35);
+  --shadow-2: 0 10px 40px rgba(0, 0, 0, 0.5);
+
+  --wash: radial-gradient(
+      50% 45% at 22% 18%,
+      rgba(128, 77, 238, 0.4),
+      transparent 70%
+    ),
+    radial-gradient(
+      44% 40% at 82% 28%,
+      rgba(0, 206, 168, 0.16),
+      transparent 70%
+    ),
+    radial-gradient(
+      60% 50% at 50% 0%,
+      rgba(145, 94, 255, 0.25),
+      transparent 72%
+    );
+  --starfield-opacity: 1;
+}
+
+/* ---------------------------------------------------------------- *
+   day — light
+ * ---------------------------------------------------------------- */
+
+html[data-theme="day"] {
+  --primary: #f6f7fb;
+  --tertiary: #ffffff;
+  --black-100: #ffffff;
+  --black-200: #eef0f7;
+  --secondary: #55607a;
+  --white-100: #0b1020;
+
+  --accent: #6d28d9;
+  --accent-strong: #5b21b6;
+  --accent-soft: rgba(109, 40, 217, 0.09);
+  --on-accent: #ffffff;
+  --accent-ring: rgba(109, 40, 217, 0.28);
+  --hero-sub: #3f3a52;
+  /* dark stars: on a light ground the night-sky palette is invisible */
+  --stars: #4a3f6b;
+  --star-1: rgba(74, 63, 107, 0.75);
+  --star-2: rgba(37, 32, 56, 0.6);
+  --star-3: rgba(109, 40, 217, 0.55);
+
+  --text: #0b1020;
+  --text-muted: var(--secondary);
+  --text-subtle: #7d879e;
+  --hairline: rgba(11, 16, 32, 0.1);
+  --hairline-strong: rgba(11, 16, 32, 0.2);
+
+  --nav-bg: rgba(246, 247, 251, 0.78);
+  --input-bg: #f2f4fa;
+  --scroll-track: #e7eaf2;
+  --scroll-thumb: #c3c9da;
+  --logo-plate: #ffffff;
+
+  --indigo: #4f46e5;
+  --cyan: #0e8f7e;
+  --violet: #7c3aed;
+  --amber: #b45309;
+  --pink: #be1a6b;
+  --emerald: #047857;
+
+  --shadow-card: 0 18px 50px -22px rgba(11, 16, 32, 0.28);
+  --shadow-1: 0 1px 3px rgba(11, 16, 32, 0.08);
+  --shadow-2: 0 14px 40px rgba(11, 16, 32, 0.14);
+
+  --wash: radial-gradient(
+      50% 45% at 22% 18%,
+      rgba(109, 40, 217, 0.14),
+      transparent 70%
+    ),
+    radial-gradient(
+      44% 40% at 82% 28%,
+      rgba(14, 143, 126, 0.1),
+      transparent 70%
+    ),
+    radial-gradient(
+      60% 50% at 50% 0%,
+      rgba(124, 58, 237, 0.12),
+      transparent 72%
+    );
+  --starfield-opacity: 0.6;
+}
+
+/* ---------------------------------------------------------------- *
+   purple — deep violet
+ * ---------------------------------------------------------------- */
+
+html[data-theme="purple"] {
+  --primary: #17082e;
+  --tertiary: #2a1355;
+  --black-100: #23104a;
+  --black-200: #12061f;
+  --secondary: #c9b8f0;
+  --white-100: #f7f3ff;
+
+  --accent: #d8a7ff;
+  --accent-strong: #e9ccff;
+  --accent-soft: rgba(216, 167, 255, 0.16);
+  /* light accent needs dark ink on top */
+  --on-accent: #1d0940;
+  --accent-ring: rgba(216, 167, 255, 0.4);
+  --hero-sub: #ecdcff;
+  --stars: #ffc2f0;
+  --star-1: rgba(255, 194, 240, 0.9);
+  --star-2: rgba(255, 255, 255, 0.75);
+  --star-3: rgba(216, 167, 255, 0.85);
+
+  --text: #ffffff;
+  --text-muted: var(--secondary);
+  --text-subtle: #9c86c9;
+  --hairline: rgba(255, 255, 255, 0.11);
+  --hairline-strong: rgba(255, 255, 255, 0.22);
+
+  --nav-bg: rgba(23, 8, 46, 0.74);
+  --input-bg: #12061f;
+  --scroll-track: #12061f;
+  --scroll-thumb: #4a2a80;
+  --logo-plate: #ffffff;
+
+  --indigo: #a5b4fc;
+  --cyan: #5eead4;
+  --violet: #e9d5ff;
+  --amber: #fcd34d;
+  --pink: #f9a8d4;
+  --emerald: #6ee7b7;
+
+  --shadow-card: 0px 35px 120px -15px #3a1d6b;
+  --shadow-1: 0 2px 10px rgba(0, 0, 0, 0.4);
+  --shadow-2: 0 10px 40px rgba(0, 0, 0, 0.55);
+
+  --wash: radial-gradient(
+      50% 45% at 22% 18%,
+      rgba(190, 120, 255, 0.4),
+      transparent 70%
+    ),
+    radial-gradient(
+      44% 40% at 82% 28%,
+      rgba(255, 140, 220, 0.2),
+      transparent 70%
+    ),
+    radial-gradient(
+      60% 50% at 50% 0%,
+      rgba(216, 167, 255, 0.26),
+      transparent 72%
+    );
+  --starfield-opacity: 1;
+}
+
+/* ---------------------------------------------------------------- *
+   Gradients derived from the active theme's accents
+ * ---------------------------------------------------------------- */
+
+:root {
+  --violet-gradient: linear-gradient(
+    -90deg,
+    var(--accent) 0%,
+    rgba(60, 51, 80, 0) 100%
+  );
+  --violet-gradient-v: linear-gradient(
+    180deg,
+    var(--accent) 0%,
+    rgba(60, 51, 80, 0) 100%
+  );
+  --green-pink-gradient: linear-gradient(
+    90.13deg,
+    var(--cyan) 1.9%,
+    var(--violet) 97.5%
+  );
+}

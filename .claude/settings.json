@@ -1,7 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "Read(//c/P Projects/komalportfolio-src/public/**)"
+      "Read(//c/P Projects/komalportfolio-src/public/**)",
+      "WebFetch(domain:raw.githubusercontent.com)"
     ]
   }
 }

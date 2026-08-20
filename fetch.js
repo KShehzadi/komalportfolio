@@ -7,7 +7,10 @@ require("dotenv").config();
 const GITHUB_TOKEN = process.env.REACT_APP_GITHUB_TOKEN;
 const GITHUB_USERNAME = process.env.GITHUB_USERNAME;
 const USE_GITHUB_DATA = process.env.USE_GITHUB_DATA;
-const MEDIUM_USERNAME = process.env.MEDIUM_USERNAME;
+// Defaults to Komal's handle so `npm run build` always refreshes the Writing
+// section. public/blogs.json is gitignored, so without a default a fresh clone
+// would build with no posts at all. Override via MEDIUM_USERNAME in .env.
+const MEDIUM_USERNAME = process.env.MEDIUM_USERNAME || "komalshehzadi";
 
 const ERR = {
   noUserName:
@@ -104,27 +107,52 @@ if (MEDIUM_USERNAME !== undefined) {
     method: "GET"
   };
 
+  // Failures here are warnings, not build breakers: the build runs as
+  // `node fetch.js && react-scripts build`, so throwing would abort the whole
+  // build just because a third-party RSS proxy was briefly unavailable. The
+  // previously fetched public/blogs.json is kept instead.
   const req = https.request(options, res => {
     let mediumData = "";
 
     console.log(`statusCode: ${res.statusCode}`);
     if (res.statusCode !== 200) {
-      throw new Error(ERR.requestMediumFailed);
+      console.warn(
+        `${ERR.requestFailedMedium} Keeping the existing blogs.json.`
+      );
+      res.resume();
+      return;
     }
 
     res.on("data", d => {
       mediumData += d;
     });
     res.on("end", () => {
-      fs.writeFile("./public/blogs.json", mediumData, function (err) {
-        if (err) return console.log(err);
-        console.log("saved file to public/blogs.json");
-      });
+      try {
+        const parsed = JSON.parse(mediumData);
+        if (parsed.status !== "ok" || !Array.isArray(parsed.items)) {
+          console.warn(
+            "Medium feed came back without items. Keeping the existing blogs.json."
+          );
+          return;
+        }
+        fs.writeFile("./public/blogs.json", mediumData, function (err) {
+          if (err) return console.log(err);
+          console.log(
+            `saved ${parsed.items.length} posts to public/blogs.json`
+          );
+        });
+      } catch (error) {
+        console.warn(
+          "Could not parse the Medium feed. Keeping the existing blogs.json."
+        );
+      }
     });
   });
 
   req.on("error", error => {
-    throw error;
+    console.warn(
+      `Medium fetch failed (${error.message}). Keeping the existing blogs.json.`
+    );
   });
 
   req.end();
