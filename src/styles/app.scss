@@ -31,6 +31,10 @@ html {
   scroll-padding-top: 5.5rem;
   -webkit-text-size-adjust: 100%;
   background: var(--primary);
+  /* clip, not hidden: `hidden` would make <html> a scroll container and break
+     the sticky nav. Stops any decorative transform from producing a sideways
+     scrollbar on narrow screens. */
+  overflow-x: clip;
 }
 
 body {
@@ -600,15 +604,6 @@ img {
   align-items: start;
 }
 
-@media (max-width: 1024px) {
-  .hero__grid {
-    grid-template-columns: auto minmax(0, 1fr);
-  }
-  .hero__portrait {
-    display: none;
-  }
-}
-
 /* the reference's violet dot + fading vertical rule */
 .hero__rule {
   display: flex;
@@ -748,6 +743,42 @@ img {
 
 .hero__portrait:hover::before {
   translate: 7px 7px;
+}
+
+/* Below 1024px the three-column hero cannot hold a portrait beside the copy,
+   so it stacks: photo first, then the text. The decorative dot-and-rule is
+   dropped rather than squeezed — it is aria-hidden ornament. */
+@media (max-width: 1024px) {
+  .hero__grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: clamp(1.25rem, 4vw, 2rem);
+  }
+
+  .hero__rule {
+    display: none;
+  }
+
+  .hero__portrait {
+    order: -1;
+    justify-self: start;
+    width: min(230px, 56vw);
+  }
+
+  /* the hero copy animates in from below on narrow screens, so nothing is
+     offset sideways past the viewport edge */
+  .hero__copy {
+    min-width: 0;
+  }
+}
+
+@media (max-width: 560px) {
+  .hero__portrait {
+    width: min(190px, 52vw);
+  }
+
+  .hero__portrait::before {
+    translate: 9px 9px;
+  }
 }
 
 /* scroll cue, as in the reference */

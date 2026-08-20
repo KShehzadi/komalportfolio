@@ -38,7 +38,7 @@ export default function Contact() {
     >
       <div className="contact-grid">
         <m.div
-          variants={fadeIn("right", "tween", 0.15, 1)}
+          variants={fadeIn("up", "tween", 0.15, 1)}
           initial="hidden"
           whileInView="show"
           viewport={{once: true, amount: 0.2}}
@@ -117,7 +117,7 @@ export default function Contact() {
         </m.div>
 
         <m.div
-          variants={fadeIn("left", "tween", 0.2, 1)}
+          variants={fadeIn("up", "tween", 0.2, 1)}
           initial="hidden"
           whileInView="show"
           viewport={{once: true, amount: 0.2}}

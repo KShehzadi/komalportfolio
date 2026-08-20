@@ -21,6 +21,7 @@ export default function Hero() {
         </div>
 
         <m.div
+          className="hero__copy"
           variants={{show: {transition: {staggerChildren: 0.12}}}}
           initial="hidden"
           animate="show"

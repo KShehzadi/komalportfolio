@@ -6,7 +6,16 @@ import {useTilt} from "../hooks/useTilt";
 
 /* Alternating widths are what make a bento grid read as a bento rather than a
    plain grid. Each pair sums to 12, so no row is left with an orphan card. */
-const SPANS = ["col-8", "col-4", "col-4", "col-8", "col-6", "col-6"];
+const SPANS = [
+  "col-8",
+  "col-4",
+  "col-4",
+  "col-8",
+  "col-6",
+  "col-6",
+  "col-6",
+  "col-6"
+];
 
 function WorkCard({item, span, delay}) {
   const tilt = useTilt();

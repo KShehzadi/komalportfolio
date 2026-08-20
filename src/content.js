@@ -3,8 +3,12 @@
    -------------------------------------------------------------------------
    Everything the page renders comes from here, so this is the only file you
    need to edit to update the site. Two sections pull live data instead:
-     • Writing      → public/blogs.json   (Medium feed, written by fetch.js)
+     • Writing      → public/blogs.json   (Medium feed, refreshed by fetch.js)
      • Open source  → public/profile.json (GitHub pinned repos, via fetch.js)
+
+   All titles, dates, metrics and groupings below are taken from
+   public/Komal_Shehzadi_Resume.pdf, which is the authoritative record. If the
+   résumé changes, change this file to match.
 
    The older template config (src/portfolio.js) is no longer imported.
    ========================================================================= */
@@ -14,15 +18,13 @@ export const profile = {
   role: "Principal Software Engineer",
   company: "Techlogix",
   location: "Lahore, Pakistan",
-  // Shown under the name in the hero. Keep it to one or two sentences.
   summary:
-    "I lead front-end architecture for enterprise and public-sector products — turning complex domains like government company registration, track-and-trace and semiconductor yield analytics into interfaces people can actually work in. Six years of shipping Angular and React at production scale.",
-  // Cycled by the hero's typing effect.
+    "Principal Software Engineer with 4+ years turning complex engineering challenges into fast, scalable, maintainable products. React, Angular, TypeScript and .NET Core — with a rare depth in data-intensive systems, including a WebGL/D3.js engine that renders million-pixel semiconductor datasets 70% faster.",
   titles: [
     "Principal Software Engineer",
     "Front-end Architect",
-    "Angular & React Specialist",
-    "Design-System Builder"
+    "Data-Visualization Engineer",
+    "React & Angular Specialist"
   ],
   photo: require("./assets/images/komal.JPG"),
   // Served from public/. The phone number has been redacted out of this copy;
@@ -71,105 +73,125 @@ export const socials = [
   }
 ];
 
-/* The bento stat tiles directly under the hero. Every figure here is drawn
-   from the career and education entries further down this file. */
+/* Bento stat tiles under the hero. Every figure is one the résumé states. */
 export const stats = [
   {
-    figure: "6+",
-    label: "years shipping production UI",
-    detail: "Full-time since July 2020"
+    figure: "4+",
+    label: "years shipping production software",
+    detail: "Techlogix, since October 2020"
   },
   {
     figure: "Principal",
     label: "Software Engineer",
-    detail: "Promoted December 2025"
+    detail: "Promoted January 2026"
   },
   {
-    figure: "3×",
+    figure: "70%",
+    label: "faster rendering",
+    detail: "Million-pixel datasets · WebGL + D3.js"
+  },
+  {
+    figure: "4×",
     label: "Achiever of the Month",
-    detail: "Techlogix · 2022, 2023, 2025"
+    detail: "Techlogix · 2021, 2022, 2023, 2025"
   },
   {
     figure: "3rd",
     label: "AI Hackathon 2024",
     detail: "Techlogix company-wide"
-  },
-  {
-    figure: "8",
-    label: "semesters on the Dean's Roll of Honour",
-    detail: "UET Lahore · BS & MS"
   }
 ];
 
-/* Client and product work, newest first. Most are enterprise products with no
-   public marketing site, so they are presented without links rather than with
-   dead ones. */
+/* Client and product work, newest first. Enterprise products with no public
+   marketing site, so they are described rather than linked. */
 export const work = [
   {
     id: "secp",
     client: "SECP",
     title: "LEAP Portal",
     summary:
-      "Government portal for registering businesses and companies with the Securities & Exchange Commission of Pakistan — public-sector scale, with the compliance and accessibility expectations that come with it.",
-    contribution: "Front-end engineer on the portal.",
-    stack: ["Angular 14 & 18", "TypeScript"],
-    period: "May 2026 – present",
+      "Front-end architecture for a high-stakes government regulatory portal — a modular Angular component library that improved build consistency and cut onboarding friction, plus lazy loading and restructured state management that reduced initial load times across complex regulatory workflows.",
+    contribution: "Senior Angular lead.",
+    stack: ["Angular", "TypeScript", "Accessibility"],
+    period: "Jan 2026 – present",
     accent: "emerald"
+  },
+  {
+    id: "pixel-viz",
+    client: "Yieldwerx",
+    title: "Pixel data visualization system",
+    summary:
+      "A high-performance visualization engine built from scratch to interactively render million-pixel semiconductor datasets — ~70% faster render times, unlocking analysis workflows that were previously impossible in-browser.",
+    contribution: "Engineered end to end.",
+    stack: ["React", "D3.js", "WebGL"],
+    period: "2023 – 2026",
+    accent: "cyan"
   },
   {
     id: "authentix",
     client: "Authentix",
-    title: "Track & trace platform",
+    title: "Track & Trace (Oil & Gas)",
     summary:
-      "Front-end for a supply-chain authentication platform used to track and verify goods through their distribution chain.",
-    contribution: "Led the Angular front-end.",
-    stack: ["Angular", "TypeScript", "RxJS"],
-    period: "2025 – early 2026",
+      "Scalable front-end for a supply-chain traceability platform handling 100,000+ product units in real time, cutting manual product verification by ~60%. Rebuilt the data-dense operational reporting UIs, halving report generation time.",
+    contribution: "Led the front-end build.",
+    stack: ["Angular", "TypeScript", "Reporting"],
+    period: "Mar 2023 – Jan 2026",
     accent: "indigo"
-  },
-  {
-    id: "yieldwerx",
-    client: "Yieldwerx",
-    title: "Semiconductor yield analytics",
-    summary:
-      "Data-dense analytics interfaces for a semiconductor yield-management product — large result sets, heavy charting, engineer users.",
-    contribution: "Built the React front-end.",
-    stack: ["React", "JavaScript", "Charting"],
-    period: "2023 – 2025",
-    accent: "cyan"
   },
   {
     id: "hp-labels",
     client: "HP",
-    title: "Label design application",
+    title: "Label Designer",
     summary:
-      "Browser-based label designer — a canvas editor with drag-and-drop placement, typography controls and print-accurate output.",
-    contribution: "Front-end development.",
-    stack: ["Angular", "Canvas", "SCSS"],
-    period: "2021 – 2022",
+      "A full-featured canvas-based label designer enabling precise label creation, adopted rapidly across cross-functional teams — cutting label formatting errors by ~30% and eliminating costly manual rework.",
+    contribution: "Built the application.",
+    stack: ["Angular", "Konva.js"],
+    period: "2023 – 2026",
     accent: "violet"
+  },
+  {
+    id: "yieldwerx-process",
+    client: "Yieldwerx",
+    title: "Process improvement",
+    summary:
+      "Deep-dive analysis of 11 end-to-end workflows, identifying bottlenecks and delivering optimizations that reduced cycle time by ~25%, plus a library of reusable templates that standardized operations going forward.",
+    contribution: "Analysis and optimization.",
+    stack: ["Process design", "Templates"],
+    period: "2023 – 2026",
+    accent: "amber"
+  },
+  {
+    id: "genai-generator",
+    client: "Techlogix",
+    title: "AI-powered HTML/CSS generator",
+    summary:
+      "An AI-driven design generator wired to GenAI APIs, converting design intent into responsive, production-ready prototypes in minutes and compressing multi-day design-to-code cycles into a near-instant feedback loop.",
+    contribution: "Pioneered the tool.",
+    stack: ["GenAI APIs", "HTML", "CSS"],
+    period: "2023 – 2026",
+    accent: "pink"
+  },
+  {
+    id: "scheduling-app",
+    client: "Techlogix",
+    title: "In-house scheduling app",
+    summary:
+      "An internal team scheduling application taken from concept to production, reducing scheduling conflicts by ~40% and replacing fragmented manual coordination with a single source of truth.",
+    contribution: "Designed and shipped.",
+    stack: ["React", "Firestore", "Redux Thunk"],
+    period: "2023 – 2026",
+    accent: "cyan"
   },
   {
     id: "campus-cloud",
     client: "Techlogix",
     title: "Campus on Cloud",
     summary:
-      "Cloud-hosted institution management system covering admissions, academics and administration for education customers.",
-    contribution: "Full-stack: Angular front-end, .NET Core services.",
-    stack: ["Angular", ".NET Core", "SQL"],
-    period: "2020 – 2022",
-    accent: "amber"
-  },
-  {
-    id: "uet-portal",
-    client: "UET Lahore",
-    title: "Admissions & assessment portal",
-    summary:
-      "Admission and online-assessment portal for the UET Computer Science and IBM departments.",
-    contribution: "Front-end and back-end development.",
-    stack: ["JavaScript", "SQL"],
-    period: "2019 – 2020",
-    accent: "pink"
+      "Owned key modules of a full-stack campus management platform covering student lifecycle, financial operations and academic grading, and automated manual administrative reporting to improve data accuracy for academic and finance teams.",
+    contribution: "Full-stack developer.",
+    stack: ["AngularJS", "Angular 7", "Kendo UI", ".NET Core"],
+    period: "Oct 2020 – Mar 2023",
+    accent: "indigo"
   }
 ];
 
@@ -179,79 +201,72 @@ export const career = [
     role: "Principal Software Engineer",
     company: "Techlogix",
     logo: require("./assets/images/Techlogix-Logo.png"),
-    period: "Dec 2025 — Present",
+    period: "Jan 2026 — Present",
     current: true,
-    clients: ["Authentix", "SECP"],
+    clients: ["SECP LEAP Portal"],
     summary:
-      "Driving front-end architecture and technical direction across client engagements — the Authentix track-and-trace platform, then the SECP LEAP Portal.",
+      "Senior Angular lead on a government regulatory portal, setting front-end architecture and engineering standards.",
     points: [
-      "Carried the Authentix track-and-trace platform through to early 2026.",
-      "Front-end engineer on the SECP LEAP Portal from May 2026 — a government service for registering businesses and companies, built in Angular 14 and 18.",
-      "Own front-end architecture and design-system decisions across product teams.",
-      "Mentor and technically lead engineers through design and code reviews.",
-      "Set performance, accessibility and code-quality standards for the Angular and React platforms."
+      "Spearheaded front-end architecture for a high-stakes government regulatory portal, designing a modular Angular component library that improved build consistency and reduced onboarding friction.",
+      "Drove performance gains through strategic lazy loading and restructured state management, cutting initial load times and improving runtime responsiveness.",
+      "Defined and enforced engineering standards — coding conventions, code review, documentation — while mentoring junior engineers.",
+      "Served as the technical bridge between product, backend and QA, translating ambiguous regulatory requirements into accessible, audit-ready UI."
     ]
   },
   {
     role: "Senior Software Engineer",
     company: "Techlogix",
     logo: require("./assets/images/Techlogix-Logo.png"),
-    period: "Mar 2022 — Dec 2025",
+    period: "Mar 2023 — Jan 2026",
+    clients: ["Authentix", "Yieldwerx", "HP"],
     summary:
-      "Senior front-end engineer across enterprise products and client engagements.",
+      "Front-end and data-visualization work across supply-chain traceability, semiconductor analytics and design tooling.",
     points: [
-      "React front-end for semiconductor yield platform Yieldwerx, 2023 to 2025.",
-      "Track-and-trace application in Angular for Authentix, from 2025."
+      "Cut manual product verification by ~60% with a scalable front-end for Authentix Track & Trace, handling 100,000+ product units with real-time traceability.",
+      "Rebuilt data-dense operational reporting for an Oil & Gas digital program, cutting report generation time by ~50%.",
+      "Engineered a React, D3.js and WebGL visualization engine rendering million-pixel semiconductor datasets ~70% faster.",
+      "Analysed 11 end-to-end Yieldwerx workflows, reducing cycle time by ~25% and standardizing operations with reusable templates.",
+      "Shipped an internal scheduling app (React, Firestore, Redux Thunk), reducing scheduling conflicts by ~40%.",
+      "Pioneered an AI-driven HTML/CSS generator using GenAI APIs, compressing design-to-code cycles from days to minutes.",
+      "Built the HP Label Designer in Angular and Konva.js, cutting label formatting errors by ~30%."
     ]
   },
   {
     role: "Software Engineer",
     company: "Techlogix",
     logo: require("./assets/images/Techlogix-Logo.png"),
-    period: "Oct 2020 — Mar 2022",
+    period: "Oct 2020 — Mar 2023",
+    clients: ["Campus on Cloud"],
     summary:
-      "Full-stack work on cloud products as part of the Techlogix product team.",
+      "Full-stack developer on a campus management platform in a complex, data-heavy environment.",
     points: [
-      "Label-design web application for HP, 2021 to 2022.",
-      "Front-end and back-end of a cloud-based institution management system.",
-      "Design, development and integration of Campus on Cloud.",
-      "Worked across several Angular versions and .NET Core services."
+      "Developed and owned key modules covering student lifecycle, financial operations and academic grading using AngularJS/Angular 7, Kendo UI and .NET Core.",
+      "Redesigned and automated manual administrative reporting workflows, improving data accuracy and freeing staff from repetitive data entry through robust CRUD services and streamlined UX flows."
     ]
-  },
-  {
-    role: "Software Engineer",
-    company: "Netsol Technologies",
-    logo: require("./assets/images/Netsol-Logo.png"),
-    period: "Jul 2020 — Oct 2020",
-    summary: "Trained on the in-house framework and tooling.",
-    points: ["Database schemas and queries for the core system."]
-  },
-  {
-    role: "Software Engineer Intern",
-    company: "UET CS Department",
-    logo: require("./assets/images/Uet-logo.png"),
-    period: "May 2019 — Apr 2020",
-    summary:
-      "Built the admission and online-assessment portal for the CS and IBM departments.",
-    points: ["Front-end and back-end development, from schema to screens."]
   }
 ];
 
-/* Grouped rather than rated. Self-assigned percentage bars read as noise to
-   most reviewers, so the stack is presented as what it is: a grouped list. */
+/* Grouped exactly as the résumé's Core Competencies. Entries without `img`
+   appear in the grouped cards but are skipped by the 3D balls, which need a
+   texture. */
 export const stack = [
   {
     group: "Front-end",
     items: [
+      {
+        name: "React",
+        icon: "fab fa-react",
+        img: require("./assets/tech/react.png")
+      },
       {
         name: "Angular",
         icon: "fab fa-angular",
         img: require("./assets/tech/angular.png")
       },
       {
-        name: "React",
-        icon: "fab fa-react",
-        img: require("./assets/tech/react.png")
+        name: "AngularJS",
+        icon: "fab fa-angular",
+        img: require("./assets/tech/angularjs.png")
       },
       {
         name: "TypeScript",
@@ -259,108 +274,116 @@ export const stack = [
         img: require("./assets/tech/typescript.png")
       },
       {
-        name: "JavaScript",
+        name: "JavaScript ES2022+",
         icon: "fab fa-js",
         img: require("./assets/tech/javascript.png")
       },
       {
-        name: "HTML5",
-        icon: "fab fa-html5",
-        img: require("./assets/tech/html5.png")
+        name: "Tailwind CSS",
+        icon: "fas fa-wind",
+        img: require("./assets/tech/tailwind.png")
       },
       {
-        name: "CSS3",
-        icon: "fab fa-css3-alt",
-        img: require("./assets/tech/css3.png")
+        name: "Bootstrap",
+        icon: "fab fa-bootstrap",
+        img: require("./assets/tech/bootstrap.png")
       },
       {
-        name: "Sass",
-        icon: "fab fa-sass",
-        img: require("./assets/tech/sass.png")
-      }
+        name: "Material Design",
+        icon: "fas fa-layer-group",
+        img: require("./assets/tech/materialdesign.png")
+      },
+      {name: "Shadcn/UI", icon: "fas fa-cube"}
     ]
   },
   {
-    group: "Back-end & data",
+    group: "Visualization",
     items: [
       {
-        name: "Node.js",
-        icon: "fab fa-node",
-        img: require("./assets/tech/nodejs.png")
+        name: "D3.js",
+        icon: "fas fa-chart-line",
+        img: require("./assets/tech/d3.png")
       },
+      {name: "WebGL", icon: "fas fa-cubes"},
+      {name: "Konva.js", icon: "fas fa-draw-polygon"}
+    ]
+  },
+  {
+    group: "Back-end",
+    items: [
       {
         name: ".NET Core",
         icon: "fas fa-server",
         img: require("./assets/tech/dotnet.png")
       },
+      {name: "ASP.NET", icon: "fas fa-server"},
+      {name: "RESTful APIs", icon: "fas fa-plug"},
       {
-        name: "SQL",
-        icon: "fas fa-database",
-        img: require("./assets/tech/sql.png")
-      },
-      {
-        name: "Python",
-        icon: "fab fa-python",
-        img: require("./assets/tech/python.png")
+        name: "Firestore",
+        icon: "fas fa-fire",
+        img: require("./assets/tech/firebase.png")
       }
     ]
   },
   {
-    group: "Cloud & tooling",
+    group: "Data",
     items: [
-      {name: "AWS", icon: "fab fa-aws", img: require("./assets/tech/aws.png")},
       {
-        name: "Firebase",
-        icon: "fas fa-fire",
-        img: require("./assets/tech/firebase.png")
+        name: "SQL Server",
+        icon: "fas fa-database",
+        img: require("./assets/tech/sql.png")
       },
+      {name: "Firestore (NoSQL)", icon: "fas fa-fire"}
+    ]
+  },
+  {
+    group: "Practices",
+    items: [
+      {name: "Agile / Scrum", icon: "fas fa-sync-alt"},
       {
-        name: "Docker",
-        icon: "fab fa-docker",
-        img: require("./assets/tech/docker.png")
-      },
-      {
-        name: "Git",
+        name: "Code review",
         icon: "fab fa-git-alt",
         img: require("./assets/tech/git.png")
       },
-      {name: "npm", icon: "fab fa-npm"}
+      {name: "Mentoring", icon: "fas fa-user-graduate"},
+      {name: "Component libraries", icon: "fas fa-cubes"},
+      {name: "Performance", icon: "fas fa-tachometer-alt"},
+      {name: "ADA accessibility", icon: "fas fa-universal-access"}
     ]
-    /* Items without `img` are listed in the grouped cards but skipped by the
-       3D balls, which need a texture. */
+  },
+  {
+    group: "AI / GenAI",
+    items: [
+      {name: "GenAI API integration", icon: "fas fa-robot"},
+      {name: "AI code generation", icon: "fas fa-magic"},
+      {name: "Rapid prototyping", icon: "fas fa-bolt"}
+    ]
   }
 ];
 
 export const awards = [
   {
-    title: "Achiever of the Month",
+    title: "Achiever of the Month — four times",
     issuer: "Techlogix",
-    year: "2025",
+    year: "2021, 2022, 2023 & 2025",
     kind: "award",
-    note: "Recognised company-wide for engineering contribution.",
+    note: "One of very few engineers to earn this recognition four separate times — sustained, year-over-year excellence in delivery, collaboration and technical impact.",
     url: "https://www.linkedin.com/posts/komal-shehzadi_grateful-and-humbled-to-be-recognized-as-activity-7425277142315405312-nRMl?utm_source=share&utm_medium=member_desktop&rcm=ACoAACgQ5uEB0pFEncIg-6eYUVfo2_ceRVBJwTw"
   },
   {
-    title: "3rd place, AI Hackathon",
+    title: "3rd place — AI Hackathon",
     issuer: "Techlogix",
     year: "2024",
     kind: "award",
-    note: "Company-wide AI hackathon, team entry.",
+    note: "Top three out of the full engineering organization, prototyping an AI-powered solution under competitive, time-boxed conditions.",
     url: "https://www.linkedin.com/posts/komal-shehzadi_ai-hackathon2024-teamwork-activity-7223387312632586240-8rjQ?utm_source=share&utm_medium=member_desktop&rcm=ACoAACgQ5uEB0pFEncIg-6eYUVfo2_ceRVBJwTw"
   },
   {
-    title: "Achiever of the Month",
-    issuer: "Techlogix",
-    year: "2023",
-    kind: "award",
-    url: "https://www.linkedin.com/posts/komal-shehzadi_techlogix-techxian-risingstars-activity-6962703016214822913-Sv7G?utm_source=share&utm_medium=member_desktop"
-  },
-  {
-    title: "Achiever of the Month",
-    issuer: "Techlogix",
-    year: "2022",
-    kind: "award",
-    url: "https://www.linkedin.com/posts/komal-shehzadi_coc-techlogix-almusnet-activity-6925913612477685760-taDW?utm_source=share&utm_medium=member_desktop"
+    title: "Front-End Web UI Frameworks and Tools: Bootstrap 4",
+    issuer: "Coursera · HKUST",
+    year: "",
+    kind: "certification",
+    url: "https://www.coursera.org/account/accomplishments/certificate/F5V63UECGA69"
   },
   {
     title: "Node.js, Express, MongoDB & More: The Complete Bootcamp",
@@ -368,37 +391,23 @@ export const awards = [
     year: "2022",
     kind: "certification",
     url: "https://www.udemy.com/certificate/UC-c34d9ab6-8682-4746-9908-0013467298c0/"
-  },
-  {
-    title: "Front-End Web UI Frameworks and Tools: Bootstrap 4",
-    issuer: "Coursera",
-    year: "2020",
-    kind: "certification",
-    url: "https://www.coursera.org/account/accomplishments/certificate/F5V63UECGA69"
   }
 ];
 
 export const education = [
   {
     degree: "MS, Computer Science",
-    school: "University of Engineering and Technology, Lahore",
-    period: "2021 — 2023",
+    school: "University of Engineering & Technology (UET), Lahore",
+    period: "2020 — 2023",
     logo: require("./assets/images/Uet-logo.png"),
-    points: [
-      "Research in network security; authored one systematic literature review and two papers.",
-      "Dean's Roll of Honour in the 3rd and 4th semesters."
-    ]
+    points: ["GPA 3.6 / 4.0"]
   },
   {
     degree: "BS, Computer Science",
-    school: "University of Engineering and Technology, Lahore",
+    school: "University of Engineering & Technology (UET), Lahore",
     period: "2016 — 2020",
     logo: require("./assets/images/Uet-logo.png"),
-    points: [
-      "Ranked in the top 10% of the programme.",
-      "Dean's Roll of Honour in the 3rd through 8th semesters.",
-      "Best Final Year Project award from COMSATS and UET."
-    ]
+    points: ["GPA 3.6 / 4.0"]
   }
 ];
 
