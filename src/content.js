@@ -10,6 +10,10 @@
    public/Komal_Shehzadi_Resume.pdf, which is the authoritative record. If the
    résumé changes, change this file to match.
 
+   ONE DELIBERATE DEVIATION: the résumé dates the Principal promotion to
+   Jan 2026; Komal has confirmed it was 1 December 2025, so that is what the
+   career timeline and the stat tile show. Do not "correct" it back.
+
    The older template config (src/portfolio.js) is no longer imported.
    ========================================================================= */
 
@@ -83,7 +87,7 @@ export const stats = [
   {
     figure: "Principal",
     label: "Software Engineer",
-    detail: "Promoted January 2026"
+    detail: "Promoted 1 December 2025"
   },
   {
     figure: "70%",
@@ -201,7 +205,7 @@ export const career = [
     role: "Principal Software Engineer",
     company: "Techlogix",
     logo: require("./assets/images/Techlogix-Logo.png"),
-    period: "Jan 2026 — Present",
+    period: "Dec 2025 — Present",
     current: true,
     clients: ["SECP LEAP Portal"],
     summary:
@@ -217,7 +221,7 @@ export const career = [
     role: "Senior Software Engineer",
     company: "Techlogix",
     logo: require("./assets/images/Techlogix-Logo.png"),
-    period: "Mar 2023 — Jan 2026",
+    period: "Mar 2023 — Dec 2025",
     clients: ["Authentix", "Yieldwerx", "HP"],
     summary:
       "Front-end and data-visualization work across supply-chain traceability, semiconductor analytics and design tooling.",
