@@ -35,7 +35,6 @@ function WorkCard({item, span, delay}) {
       >
         <div className="work-card__top">
           <span className="work-card__client">{item.client}</span>
-          <span className="work-card__period">{item.period}</span>
         </div>
 
         <h3>{item.title}</h3>

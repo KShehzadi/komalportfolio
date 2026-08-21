@@ -117,7 +117,6 @@ export const work = [
       "Front-end architecture for a high-stakes government regulatory portal — a modular Angular component library that improved build consistency and cut onboarding friction, plus lazy loading and restructured state management that reduced initial load times across complex regulatory workflows.",
     contribution: "Senior Angular lead.",
     stack: ["Angular", "TypeScript", "Accessibility"],
-    period: "Jan 2026 – present",
     accent: "emerald"
   },
   {
@@ -128,7 +127,6 @@ export const work = [
       "A high-performance visualization engine built from scratch to interactively render million-pixel semiconductor datasets — ~70% faster render times, unlocking analysis workflows that were previously impossible in-browser.",
     contribution: "Engineered end to end.",
     stack: ["React", "D3.js", "WebGL"],
-    period: "2023 – 2026",
     accent: "cyan"
   },
   {
@@ -139,7 +137,6 @@ export const work = [
       "Scalable front-end for a supply-chain traceability platform handling 100,000+ product units in real time, cutting manual product verification by ~60%. Rebuilt the data-dense operational reporting UIs, halving report generation time.",
     contribution: "Led the front-end build.",
     stack: ["Angular", "TypeScript", "Reporting"],
-    period: "Mar 2023 – Jan 2026",
     accent: "indigo"
   },
   {
@@ -150,7 +147,6 @@ export const work = [
       "A full-featured canvas-based label designer enabling precise label creation, adopted rapidly across cross-functional teams — cutting label formatting errors by ~30% and eliminating costly manual rework.",
     contribution: "Built the application.",
     stack: ["Angular", "Konva.js"],
-    period: "2023 – 2026",
     accent: "violet"
   },
   {
@@ -161,7 +157,6 @@ export const work = [
       "Deep-dive analysis of 11 end-to-end workflows, identifying bottlenecks and delivering optimizations that reduced cycle time by ~25%, plus a library of reusable templates that standardized operations going forward.",
     contribution: "Analysis and optimization.",
     stack: ["Process design", "Templates"],
-    period: "2023 – 2026",
     accent: "amber"
   },
   {
@@ -172,7 +167,6 @@ export const work = [
       "An AI-driven design generator wired to GenAI APIs, converting design intent into responsive, production-ready prototypes in minutes and compressing multi-day design-to-code cycles into a near-instant feedback loop.",
     contribution: "Pioneered the tool.",
     stack: ["GenAI APIs", "HTML", "CSS"],
-    period: "2023 – 2026",
     accent: "pink"
   },
   {
@@ -183,7 +177,6 @@ export const work = [
       "An internal team scheduling application taken from concept to production, reducing scheduling conflicts by ~40% and replacing fragmented manual coordination with a single source of truth.",
     contribution: "Designed and shipped.",
     stack: ["React", "Firestore", "Redux Thunk"],
-    period: "2023 – 2026",
     accent: "cyan"
   },
   {
@@ -194,7 +187,6 @@ export const work = [
       "Owned key modules of a full-stack campus management platform covering student lifecycle, financial operations and academic grading, and automated manual administrative reporting to improve data accuracy for academic and finance teams.",
     contribution: "Full-stack developer.",
     stack: ["AngularJS", "Angular 7", "Kendo UI", ".NET Core"],
-    period: "Oct 2020 – Mar 2023",
     accent: "indigo"
   }
 ];
