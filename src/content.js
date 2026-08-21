@@ -10,9 +10,12 @@
    public/Komal_Shehzadi_Resume.pdf, which is the authoritative record. If the
    résumé changes, change this file to match.
 
-   ONE DELIBERATE DEVIATION: the résumé dates the Principal promotion to
-   Jan 2026; Komal has confirmed it was 1 December 2025, so that is what the
-   career timeline and the stat tile show. Do not "correct" it back.
+   DELIBERATE DEVIATIONS from the résumé, both confirmed by Komal — do not
+   "correct" these back to match the PDF:
+     • The Principal promotion was 1 December 2025, not Jan 2026.
+     • Experience reads 5+ years, not 4+ (full-time since October 2020).
+     • Project cards carry no date ranges; the ones derived from the résumé's
+       role spans were inaccurate. Dates live on the career timeline only.
 
    The older template config (src/portfolio.js) is no longer imported.
    ========================================================================= */
@@ -23,7 +26,7 @@ export const profile = {
   company: "Techlogix",
   location: "Lahore, Pakistan",
   summary:
-    "Principal Software Engineer with 4+ years turning complex engineering challenges into fast, scalable, maintainable products. React, Angular, TypeScript and .NET Core — with a rare depth in data-intensive systems, including a WebGL/D3.js engine that renders million-pixel semiconductor datasets 70% faster.",
+    "Principal Software Engineer with 5+ years turning complex engineering challenges into fast, scalable, maintainable products. React, Angular, TypeScript and .NET Core — with a rare depth in data-intensive systems, including a WebGL/D3.js engine that renders million-pixel semiconductor datasets 70% faster.",
   titles: [
     "Principal Software Engineer",
     "Front-end Architect",
@@ -80,7 +83,7 @@ export const socials = [
 /* Bento stat tiles under the hero. Every figure is one the résumé states. */
 export const stats = [
   {
-    figure: "4+",
+    figure: "5+",
     label: "years shipping production software",
     detail: "Techlogix, since October 2020"
   },
