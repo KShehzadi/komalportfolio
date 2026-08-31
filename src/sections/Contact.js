@@ -51,9 +51,24 @@ export default function Contact() {
           />
 
           <p style={{color: "var(--secondary)", lineHeight: 1.85}}>
-            Whether it's a front-end architecture problem, a role, or a question
+            Whether it's a frontend architecture problem, a role, or a question
             about the work at {profile.company} — my inbox is open.
           </p>
+
+          {/* the résumé's "Open to" line, so the roles I'm actually looking
+              for sit next to the form rather than only inside the PDF */}
+          {profile.openTo && profile.openTo.length > 0 && (
+            <div style={{marginTop: "1.35rem"}}>
+              <span className="section-head__eyebrow">Open to</span>
+              <ul className="chip-row">
+                {profile.openTo.map(role => (
+                  <li className="chip" key={role}>
+                    {role}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
 
           <a className="contact-email" href={`mailto:${profile.email}`}>
             {profile.email}

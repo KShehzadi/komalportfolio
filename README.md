@@ -108,13 +108,18 @@ three.js is large, so none of it is in the initial payload:
 The planet in Contact is generated procedurally (canvas textures + sphere
 geometry) rather than loaded as a model, so it ships no asset at all.
 
-Rough gzipped budget: ~152 kB initial JS + ~8 kB CSS, with ~233 kB of three.js
-chunks fetched only on demand.
+Rough gzipped budget: ~130 kB initial JS + ~8 kB CSS, with ~233 kB of three.js
+chunks fetched only on demand. Note that CRA inlines any asset under 10 kB as a
+base64 data URI, so each `require()` of a tech icon in `content.js` is
+critical-path weight — icons that do not need a 3D ball are better left as Font
+Awesome glyphs.
 
 # Résumé
 
-The Résumé button links to `public/Komal_Shehzadi_Resume.pdf`, which opens in a
-new tab.
+The Résumé button links to `public/Komal_Shehzadi_Resume_2026.pdf` (the current
+revision), which opens in a new tab. The path is set by `profile.resumeUrl` in
+`src/content.js`. The older `public/Komal_Shehzadi_Resume.pdf` is still served at
+its own URL so any link already shared keeps working.
 
 **The phone number has been redacted from this copy** — removed from the PDF's
 text layer with PyMuPDF's redaction (glyphs deleted, not covered with a box), so

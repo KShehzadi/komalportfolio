@@ -20,7 +20,7 @@ export default function Career() {
         id="career"
         eyebrow="Career"
         title="How I got here"
-        note="Six years at one company, three promotions — plus where it started."
+        note="Coming up on six years at one company, across three roles — each with a wider remit than the last."
       />
 
       <m.div variants={textVariant()} initial="hidden" whileInView="show">

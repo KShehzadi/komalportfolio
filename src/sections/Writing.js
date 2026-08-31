@@ -86,7 +86,7 @@ export default function Writing() {
         id="writing"
         eyebrow="Writing"
         title="Notes and articles"
-        note="Mostly front-end architecture and conference write-ups, published on Medium."
+        note="Mostly frontend architecture, observability and systems write-ups, published on Medium."
       />
 
       <div className="bento">
