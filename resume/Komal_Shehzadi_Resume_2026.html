@@ -1,0 +1,925 @@
+<!doctype html>
+<!--
+  Source for public/Komal_Shehzadi_Resume_2026.pdf. Edit this file, then run
+  `npm run resume` to print it to that PDF with headless Chrome or Edge.
+
+  There is deliberately no phone number in here: the PDF is public, and a
+  number that never enters the source never needs redacting out of the output.
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Komal Shehzadi, Principal Engineer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=block"
+    />
+    <style>
+      :root {
+        --ink: #111a19;
+        --ink-2: #2c3b39;
+        --muted: #5e6e6b;
+        --accent: #0d5b54;
+        --accent-fill: #e8f1ef;
+        --accent-line: #749e99;
+        --hairline: #c9d4d2;
+        --dash: #8a6224;
+        --mono: "IBM Plex Mono", ui-monospace, monospace;
+        --sans: "Inter", system-ui, sans-serif;
+      }
+
+      @page {
+        size: A4;
+        margin: 11mm 12mm 10mm;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      body {
+        font-family: var(--sans);
+        color: var(--ink-2);
+        font-size: 10.1px;
+        line-height: 1.52;
+        background: #fff;
+      }
+
+      b {
+        font-weight: 600;
+        color: var(--ink);
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .mono {
+        font-family: var(--mono);
+      }
+
+      .eyebrow {
+        font-family: var(--mono);
+        font-weight: 500;
+        font-size: 10.5px;
+        letter-spacing: 0.32em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+
+      /* ---------- header ---------- */
+
+      .head {
+        display: grid;
+        grid-template-columns: 112px 1fr;
+        gap: 0 20px;
+      }
+
+      .head__photo {
+        width: 112px;
+        height: 112px;
+        border-radius: 10px;
+        object-fit: cover;
+        object-position: 50% 22%;
+      }
+
+      .head__top {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 18px;
+        padding-bottom: 12px;
+        border-bottom: 1px solid var(--hairline);
+      }
+
+      .head__name {
+        margin: 4px 0 8px;
+        font-size: 29px;
+        font-weight: 700;
+        letter-spacing: -0.035em;
+        line-height: 1.15;
+        color: var(--ink);
+      }
+
+      .head__name span {
+        color: var(--ink-2);
+      }
+
+      .head__tagline {
+        max-width: 330px;
+        font-size: 11.6px;
+        font-weight: 600;
+        line-height: 1.45;
+        color: var(--ink);
+      }
+
+      .contact {
+        display: grid;
+        grid-template-columns: 50px auto;
+        row-gap: 4px;
+        align-content: start;
+        font-family: var(--mono);
+        font-size: 10.5px;
+        line-height: 1.5;
+        color: var(--ink-2);
+      }
+
+      .contact dt {
+        font-size: 8.6px;
+        letter-spacing: 0.12em;
+        color: var(--muted);
+        padding-top: 2px;
+      }
+
+      .contact .link {
+        color: var(--accent);
+        border-bottom: 1px solid var(--accent-line);
+      }
+
+      .head__open {
+        padding: 9px 0 10px;
+      }
+
+      .head__open p {
+        margin-top: 4px;
+        font-size: 10.4px;
+      }
+
+      .rule {
+        border: 0;
+        border-top: 1px solid var(--hairline);
+      }
+
+      /* ---------- skills ---------- */
+
+      .skills {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 11px 18px;
+        padding: 13px 0 13px;
+      }
+
+      .skills h3 {
+        margin-bottom: 7px;
+        font-family: var(--mono);
+        font-weight: 500;
+        font-size: 10.5px;
+        letter-spacing: 0.16em;
+        white-space: nowrap;
+        text-transform: uppercase;
+        color: var(--accent);
+      }
+
+      .chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+        list-style: none;
+      }
+
+      .chips li {
+        padding: 1px 7px;
+        border: 1px solid var(--hairline);
+        border-radius: 4px;
+        font-size: 9.6px;
+        line-height: 1.55;
+        color: var(--ink-2);
+      }
+
+      .chips li.key {
+        background: var(--accent-fill);
+        border-color: var(--accent-line);
+        color: var(--accent);
+        font-weight: 500;
+      }
+
+      /* ---------- sections ---------- */
+
+      .section {
+        margin-top: 4px;
+      }
+
+      .section__head {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin-bottom: 9px;
+        break-after: avoid;
+      }
+
+      .section__head h2 {
+        font-size: 10.5px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--ink);
+      }
+
+      .section__head::after {
+        content: "";
+        order: 1;
+        flex: 1;
+        border-top: 1px solid var(--hairline);
+      }
+
+      .section__head .num {
+        order: 2;
+        font-family: var(--mono);
+        font-size: 11px;
+        color: var(--muted);
+      }
+
+      .profile {
+        font-size: 10.9px;
+        line-height: 1.55;
+      }
+
+      .metrics {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 12px;
+        margin: 11px 0 15px;
+      }
+
+      .metric {
+        padding: 8px 13px 9px;
+        border: 1px solid var(--hairline);
+        border-radius: 8px;
+      }
+
+      .metric strong {
+        display: block;
+        font-size: 19px;
+        font-weight: 600;
+        letter-spacing: -0.02em;
+        color: var(--accent);
+        line-height: 1.4;
+      }
+
+      .metric span {
+        display: block;
+        margin-top: 2px;
+        font-size: 9.4px;
+        line-height: 1.5;
+        color: var(--muted);
+      }
+
+      /* ---------- experience ---------- */
+
+      .role {
+        display: grid;
+        grid-template-columns: 150px 1fr;
+        position: relative;
+        padding-bottom: 10px;
+      }
+
+      .role__meta {
+        font-family: var(--mono);
+        font-size: 9.8px;
+        line-height: 1.5;
+        color: var(--muted);
+        padding-top: 4px;
+      }
+
+      .role__meta .when {
+        display: block;
+        margin-bottom: 9px;
+      }
+
+      .role--current .role__meta .when {
+        color: var(--accent);
+      }
+
+      .role__body {
+        position: relative;
+        padding-left: 30px;
+        border-left: 1px solid var(--hairline);
+        margin-left: -12px;
+      }
+
+      .role__body::before {
+        content: "";
+        position: absolute;
+        left: -6px;
+        top: 6px;
+        width: 11px;
+        height: 11px;
+        border-radius: 50%;
+        background: #fff;
+        border: 1.5px solid var(--accent);
+      }
+
+      .role--current .role__body::before {
+        background: var(--accent);
+      }
+
+      .role h3 {
+        font-size: 14.5px;
+        font-weight: 600;
+        letter-spacing: -0.02em;
+        color: var(--ink);
+        line-height: 1.5;
+      }
+
+      .role__org {
+        margin: 1px 0 6px;
+        font-family: var(--mono);
+        font-size: 10px;
+        color: var(--muted);
+      }
+
+      .engagement__head {
+        break-after: avoid;
+      }
+
+      .engagement + .engagement {
+        margin-top: 8px;
+      }
+
+      .engagement__head {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 4px;
+        padding-bottom: 3px;
+        border-bottom: 1px dashed var(--hairline);
+      }
+
+      .engagement__head strong {
+        font-size: 10.8px;
+        font-weight: 600;
+        color: var(--ink);
+      }
+
+      .engagement__head span {
+        font-family: var(--mono);
+        font-size: 9.4px;
+        color: var(--accent);
+        white-space: nowrap;
+        padding-top: 1px;
+      }
+
+      .points {
+        list-style: none;
+      }
+
+      .points li {
+        position: relative;
+        padding-left: 18px;
+        margin-top: 2px;
+        break-inside: avoid;
+      }
+
+      .points li::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0.78em;
+        width: 7px;
+        border-top: 1.5px solid var(--dash);
+      }
+
+      /* ---------- AI cards ---------- */
+
+      .cards {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+        margin-bottom: 14px;
+      }
+
+      .card {
+        padding: 11px 13px 12px;
+        border: 1px solid var(--hairline);
+        border-radius: 8px;
+        break-inside: avoid;
+      }
+
+      .card .kind {
+        font-family: var(--mono);
+        font-size: 9.4px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--accent);
+      }
+
+      .card h3 {
+        margin: 5px 0 4px;
+        font-size: 11.2px;
+        font-weight: 600;
+        letter-spacing: -0.01em;
+        color: var(--ink);
+      }
+
+      .card p {
+        font-size: 9.4px;
+        line-height: 1.5;
+      }
+
+      /* ---------- education & recognition ---------- */
+
+      .triple {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
+        break-inside: avoid;
+      }
+
+      .triple h3 {
+        margin-bottom: 7px;
+        font-family: var(--mono);
+        font-weight: 400;
+        font-size: 10.5px;
+        letter-spacing: 0.26em;
+        text-transform: uppercase;
+        color: var(--ink-2);
+      }
+
+      .item + .item {
+        margin-top: 7px;
+      }
+
+      .item strong {
+        display: block;
+        font-size: 10.6px;
+        font-weight: 600;
+        color: var(--ink);
+        line-height: 1.5;
+      }
+
+      .item span {
+        font-family: var(--mono);
+        font-size: 9px;
+        color: var(--muted);
+      }
+
+      .foot {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 10px;
+        padding-top: 7px;
+        border-top: 1px solid var(--hairline);
+        font-family: var(--mono);
+        font-size: 9px;
+        color: var(--muted);
+        break-inside: avoid;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="head">
+      <img
+        class="head__photo"
+        src="photo.jpg"
+        alt="Komal Shehzadi"
+      />
+      <div>
+        <div class="head__top">
+          <div>
+            <p class="eyebrow">Principal Software Engineer</p>
+            <h1 class="head__name">Komal <span>Shehzadi</span></h1>
+            <p class="head__tagline">
+              Frontend architecture, performance engineering &amp; AI-enabled
+              delivery
+            </p>
+          </div>
+          <dl class="contact">
+            <dt>BASE</dt>
+            <dd>Lahore, Pakistan</dd>
+            <dt>EMAIL</dt>
+            <dd>
+              <a href="mailto:shehzadikomal303@gmail.com"
+                >shehzadikomal303@gmail.com</a
+              >
+            </dd>
+            <dt>WEB</dt>
+            <dd>
+              <a class="link" href="https://dev.komalshehzadi.com"
+                >dev.komalshehzadi.com</a
+              >
+            </dd>
+            <dt>EXP</dt>
+            <dd>6+ years in production</dd>
+          </dl>
+        </div>
+        <div class="head__open">
+          <p class="eyebrow">Open to</p>
+          <p>
+            Principal / Staff Engineer · Frontend Architect · Lead Frontend or
+            Full-Stack · AI-Enabled Engineering
+          </p>
+        </div>
+      </div>
+    </header>
+
+    <hr class="rule" />
+
+    <section class="skills" aria-label="Skills">
+      <div>
+        <h3>AI &amp; agentic engineering</h3>
+        <ul class="chips">
+          <li class="key">LLM / GenAI APIs</li>
+          <li class="key">Agentic workflows</li>
+          <li class="key">MCP integrations</li>
+          <li>Custom subagents</li>
+          <li>Prompt design</li>
+          <li>AI-assisted review</li>
+          <li>AI-assisted planning</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Core languages</h3>
+        <ul class="chips">
+          <li class="key">TypeScript</li>
+          <li>JavaScript ES2022+</li>
+          <li>C#</li>
+          <li>SQL</li>
+          <li>HTML5 / CSS3</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Frontend</h3>
+        <ul class="chips">
+          <li class="key">Angular</li>
+          <li class="key">React</li>
+          <li>RxJS</li>
+          <li>Redux / Thunk</li>
+          <li>Design systems</li>
+          <li>Tailwind</li>
+          <li>Material UI</li>
+          <li>shadcn/ui</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Visualization &amp; performance</h3>
+        <ul class="chips">
+          <li class="key">WebGL</li>
+          <li class="key">D3.js</li>
+          <li>Konva.js</li>
+          <li>Canvas rendering</li>
+          <li>Lazy loading</li>
+          <li>State optimization</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Observability</h3>
+        <ul class="chips">
+          <li class="key">Grafana Faro</li>
+          <li>Loki / LogQL</li>
+          <li>Telemetry tiering</li>
+          <li>Business events</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Backend, data &amp; platform</h3>
+        <ul class="chips">
+          <li>.NET Core</li>
+          <li>REST APIs</li>
+          <li>SQL Server</li>
+          <li>Firestore</li>
+          <li>ClickHouse</li>
+          <li>RabbitMQ</li>
+          <li>Docker</li>
+          <li>Kubernetes</li>
+          <li>AWS / Azure / GCP</li>
+          <li>Jenkins</li>
+          <li>Bitbucket Pipelines</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section__head">
+        <h2>Profile</h2>
+        <span class="num">01</span>
+      </div>
+      <p class="profile">
+        Principal engineer with <b>6+ years shipping data-intensive products</b>
+        in domains where being wrong is expensive — investment banking,
+        securities regulation, oil &amp; gas, semiconductor yield, enterprise
+        supply chain. I own frontend architecture end to end: the component
+        systems teams build on, the rendering and state work that keeps
+        million-point interfaces fast, and the
+        <b>observability that explains what actually happened in production</b>.
+        Lately that ownership extends to how the team builds —
+        <b>agentic tooling, purpose-built AI subagents and MCP-connected
+          workflows</b>
+        that compress triage, root-cause analysis and delivery into a single
+        loop.
+      </p>
+      <div class="metrics">
+        <div class="metric">
+          <strong>~70%</strong>
+          <span>Faster rendering on million-pixel semiconductor datasets</span>
+        </div>
+        <div class="metric">
+          <strong>100K+</strong>
+          <span>Product units traceable in a live supply-chain UI</span>
+        </div>
+        <div class="metric">
+          <strong>~50%</strong>
+          <span>Cut in report-generation time, oil &amp; gas program</span>
+        </div>
+        <div class="metric">
+          <strong>4×</strong>
+          <span>Achiever of the Month, plus AI Hackathon podium</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section__head">
+        <h2>Experience</h2>
+        <span class="num">02</span>
+      </div>
+
+      <article class="role role--current">
+        <div class="role__meta">
+          <span class="when">Dec 2025 — Present</span>
+          Lahore, PK
+        </div>
+        <div class="role__body">
+          <h3>Principal Software Engineer</h3>
+          <p class="role__org">
+            Techlogix — UBP Investment Banking · SECP LEAP
+          </p>
+
+          <div class="engagement">
+            <div class="engagement__head">
+              <strong>UBP Investment Banking</strong>
+              <span>Sep 2026 — Present</span>
+            </div>
+            <ul class="points">
+              <li>
+                Deliver features
+                <b>end to end across frontend, backend services and data</b>
+                for an investment-banking business, where accuracy and
+                reliability are non-negotiable.
+              </li>
+              <li>
+                Contribute to <b>delivery planning</b> — scoping and breaking
+                down work, estimating effort and sequencing dependencies
+                alongside product and engineering leads.
+              </li>
+            </ul>
+          </div>
+
+          <div class="engagement">
+            <div class="engagement__head">
+              <strong>SECP LEAP — national securities-regulator portal</strong>
+              <span>Dec 2025 — Sep 2026</span>
+            </div>
+            <ul class="points">
+              <li>
+                Owned <b>frontend architecture</b> for a high-stakes government
+                regulatory platform, standardising it around a
+                <b>dynamic form engine and shared component library</b> so new
+                statutory workflows shipped as configuration rather than copied
+                screens.
+              </li>
+              <li>
+                Instrumented the portal with <b>Grafana Faro</b> — tiered HTTP
+                telemetry, named business events and LogQL queries over Loki
+                that reconstruct one applicant's journey, turning "it failed for
+                a single user" into a reproducible timeline.
+              </li>
+              <li>
+                Led
+                <b>production root-cause analysis across the frontend/backend
+                  boundary</b>: traced recurring API failures to fail-open submit
+                gates and mis-sequenced role APIs, then shipped verified fixes
+                through a dual-branch staging and hotfix release process.
+              </li>
+              <li>
+                Built the team's <b>AI-assisted delivery workflow</b> —
+                purpose-built subagents for observability instrumentation and
+                defect-to-PR automation, wired into Jira and Bitbucket through
+                MCP tooling.
+              </li>
+              <li>
+                Set engineering standards for conventions, review depth and
+                documentation while <b>mentoring junior engineers</b> and acting
+                as the technical bridge across product, backend and QA.
+              </li>
+              <li>
+                Improved responsiveness across complex regulatory workflows
+                through <b>lazy loading and state-management restructuring</b>.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <article class="role">
+        <div class="role__meta">
+          <span class="when">Mar 2023 — Dec 2025</span>
+          Lahore, PK
+        </div>
+        <div class="role__body">
+          <h3>Senior Software Engineer</h3>
+          <p class="role__org">
+            Techlogix — visualization, traceability &amp; analytics products
+          </p>
+          <ul class="points">
+            <li>
+              Architected and built a
+              <b>React + D3.js + WebGL visualization engine</b> from scratch for
+              million-pixel semiconductor datasets, achieving
+              <b>~70% faster rendering</b> and making previously impractical
+              in-browser analysis routine.
+            </li>
+            <li>
+              Engineered the frontend for <b>Authentix Track &amp; Trace</b>,
+              supporting real-time traceability across
+              <b>100,000+ product units</b> and cutting manual
+              product-verification time by ~60%.
+            </li>
+            <li>
+              Rebuilt data-dense operational reporting for an
+              <b>oil &amp; gas digital program</b>, reducing report-generation
+              time by <b>~50%</b> and improving live operational visibility.
+            </li>
+            <li>
+              Analysed <b>11 end-to-end YieldWerx workflows</b>, removed process
+              bottlenecks for a <b>~25% cycle-time reduction</b>, and left
+              reusable templates behind for standardised operations.
+            </li>
+            <li>
+              Shipped a <b>React + Firestore + Redux Thunk</b> scheduling product
+              from concept to production, replacing fragmented coordination with
+              one source of truth and cutting scheduling conflicts by ~40%.
+            </li>
+            <li>
+              Built an <b>AI-powered design-to-code generator</b> on GenAI APIs,
+              compressing multi-day HTML/CSS prototyping cycles into minutes.
+            </li>
+            <li>
+              Delivered an <b>Angular + Konva.js canvas label designer</b> for
+              HP, reducing label-formatting errors by ~30% and eliminating
+              manual rework.
+            </li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="role">
+        <div class="role__meta">
+          <span class="when">Oct 2020 — Mar 2023</span>
+          Lahore, PK
+        </div>
+        <div class="role__body">
+          <h3>Software Engineer</h3>
+          <p class="role__org">Techlogix — Campus on Cloud</p>
+          <ul class="points">
+            <li>
+              Developed and owned key modules of a
+              <b>full-stack campus management platform</b> spanning student
+              lifecycle, finance and academic grading, on AngularJS/Angular,
+              Kendo UI and .NET Core.
+            </li>
+            <li>
+              Automated manual administrative reporting through robust CRUD
+              services and streamlined UX flows, improving data accuracy and
+              removing repetitive data entry.
+            </li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="role">
+        <div class="role__meta">
+          <span class="when">Aug 2020 — Sep 2020</span>
+          Lahore, PK
+        </div>
+        <div class="role__body">
+          <h3>Software Engineer</h3>
+          <p class="role__org">
+            NetSol Technologies — framework training, database schema &amp;
+            query work
+          </p>
+        </div>
+      </article>
+    </section>
+
+    <section class="section">
+      <div class="section__head">
+        <h2>AI-enabled engineering</h2>
+        <span class="num">03</span>
+      </div>
+      <div class="cards">
+        <div class="card">
+          <p class="kind">Delivery</p>
+          <h3>Full-stack delivery</h3>
+          <p>
+            On UBP's investment-banking engagement, building features end to end
+            across the interface, services and data layer — every change
+            reviewed and verified before it ships.
+          </p>
+        </div>
+        <div class="card">
+          <p class="kind">Planning</p>
+          <h3>AI-assisted planning</h3>
+          <p>
+            Use AI to turn requirements into scoped, estimable work — breaking
+            features into tasks, drafting acceptance criteria and surfacing
+            dependencies and risks early.
+          </p>
+        </div>
+        <div class="card">
+          <p class="kind">Agentic tooling</p>
+          <h3>Purpose-built engineering subagents</h3>
+          <p>
+            Authored domain-specific AI agents that own real tasks — adding
+            observability instrumentation correctly, and carrying a defect from
+            root cause through to a reviewed pull request — with team
+            conventions encoded as their instructions.
+          </p>
+        </div>
+        <div class="card">
+          <p class="kind">Tool integration</p>
+          <h3>MCP-connected delivery loop</h3>
+          <p>
+            Connected issue tracking and source control through MCP so triage,
+            root-cause write-ups, branch discipline and PR drafting happen in
+            one continuous loop instead of four context switches.
+          </p>
+        </div>
+        <div class="card">
+          <p class="kind">Practice</p>
+          <h3>Standards for AI-assisted work</h3>
+          <p>
+            Define where generated code is trusted and where it is not: build
+            verification before every PR, confirmed root causes over
+            plausible-sounding explanations, and review depth that scales with
+            blast radius.
+          </p>
+        </div>
+        <div class="card">
+          <p class="kind">Product</p>
+          <h3>GenAI design-to-code generator</h3>
+          <p>
+            Built an AI-powered HTML/CSS generator on GenAI APIs that turned
+            multi-day design-to-code prototyping into a minutes-long cycle —
+            third place across the engineering org at the Techlogix AI
+            Hackathon.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section__head">
+        <h2>Education &amp; recognition</h2>
+        <span class="num">04</span>
+      </div>
+      <div class="triple">
+        <div>
+          <h3>Education</h3>
+          <div class="item">
+            <strong>MS, Computer Science</strong>
+            <span>UET Lahore · 2020–2023 · GPA 3.6 / 4.0</span>
+          </div>
+          <div class="item">
+            <strong>BS, Computer Science</strong>
+            <span>UET Lahore · 2016–2020 · GPA 3.6 / 4.0</span>
+          </div>
+        </div>
+        <div>
+          <h3>Recognition</h3>
+          <div class="item">
+            <strong>Achiever of the Month ×4</strong>
+            <span>Techlogix · 2021, 2022, 2023, 2025</span>
+          </div>
+          <div class="item">
+            <strong>3rd Place, AI Hackathon</strong>
+            <span>Techlogix · 2024 · org-wide</span>
+          </div>
+        </div>
+        <div>
+          <h3>Certifications</h3>
+          <div class="item">
+            <strong>Front-End Web UI Frameworks &amp; Tools</strong>
+            <span>Coursera · HKUST</span>
+          </div>
+          <div class="item">
+            <strong>Node.js, Express &amp; MongoDB Bootcamp</strong>
+            <span>Udemy · 2022</span>
+          </div>
+        </div>
+      </div>
+      <footer class="foot">
+        <span>Komal Shehzadi · Principal Software Engineer</span>
+        <span>Lahore, PK · dev.komalshehzadi.com</span>
+      </footer>
+    </section>
+  </body>
+</html>

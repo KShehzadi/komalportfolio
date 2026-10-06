@@ -121,10 +121,19 @@ revision), which opens in a new tab. The path is set by `profile.resumeUrl` in
 `src/content.js`. The older `public/Komal_Shehzadi_Resume.pdf` is still served at
 its own URL so any link already shared keeps working.
 
-**The phone number has been redacted from this copy** — removed from the PDF's
-text layer with PyMuPDF's redaction (glyphs deleted, not covered with a box), so
-it cannot be copied or extracted. If you replace the file, redact it again
-before committing; dropping in the original will republish the number.
+The PDF is generated. Its source is `resume/Komal_Shehzadi_Resume_2026.html`;
+edit that, then print it over the served PDF with:
+
+```bash
+npm run resume
+```
+
+This uses whichever Chrome or Edge is installed (set `CHROME_PATH` to choose
+one). Keep the result to two pages, and keep it in step with `src/content.js`.
+
+**There is no phone number in the source, on purpose** — the PDF is public, and a
+number that never enters the HTML can never leak into the output. Do not add one
+back, and do not drop in an older PDF that has one.
 
 # Credits
 
