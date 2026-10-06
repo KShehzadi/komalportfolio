@@ -32,22 +32,23 @@
       <stop offset="0.72" stop-color="#734827"/>
       <stop offset="1" stop-color="#b07a45"/>
     </linearGradient>
-    <linearGradient id="tp-lock" x1="0" y1="0" x2="0" y2="1">
+        <linearGradient id="tp-lock" gradientUnits="userSpaceOnUse" x1="0" y1="56" x2="0" y2="400">
       <stop offset="0" stop-color="#2a170d"/>
       <stop offset="0.3" stop-color="#4b2c19"/>
       <stop offset="0.66" stop-color="#8a5a31"/>
       <stop offset="1" stop-color="#c68f56"/>
     </linearGradient>
-    <linearGradient id="tp-lock-lit" x1="0" y1="0" x2="0" y2="1">
+        <linearGradient id="tp-lock-lit" gradientUnits="userSpaceOnUse" x1="0" y1="56" x2="0" y2="400">
       <stop offset="0" stop-color="#3a2214"/>
       <stop offset="0.3" stop-color="#5e3a20"/>
       <stop offset="0.66" stop-color="#a06c3c"/>
       <stop offset="1" stop-color="#d9a36a"/>
     </linearGradient>
-    <linearGradient id="tp-bangs" gradientUnits="userSpaceOnUse" x1="130" y1="60" x2="290" y2="210">
-      <stop offset="0" stop-color="#2c180d"/>
-      <stop offset="0.6" stop-color="#4a2b18"/>
-      <stop offset="1" stop-color="#6e4526"/>
+        <linearGradient id="tp-bangs" gradientUnits="userSpaceOnUse" x1="0" y1="56" x2="0" y2="400">
+      <stop offset="0" stop-color="#2a170d"/>
+      <stop offset="0.3" stop-color="#4b2c19"/>
+      <stop offset="0.66" stop-color="#8a5a31"/>
+      <stop offset="1" stop-color="#c68f56"/>
     </linearGradient>
     <radialGradient id="tp-kurta" cx="50%" cy="18%" r="90%">
       <stop offset="0" stop-color="#dc3350"/>
@@ -234,6 +235,7 @@
       <ellipse cx="202" cy="198" rx="3" ry="9" fill="#fff" opacity="0.3" filter="url(#tp-blur-sm)"/>
       <ellipse cx="200" cy="256" rx="12" ry="5" fill="#fff" opacity="0.25" filter="url(#tp-blur-sm)"/>
     </g>
+    <circle cx="223" cy="259" r="1.4" fill="#6b3d2d" opacity="0.6"/>
   </g>
 
   <!-- features move a little further than the face, which reads as depth -->
@@ -340,22 +342,21 @@
     <!-- left of the part -->
     <path d="M171 60C146 62 126 82 118 112C112 136 112 162 115 188C120 158 134 130 152 114C158 108 164 104 168 100C169.5 88 170.5 74 171 60Z" fill="url(#tp-bangs)"/>
     <!-- the fringe -->
-    <path d="M171 60C216 52 272 78 288 138C294 162 294 186 290 206C285 186 276 166 263 153C263 160 261 166 256 171C252 154 242 140 228 130C212 120 190 112 168 100C169.5 88 170.5 74 171 60Z" fill="url(#tp-bangs)"/>
+    <path d="M171 60C216 52 272 78 288 138C298 170 306 232 304 300C300 340 306 372 318 400L274 400C272 360 278 320 278 280C278 244 272 214 262 188C261 182 259 176 256 171C252 154 242 140 228 130C212 120 190 112 168 100C169.5 88 170.5 74 171 60Z" fill="url(#tp-bangs)"/>
     <g fill="none" stroke-linecap="round" filter="url(#tp-blur-xs)">
       <path d="M182 104C214 104 246 124 262 156" stroke="#6e4526" stroke-width="1.4" opacity="0.7"/>
-      <path d="M200 86C236 92 264 116 278 160" stroke="#7a4d2c" stroke-width="1.4" opacity="0.6"/>
+      <path d="M200 86C236 92 268 120 282 170C290 200 292 240 290 280" stroke="#7a4d2c" stroke-width="1.4" opacity="0.6"/>
     </g>
     <path d="M170.8 70C170.4 80 169.7 89 168.5 98" fill="none" stroke="#120904" stroke-width="4.5" stroke-linecap="round" opacity="0.4" filter="url(#tp-blur-xs)"/>
     <path d="M170.8 70C170.4 80 169.7 89 168.5 98" fill="none" stroke="#e9b99f" stroke-width="1.3" stroke-linecap="round" opacity="0.85"/>
     <path d="M175 66C192 61 214 65 234 78" fill="none" stroke="#b98552" stroke-width="4" stroke-linecap="round" opacity="0.5" filter="url(#tp-blur-sm)"/>
     <path d="M166 68C158 74 150 84 145 96" fill="none" stroke="#9a6a42" stroke-width="3" stroke-linecap="round" opacity="0.4" filter="url(#tp-blur-sm)"/>
-    <path d="M190 74C232 74 268 100 282 150" fill="none" stroke="#a87348" stroke-width="7" stroke-linecap="round" opacity="0.45" filter="url(#tp-blur-sm)"/>
+    <path d="M190 74C232 74 268 100 282 150C290 176 294 204 294 232" fill="none" stroke="#a87348" stroke-width="7" stroke-linecap="round" opacity="0.4" filter="url(#tp-blur-sm)"/>
     <path d="M196 92C230 96 258 118 272 152" fill="none" stroke="#120904" stroke-width="2" opacity="0.45" filter="url(#tp-blur-xs)"/>
     <path d="M144 84C152 72 162 68 170 66" fill="none" stroke="#a87348" stroke-width="5" stroke-linecap="round" opacity="0.4" filter="url(#tp-blur-sm)"/>
 
     <!-- her left side: two locks over the shoulder -->
-    <path d="M286 150C302 196 308 250 304 300C300 340 306 372 318 400L274 400C272 360 278 320 278 280C278 240 274 212 268 192C276 180 284 166 286 150Z" fill="url(#tp-lock)"/>
-    <path d="M272 192C281 232 284 278 280 320C277 352 280 380 288 400L256 400C258 370 262 340 262 310C262 272 262 240 257 218C264 212 269 202 272 192Z" fill="url(#tp-lock-lit)"/>
+    <path d="M266 176C280 214 286 270 282 320C279 352 282 380 290 400L258 400C260 370 264 340 264 310C264 272 263 240 258 216C262 204 265 190 266 176Z" fill="url(#tp-lock-lit)"/>
     <g fill="none" stroke-linecap="round" filter="url(#tp-blur-sm)">
       <path d="M294 210C300 252 298 300 302 360" stroke="#e0ad75" stroke-width="3" opacity="0.55"/>
       <path d="M272 250C275 290 270 330 276 380" stroke="#f0c08a" stroke-width="3" opacity="0.6"/>

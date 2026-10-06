@@ -23,7 +23,7 @@ const translate = (x, y) => `translate(${x.toFixed(2)}px, ${y.toFixed(2)}px)`;
 /**
  * The illustrated hero portrait (src/assets/images/komal-toon.svg). The eyes
  * follow the pointer, or the last tap on touch screens, and the face turns
- * slightly toward it. A toggle swaps in the original photo.
+ * slightly toward it. Clicking the portrait turns it over to the original photo.
  *
  * Tracking writes transforms straight to the DOM once per animation frame
  * rather than through React state, so moving the mouse never re-renders.
@@ -112,39 +112,34 @@ export default function ToonPortrait({photo, alt}) {
     };
   }, []);
 
+  /* The whole portrait is the control: click, tap, Enter or Space turns the
+     card over. Both faces stay mounted so the flip is a pure CSS transform. */
   return (
-    <>
-      <div className="toon-frame">
-        <ToonArt
-          ref={svgRef}
-          className={`toon${showPhoto ? " is-hidden" : ""}`}
-          role="img"
-          aria-label={`Illustration of ${alt}`}
-          aria-hidden={showPhoto}
-        />
-
-        <img
-          className={`toon-photo${showPhoto ? "" : " is-hidden"}`}
-          src={photo}
-          alt={alt}
-          aria-hidden={!showPhoto}
-          width="300"
-          height="300"
-        />
-      </div>
-
-      <button
-        type="button"
-        className="toon-toggle"
-        aria-pressed={showPhoto}
-        onClick={() => setShowPhoto(shown => !shown)}
-      >
-        <i
-          className={showPhoto ? "fas fa-pencil-alt" : "fas fa-camera"}
-          aria-hidden="true"
-        />
-        {showPhoto ? "Show illustration" : "Show photo"}
-      </button>
-    </>
+    <button
+      type="button"
+      className={`flip-card${showPhoto ? " is-flipped" : ""}`}
+      aria-pressed={showPhoto}
+      aria-label={
+        showPhoto
+          ? `Photo of ${alt}. Turn over for the illustration`
+          : `Illustration of ${alt}. Turn over for the photo`
+      }
+      onClick={() => setShowPhoto(shown => !shown)}
+    >
+      <span className="flip-card__inner">
+        <span className="flip-card__face">
+          <ToonArt ref={svgRef} className="toon" aria-hidden="true" />
+          <span className="flip-card__hint" aria-hidden="true">
+            <i className="fas fa-sync-alt" />
+          </span>
+        </span>
+        <span className="flip-card__face flip-card__face--back">
+          <img src={photo} alt="" width="300" height="300" />
+          <span className="flip-card__hint" aria-hidden="true">
+            <i className="fas fa-sync-alt" />
+          </span>
+        </span>
+      </span>
+    </button>
   );
 }
