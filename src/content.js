@@ -6,14 +6,20 @@
      • Writing      → public/blogs.json   (Medium feed, refreshed by fetch.js)
      • Open source  → public/profile.json (GitHub pinned repos, via fetch.js)
 
-   All titles, dates, metrics and groupings below are taken from
-   public/Komal_Shehzadi_Resume_2026.pdf, which is the authoritative record.
-   If the résumé changes, change this file to match.
+   All titles, dates, metrics and groupings below match the résumé, whose
+   source is resume/Komal_Shehzadi_Resume_2026.html (printed to
+   public/Komal_Shehzadi_Resume_2026.pdf by `npm run resume`). If one
+   changes, change the other to match.
 
-   DELIBERATE DEVIATIONS from the résumé, confirmed by Komal — do not
-   "correct" these back to match the PDF:
-     • The Principal promotion was 1 December 2025; the PDF rounds it to
-       Jan 2026, so the timeline reads Dec 2025 and the Senior span ends there.
+   Decisions confirmed by Komal — do not "correct" these:
+     • The Principal promotion was 1 December 2025, so the Senior span ends
+       there.
+     • The UBP Investment Banking engagement (Sep 2026 — present) sits under
+       the Principal role alongside SECP; do not give it a separate title.
+     • The career starts in August 2020 with two months at NetSol before
+       Techlogix (October 2020).
+     • Years of experience are not written anywhere — they are counted from
+       CAREER_START when the page loads, so they roll over on each anniversary.
      • Project cards carry no date ranges; the ones derived from the résumé's
        role spans were inaccurate. Dates live on the career timeline only.
      • The GenAI design-to-code generator appears in the AI section rather than
@@ -22,13 +28,25 @@
    The older template config (src/portfolio.js) is no longer imported.
    ========================================================================= */
 
+/* First role, at NetSol, began August 2020; Techlogix followed in October
+   2020. The month is zero-based. Every "N+ years"
+   on the page comes from here, worked out in the visitor's browser, so the
+   figure rolls over on the anniversary with no edit and no rebuild. */
+const CAREER_START = new Date(2020, 7, 1);
+
+function wholeYearsSince(start, now = new Date()) {
+  const years = now.getFullYear() - start.getFullYear();
+  return now.getMonth() < start.getMonth() ? years - 1 : years;
+}
+
+export const experience = `${wholeYearsSince(CAREER_START)}+`;
+
 export const profile = {
   name: "Komal Shehzadi",
   role: "Principal Software Engineer",
   company: "Techlogix",
   location: "Lahore, Pakistan",
-  summary:
-    "Principal engineer with 5+ years shipping data-intensive products in domains where being wrong is expensive — securities regulation, oil & gas, semiconductor yield, enterprise supply chain. I own frontend architecture end to end: the component systems teams build on, the rendering and state work that keeps million-point interfaces fast, and the observability that explains what actually happened in production. Lately that ownership extends to how the team builds — agentic tooling, purpose-built AI subagents and MCP-connected workflows.",
+  summary: `Principal engineer with ${experience} years shipping data-intensive products in domains where being wrong is expensive — investment banking, securities regulation, oil & gas, semiconductor yield, enterprise supply chain. I own frontend architecture end to end: the component systems teams build on, the rendering and state work that keeps million-point interfaces fast, and the observability that explains what actually happened in production. Lately that ownership extends to how the team builds — agentic tooling, purpose-built AI subagents and MCP-connected workflows.`,
   titles: [
     "Principal Software Engineer",
     "Frontend Architect",
@@ -91,14 +109,20 @@ export const socials = [
   }
 ];
 
-/* Bento stat tiles under the hero — the résumé's four headline figures plus
-   tenure. Each `figure` starts with a digit so <CountUp> can animate it, and
-   the grid is pinned to five columns in app.scss, so keep this at five. */
+/* Bento stat tiles under the hero — the current engagement, tenure and the
+   résumé's four headline figures. A `figure` that starts with a digit is
+   animated by <CountUp>; any other figure renders as written. app.scss lays
+   these out three per row (two below 1000px), so keep this at six. */
 export const stats = [
   {
-    figure: "5+",
+    figure: "UBP",
+    label: "investment-banking engagement",
+    detail: "Full-stack delivery & planning, since Sep 2026"
+  },
+  {
+    figure: experience,
     label: "years shipping production software",
-    detail: "Techlogix, since October 2020"
+    detail: "Since Aug 2020 · Techlogix from Oct 2020"
   },
   {
     figure: "70%",
@@ -124,15 +148,27 @@ export const stats = [
 
 /* Client and product work, newest first. Enterprise products with no public
    marketing site, so they are described rather than linked. Keep this list at
-   eight entries: Work.js pairs column spans so no row is left with an orphan. */
+   nine entries: the first (the current engagement) spans the full row and
+   Work.js pairs the column spans of the other eight, so no row is left with an
+   orphan. */
 export const work = [
+  {
+    id: "ubp",
+    client: "UBP",
+    title: "Investment banking platform",
+    summary:
+      "Full-stack engineering for UBP's investment-banking business — features built end to end across the interface, services and data, in a domain where accuracy is non-negotiable. Also part of planning the work: scoping, estimation and sequencing alongside product and engineering leads.",
+    contribution: "Full-stack delivery and planning.",
+    stack: ["Full-stack", "Investment banking", "Delivery planning"],
+    accent: "pink"
+  },
   {
     id: "secp",
     client: "SECP",
     title: "LEAP Portal",
     summary:
       "Frontend architecture for a national securities-regulator portal, standardised around a dynamic form engine and a shared component library — so new statutory workflows ship as configuration rather than copied screens. Lazy loading and restructured state management keep the heaviest regulatory flows responsive.",
-    contribution: "Owns the frontend architecture.",
+    contribution: "Owned the frontend architecture.",
     stack: ["Angular", "TypeScript", "Design system", "Accessibility"],
     accent: "emerald"
   },
@@ -142,7 +178,7 @@ export const work = [
     title: "Production observability & root cause",
     summary:
       "Instrumented the portal with Grafana Faro — tiered HTTP telemetry, named business events, and LogQL queries over Loki that reconstruct one applicant's journey. Turns “it failed for a single user” into a reproducible timeline; it is how recurring API failures were traced to fail-open submit gates and mis-sequenced role APIs.",
-    contribution: "Designed the telemetry, leads the RCA.",
+    contribution: "Designed the telemetry and led the RCA.",
     stack: ["Grafana Faro", "Loki / LogQL", "Telemetry tiering"],
     accent: "amber"
   },
@@ -216,13 +252,15 @@ export const career = [
     logo: require("./assets/images/Techlogix-Logo.png"),
     period: "Dec 2025 — Present",
     current: true,
-    clients: ["SECP LEAP Portal"],
+    clients: ["UBP Investment Banking", "SECP LEAP Portal"],
     summary:
-      "Frontend architecture owner on a national securities-regulator portal — the component systems, the production observability, and the team's AI-assisted delivery workflow.",
+      "Now on UBP's investment-banking engagement, delivering across the full stack and shaping how the work is planned. Before that, owned frontend architecture on a national securities-regulator portal — the component systems, the production observability and the team's AI-assisted delivery workflow.",
     points: [
-      "Own frontend architecture for a high-stakes government regulatory platform, standardising it around a dynamic form engine and shared component library so new statutory workflows ship as configuration rather than copied screens.",
+      "On UBP's investment-banking engagement (Sep 2026 — present), deliver features end to end across frontend, backend services and data, in a domain where accuracy and reliability are non-negotiable.",
+      "Contribute to delivery planning — scoping and breaking down work, estimating effort and sequencing dependencies alongside product and engineering leads.",
+      "On SECP's LEAP Portal (Dec 2025 — Sep 2026), owned frontend architecture for a high-stakes government regulatory platform, standardising it around a dynamic form engine and shared component library so new statutory workflows shipped as configuration rather than copied screens.",
       "Instrumented the portal with Grafana Faro — tiered HTTP telemetry, named business events and LogQL queries over Loki that reconstruct one applicant's journey, turning “it failed for a single user” into a reproducible timeline.",
-      "Lead production root-cause analysis across the frontend/backend boundary: traced recurring API failures to fail-open submit gates and mis-sequenced role APIs, then shipped verified fixes through a dual-branch staging and hotfix release process.",
+      "Led production root-cause analysis across the frontend/backend boundary: traced recurring API failures to fail-open submit gates and mis-sequenced role APIs, then shipped verified fixes through a dual-branch staging and hotfix release process.",
       "Built the team's AI-assisted delivery workflow — purpose-built subagents for observability instrumentation and defect-to-PR automation, wired into Jira and Bitbucket through MCP tooling.",
       "Set engineering standards for conventions, review depth and documentation while mentoring junior engineers and acting as the technical bridge across product, backend and QA.",
       "Improved responsiveness across complex regulatory workflows through lazy loading and state-management restructuring."
@@ -258,13 +296,45 @@ export const career = [
       "Developed and owned key modules of a full-stack campus management platform spanning student lifecycle, finance and academic grading, on AngularJS/Angular, Kendo UI and .NET Core.",
       "Automated manual administrative reporting through robust CRUD services and streamlined UX flows, improving data accuracy and removing repetitive data entry."
     ]
+  },
+  {
+    role: "Software Engineer",
+    company: "NetSol Technologies",
+    logo: require("./assets/images/Netsol-Logo.png"),
+    period: "Aug 2020 — Sep 2020",
+    summary:
+      "First role after graduating — a short stint before joining Techlogix.",
+    points: [
+      "Completed training on the company's in-house application framework and development toolchain.",
+      "Contributed database schema design and query development for its core platform."
+    ]
   }
 ];
 
 /* The résumé's AI-Enabled Engineering section: what the AI work actually is,
    rather than a list of model names. `kind` renders as the card's eyebrow, and
-   these reuse the work-card styles so the two grids read as one system. */
+   these reuse the work-card styles so the two grids read as one system. Newest
+   practice first. AI.js lays them out two per row; with an odd count the
+   first card takes a full row so the grid never ends on an orphan. */
 export const aiWork = [
+  {
+    id: "fullstack",
+    kind: "Delivery",
+    title: "Full-stack delivery",
+    summary:
+      "On UBP's investment-banking engagement, building features end to end across the interface, services and data layer — with every change reviewed and verified before it ships, in a domain where accuracy is non-negotiable.",
+    stack: ["Full-stack", "Investment banking", "Code review"],
+    accent: "amber"
+  },
+  {
+    id: "ai-planning",
+    kind: "Planning",
+    title: "AI-assisted planning",
+    summary:
+      "Use AI to turn incoming requirements into scoped, estimable work — breaking features into tasks, drafting acceptance criteria and surfacing dependencies and risks early — so planning starts from a solid draft rather than a blank page.",
+    stack: ["Scoping", "Estimation", "Acceptance criteria"],
+    accent: "indigo"
+  },
   {
     id: "subagents",
     kind: "Agentic tooling",
@@ -284,6 +354,15 @@ export const aiWork = [
     accent: "cyan"
   },
   {
+    id: "ai-standards",
+    kind: "Practice",
+    title: "Standards for AI-assisted work",
+    summary:
+      "Define where generated code is trusted and where it is not: build verification before every PR, confirmed root causes over plausible-sounding explanations, and review depth that scales with blast radius. Carried from regulatory software into investment banking, where a wrong answer costs just as much.",
+    stack: ["Prompt design", "AI-assisted review"],
+    accent: "violet"
+  },
+  {
     id: "genai-generator",
     kind: "Product",
     title: "GenAI design-to-code generator",
@@ -291,15 +370,6 @@ export const aiWork = [
       "Built an AI-powered HTML/CSS generator on GenAI APIs that turned multi-day design-to-code prototyping into a minutes-long cycle — third place across the engineering org at the Techlogix AI Hackathon.",
     stack: ["GenAI APIs", "HTML", "CSS"],
     accent: "pink"
-  },
-  {
-    id: "ai-standards",
-    kind: "Practice",
-    title: "Standards for AI-assisted work",
-    summary:
-      "Define where generated code is trusted and where it is not: build verification before every PR, confirmed root causes over plausible-sounding explanations, and review depth that scales with blast radius.",
-    stack: ["Prompt design", "AI-assisted review"],
-    accent: "violet"
   }
 ];
 
@@ -315,7 +385,8 @@ export const stack = [
       {name: "MCP integrations", icon: "fas fa-plug"},
       {name: "Custom subagents", icon: "fas fa-user-astronaut"},
       {name: "Prompt design", icon: "fas fa-comment-dots"},
-      {name: "AI-assisted review", icon: "fas fa-search-plus"}
+      {name: "AI-assisted review", icon: "fas fa-search-plus"},
+      {name: "AI-assisted planning", icon: "fas fa-tasks"}
     ]
   },
   {

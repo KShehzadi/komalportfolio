@@ -5,8 +5,10 @@ import SectionHead from "../ui/SectionHead";
 import {useTilt} from "../hooks/useTilt";
 
 /* Alternating widths are what make a bento grid read as a bento rather than a
-   plain grid. Each pair sums to 12, so no row is left with an orphan card. */
+   plain grid. The current engagement takes a full row; after it each pair sums
+   to 12, so no row is left with an orphan card. */
 const SPANS = [
+  "col-12",
   "col-8",
   "col-4",
   "col-4",

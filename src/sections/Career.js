@@ -5,7 +5,7 @@ import {
   VerticalTimelineElement
 } from "react-vertical-timeline-component";
 import "react-vertical-timeline-component/style.min.css";
-import {career} from "../content";
+import {career, experience} from "../content";
 import SectionHead from "../ui/SectionHead";
 import {textVariant} from "../utils/motion";
 
@@ -20,7 +20,7 @@ export default function Career() {
         id="career"
         eyebrow="Career"
         title="How I got here"
-        note="Coming up on six years at one company, across three roles — each with a wider remit than the last."
+        note={`${experience} years in, almost all of them at Techlogix — across a widening run of roles and client engagements, each with a bigger remit than the last.`}
       />
 
       <m.div variants={textVariant()} initial="hidden" whileInView="show">

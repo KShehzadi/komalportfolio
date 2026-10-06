@@ -1,6 +1,7 @@
 import React from "react";
 import {m} from "framer-motion";
 import {profile, socials} from "../content";
+import ToonPortrait from "../ui/ToonPortrait";
 import Typing from "../ui/Typing";
 import {fadeIn, textVariant} from "../utils/motion";
 
@@ -98,11 +99,9 @@ export default function Hero() {
           animate="show"
           className="hero__portrait"
         >
-          <img
-            src={profile.photo}
+          <ToonPortrait
+            photo={profile.photo}
             alt={`${profile.name}, ${profile.role}`}
-            width="300"
-            height="300"
           />
         </m.div>
       </div>

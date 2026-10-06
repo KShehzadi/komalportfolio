@@ -721,13 +721,99 @@ img {
   aspect-ratio: 1 / 1;
 }
 
-.hero__portrait img {
+/* The illustration and the photo share one frame and crossfade; the toggle
+   sits on the frame's corner. */
+.toon-frame {
+  position: relative;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  overflow: hidden;
   border-radius: var(--r-xl);
   border: 1px solid var(--hairline-strong);
   box-shadow: var(--shadow-card);
+  background: #0b0814;
+}
+
+.toon-frame > .toon,
+.toon-frame > .toon-photo {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity var(--dur-slow) var(--ease);
+}
+
+.toon-frame > .is-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.toon__iris {
+  transition: transform 90ms linear;
+}
+
+/* the head turns a touch more slowly than the eyes move, as a real one would */
+.toon__head {
+  transition: transform 220ms ease-out;
+}
+
+/* a quick blink every six seconds; each eye squashes about its own centre */
+.toon__eye {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: toon-blink 6s infinite;
+}
+
+@keyframes toon-blink {
+  0%,
+  94%,
+  100% {
+    transform: scaleY(1);
+  }
+  96% {
+    transform: scaleY(0.08);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .toon__eye {
+    animation: none;
+  }
+  .toon__iris,
+  .toon__head {
+    transition: none;
+  }
+}
+
+.toon-toggle {
+  position: absolute;
+  left: 0.6rem;
+  bottom: 0.6rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.7rem;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 999px;
+  background: rgba(5, 8, 22, 0.72);
+  color: #fff;
+  font: inherit;
+  font-size: var(--t-micro);
+  font-weight: 600;
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+  transition: background var(--dur) var(--ease);
+}
+
+.toon-toggle:hover {
+  background: rgba(5, 8, 22, 0.9);
+}
+
+.toon-toggle:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
 }
 
 .hero__portrait::before {
@@ -810,8 +896,9 @@ img {
    Stats
  * ------------------------------------------------------------------ */
 
+/* six tiles: two rows of three, then three rows of two — never an orphan */
 .stats .bento {
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 .stats .bento > * {
   grid-column: auto;
@@ -820,9 +907,6 @@ img {
 @media (max-width: 1000px) {
   .stats .bento {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-  .stats .bento > *:first-child {
-    grid-column: span 2;
   }
 }
 
@@ -917,6 +1001,11 @@ img {
   color: var(--secondary);
   font-size: var(--t-small);
   line-height: 1.75;
+}
+
+/* a full-row card would otherwise run its copy across the whole shell */
+.col-12 .work-card__summary {
+  max-width: 80ch;
 }
 
 .work-card__role {

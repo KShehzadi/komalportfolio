@@ -1,0 +1,400 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+  <!--
+    Illustrated portrait used in the hero. ToonPortrait.js imports this as a
+    component and animates it: every .toon__iris follows the pointer, and each
+    group carrying data-depth shifts toward it by that multiple, so the face
+    appears to turn. Keep those class names and attributes when editing.
+  -->
+  <defs>
+    <linearGradient id="tp-bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f3f4f6"/>
+      <stop offset="0.62" stop-color="#e1e4e8"/>
+      <stop offset="1" stop-color="#c2c6cc"/>
+    </linearGradient>
+    <radialGradient id="tp-vignette" cx="50%" cy="45%" r="70%">
+      <stop offset="0.6" stop-color="#000" stop-opacity="0"/>
+      <stop offset="1" stop-color="#1b1f26" stop-opacity="0.28"/>
+    </radialGradient>
+    <radialGradient id="tp-skin" cx="42%" cy="36%" r="70%">
+      <stop offset="0" stop-color="#ffe9da"/>
+      <stop offset="0.5" stop-color="#fbd2b7"/>
+      <stop offset="0.82" stop-color="#efb597"/>
+      <stop offset="1" stop-color="#dc9878"/>
+    </radialGradient>
+    <linearGradient id="tp-neck" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#d4947a"/>
+      <stop offset="0.45" stop-color="#f3c3a6"/>
+      <stop offset="1" stop-color="#d99a7d"/>
+    </linearGradient>
+    <linearGradient id="tp-hair" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1e110a"/>
+      <stop offset="0.38" stop-color="#3a2214"/>
+      <stop offset="0.72" stop-color="#734827"/>
+      <stop offset="1" stop-color="#b07a45"/>
+    </linearGradient>
+    <linearGradient id="tp-lock" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2a170d"/>
+      <stop offset="0.3" stop-color="#4b2c19"/>
+      <stop offset="0.66" stop-color="#8a5a31"/>
+      <stop offset="1" stop-color="#c68f56"/>
+    </linearGradient>
+    <linearGradient id="tp-lock-lit" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3a2214"/>
+      <stop offset="0.3" stop-color="#5e3a20"/>
+      <stop offset="0.66" stop-color="#a06c3c"/>
+      <stop offset="1" stop-color="#d9a36a"/>
+    </linearGradient>
+    <linearGradient id="tp-bangs" gradientUnits="userSpaceOnUse" x1="130" y1="60" x2="290" y2="210">
+      <stop offset="0" stop-color="#2c180d"/>
+      <stop offset="0.6" stop-color="#4a2b18"/>
+      <stop offset="1" stop-color="#6e4526"/>
+    </linearGradient>
+    <radialGradient id="tp-kurta" cx="50%" cy="18%" r="90%">
+      <stop offset="0" stop-color="#dc3350"/>
+      <stop offset="0.5" stop-color="#b01733"/>
+      <stop offset="1" stop-color="#690818"/>
+    </radialGradient>
+    <linearGradient id="tp-collar" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#d22a46"/>
+      <stop offset="1" stop-color="#97112a"/>
+    </linearGradient>
+    <radialGradient id="tp-sclera" cx="50%" cy="62%" r="62%">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="0.7" stop-color="#f7f2f0"/>
+      <stop offset="1" stop-color="#d8cbc7"/>
+    </radialGradient>
+    <radialGradient id="tp-iris" cx="50%" cy="60%" r="55%">
+      <stop offset="0" stop-color="#d49a5e"/>
+      <stop offset="0.45" stop-color="#8a5328"/>
+      <stop offset="0.85" stop-color="#43250f"/>
+      <stop offset="1" stop-color="#1f1008"/>
+    </radialGradient>
+    <linearGradient id="tp-lid" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#4a2419" stop-opacity="0.6"/>
+      <stop offset="1" stop-color="#4a2419" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="tp-lip-top" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#c9566a"/>
+      <stop offset="1" stop-color="#a83d53"/>
+    </linearGradient>
+    <linearGradient id="tp-lip" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#e07587"/>
+      <stop offset="1" stop-color="#b84a5f"/>
+    </linearGradient>
+    <radialGradient id="tp-nose" cx="50%" cy="40%" r="60%">
+      <stop offset="0" stop-color="#ffdcc8"/>
+      <stop offset="1" stop-color="#f2bea2" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="tp-gold" cx="35%" cy="30%" r="70%">
+      <stop offset="0" stop-color="#fff3c2"/>
+      <stop offset="0.5" stop-color="#e2b453"/>
+      <stop offset="1" stop-color="#94661a"/>
+    </radialGradient>
+    <linearGradient id="tp-desk" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#e6c49b"/>
+      <stop offset="1" stop-color="#b78a5d"/>
+    </linearGradient>
+    <pattern id="tp-print" width="13" height="13" patternUnits="userSpaceOnUse">
+      <path d="M6.5 0L13 6.5L6.5 13L0 6.5Z" fill="none" stroke="#c9a14a" stroke-width="0.9"/>
+      <circle cx="6.5" cy="6.5" r="1.5" fill="#e3c070"/>
+    </pattern>
+    <clipPath id="tp-face-clip">
+      <path d="M200 92C252 92 284 128 284 178C284 214 268 240 244 256C230 265 215 270 200 270C185 270 170 265 156 256C132 240 116 214 116 178C116 128 148 92 200 92Z"/>
+    </clipPath>
+    <clipPath id="tp-eye-l">
+      <path d="M137 188C141 175 154 168 166 168C179 168 189 175 192 186C186 195 176 199 165 199C152 199 142 195 137 188Z"/>
+    </clipPath>
+    <clipPath id="tp-eye-r">
+      <path d="M263 188C259 175 246 168 234 168C221 168 211 175 208 186C214 195 224 199 235 199C248 199 258 195 263 188Z"/>
+    </clipPath>
+    <clipPath id="tp-dupatta">
+      <path d="M110 308C134 297 160 295 180 301L197 400L122 400C120 368 116 336 110 308Z"/>
+    </clipPath>
+    <filter id="tp-blur-bg" x="-10%" y="-10%" width="120%" height="120%">
+      <feGaussianBlur stdDeviation="3.4"/>
+    </filter>
+    <filter id="tp-blur-xl" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="9"/>
+    </filter>
+    <filter id="tp-blur" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="4"/>
+    </filter>
+    <filter id="tp-blur-sm" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="1.6"/>
+    </filter>
+    <filter id="tp-blur-xs" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="0.6"/>
+    </filter>
+  </defs>
+
+  <!-- the office behind her, out of focus -->
+  <rect width="400" height="400" fill="url(#tp-bg)"/>
+  <g filter="url(#tp-blur-bg)">
+    <rect x="0" y="0" width="36" height="330" fill="#fff" opacity="0.95"/>
+    <rect x="42" y="0" width="7" height="330" fill="#cdd2d6"/>
+    <rect x="296" y="0" width="22" height="310" fill="#23262b"/>
+    <rect x="324" y="0" width="76" height="320" fill="#b6cbcf" opacity="0.55"/>
+    <rect x="334" y="30" width="6" height="270" fill="#eef6f7" opacity="0.8"/>
+    <g fill="#fff8de">
+      <circle cx="350" cy="26" r="8"/>
+      <circle cx="370" cy="58" r="6"/>
+      <circle cx="388" cy="18" r="7"/>
+      <ellipse cx="372" cy="92" rx="16" ry="5"/>
+    </g>
+    <ellipse cx="74" cy="206" rx="13" ry="15" fill="#2a1d16"/>
+    <path d="M44 262C46 232 60 220 76 220C94 220 106 234 108 262Z" fill="#8cab78"/>
+    <rect x="18" y="226" width="62" height="96" rx="10" fill="#1c1f23"/>
+    <rect x="64" y="262" width="54" height="70" rx="10" fill="#25282d"/>
+    <ellipse cx="350" cy="210" rx="10" ry="12" fill="#3a2a22"/>
+    <path d="M326 262C328 238 338 226 352 226C368 226 378 240 380 262Z" fill="#c3cbda"/>
+    <rect x="0" y="310" width="400" height="90" fill="#bcc0c4" opacity="0.6"/>
+  </g>
+  <rect width="400" height="400" fill="url(#tp-vignette)"/>
+
+  <!-- hair, back mass, and the shadow the head throws onto it -->
+  <path d="M200 56C128 56 88 112 90 186C91 232 98 268 90 306C84 336 72 362 64 400L336 400C328 362 316 336 310 306C302 268 309 232 310 186C312 112 272 56 200 56Z" fill="url(#tp-hair)"/>
+  <ellipse cx="200" cy="196" rx="96" ry="104" fill="#0e0704" opacity="0.5" filter="url(#tp-blur-xl)"/>
+
+  <!-- neck, with the jaw's shadow under the chin -->
+  <path d="M172 232L172 334L228 334L228 232Z" fill="url(#tp-neck)"/>
+  <ellipse cx="200" cy="266" rx="32" ry="11" fill="#a3603f" opacity="0.55" filter="url(#tp-blur)"/>
+
+  <!-- crimson kurta -->
+  <path d="M54 400C56 346 88 312 146 298C164 294 174 286 178 276L200 328L222 276C226 286 236 294 254 298C312 312 344 346 346 400Z" fill="url(#tp-kurta)"/>
+  <g fill="none" stroke="#6a0817" stroke-width="3" opacity="0.55" filter="url(#tp-blur-sm)">
+    <path d="M185 282L200 326L215 282"/>
+  </g>
+  <path d="M200 328L200 400" stroke="#760a1c" stroke-width="1.6" opacity="0.8"/>
+  <g fill="none" stroke="#55050f" stroke-linecap="round" opacity="0.5" filter="url(#tp-blur-sm)">
+    <path d="M262 312C280 336 290 366 290 400" stroke-width="7"/>
+    <path d="M232 318C240 346 242 372 240 400" stroke-width="4"/>
+    <path d="M94 340C90 360 88 380 88 400" stroke-width="7"/>
+  </g>
+  <g fill="none" stroke="#ff6f86" stroke-linecap="round" opacity="0.35" filter="url(#tp-blur-sm)">
+    <path d="M246 304C270 312 292 324 306 340" stroke-width="4"/>
+  </g>
+  <!-- pointed collar, with a little thickness -->
+  <g filter="url(#tp-blur-sm)" opacity="0.6" fill="#4d0410">
+    <path d="M178 276C172 291 162 304 150 314L182 317L198 296Z"/>
+    <path d="M222 276C228 291 238 304 250 314L218 317L202 296Z"/>
+  </g>
+  <g fill="url(#tp-collar)" stroke="#6d0a1b" stroke-width="1" stroke-linejoin="round">
+    <path d="M178 270C172 286 162 300 148 310L180 313L197 292Z"/>
+    <path d="M222 270C228 286 238 300 252 310L220 313L203 292Z"/>
+  </g>
+  <g fill="none" stroke="#f0546c" stroke-width="1" opacity="0.6">
+    <path d="M176 274C171 287 163 298 152 307"/>
+    <path d="M224 274C229 287 237 298 248 307"/>
+  </g>
+  <!-- pink embroidery -->
+  <g stroke="#d8708b" stroke-width="0.8">
+    <path transform="translate(209 342)" d="M0 -8C6 -3 6 5 0 8C-6 5 -6 -3 0 -8Z" fill="#f4a6b9"/>
+    <path transform="translate(209 362)" d="M0 -8C6 -3 6 5 0 8C-6 5 -6 -3 0 -8Z" fill="#f4a6b9"/>
+    <path transform="translate(316 350)" d="M0 -8C6 -3 6 5 0 8C-6 5 -6 -3 0 -8Z" fill="#f4a6b9"/>
+  </g>
+  <g fill="none" stroke="#ffe0e8" stroke-width="1.2" stroke-linecap="round">
+    <path d="M207.5 339C209 338 210.5 340 210 343"/>
+    <path d="M207.5 359C209 358 210.5 360 210 363"/>
+    <path d="M314.5 347C316 346 317.5 348 317 351"/>
+  </g>
+  <path d="M322 372C326 366 335 368 334 375C333 382 323 381 324 375C325 371 329 372 329 375" fill="none" stroke="#f4a6b9" stroke-width="2.2" stroke-linecap="round"/>
+
+  <!-- black-and-gold printed dupatta over her right shoulder -->
+  <g clip-path="url(#tp-dupatta)">
+    <rect x="100" y="290" width="110" height="120" fill="#16110e"/>
+    <rect x="100" y="290" width="110" height="120" fill="url(#tp-print)" opacity="0.9"/>
+    <rect x="148" y="338" width="32" height="34" rx="3" fill="#dcbd84" stroke="#c9a14a" stroke-width="2"/>
+    <g fill="#b23a4a">
+      <circle cx="156" cy="346" r="2.3"/>
+      <circle cx="172" cy="348" r="2.3"/>
+      <circle cx="164" cy="358" r="2.7"/>
+      <circle cx="156" cy="365" r="1.9"/>
+      <circle cx="173" cy="364" r="1.9"/>
+    </g>
+    <path d="M164 344L164 368M158 354C161 352 167 352 170 354" stroke="#5c7a3a" stroke-width="1.2" fill="none"/>
+    <path d="M110 330C140 318 168 320 190 330" stroke="#000" stroke-width="10" opacity="0.35" fill="none" filter="url(#tp-blur)"/>
+  </g>
+  <g fill="none" stroke="#d6ad55" stroke-width="2.4">
+    <path d="M112 312C118 340 122 370 124 400"/>
+    <path d="M178 302L195 400"/>
+  </g>
+  <path d="M110 308C134 297 160 295 180 301" fill="none" stroke="#0a0706" stroke-width="3" opacity="0.6" filter="url(#tp-blur-sm)"/>
+
+  <!-- face; turns slightly with the pointer -->
+  <g class="toon__head" data-depth="1">
+    <path d="M200 92C252 92 284 128 284 178C284 214 268 240 244 256C230 265 215 270 200 270C185 270 170 265 156 256C132 240 116 214 116 178C116 128 148 92 200 92Z" fill="url(#tp-skin)"/>
+    <g clip-path="url(#tp-face-clip)">
+      <!-- shadow where the hair meets the face -->
+      <path d="M120 200C116 150 140 112 172 112C204 112 240 118 270 150C282 170 286 190 284 210" fill="none" stroke="#a9654a" stroke-width="16" opacity="0.35" filter="url(#tp-blur)"/>
+      <!-- the far side of the face and the jaw turn away from the light -->
+      <ellipse cx="292" cy="200" rx="34" ry="80" fill="#c27d60" opacity="0.35" filter="url(#tp-blur-xl)"/>
+      <path d="M132 224C150 252 176 268 200 270C224 268 250 252 268 224" fill="none" stroke="#c98163" stroke-width="12" opacity="0.4" filter="url(#tp-blur)"/>
+      <!-- window light on the forehead and down the nose -->
+      <ellipse cx="176" cy="132" rx="30" ry="12" fill="#fff" opacity="0.32" filter="url(#tp-blur)"/>
+      <ellipse cx="202" cy="198" rx="3" ry="9" fill="#fff" opacity="0.3" filter="url(#tp-blur-sm)"/>
+      <ellipse cx="200" cy="256" rx="12" ry="5" fill="#fff" opacity="0.25" filter="url(#tp-blur-sm)"/>
+    </g>
+  </g>
+
+  <!-- features move a little further than the face, which reads as depth -->
+  <g class="toon__head" data-depth="2.2">
+    <!-- cheeks -->
+    <g filter="url(#tp-blur)">
+      <ellipse cx="142" cy="218" rx="22" ry="13" fill="#f2848c" opacity="0.38"/>
+      <ellipse cx="258" cy="218" rx="22" ry="13" fill="#f2848c" opacity="0.38"/>
+      <ellipse cx="148" cy="206" rx="9" ry="5" fill="#fff" opacity="0.4"/>
+      <ellipse cx="252" cy="206" rx="9" ry="5" fill="#fff" opacity="0.4"/>
+    </g>
+
+    <!-- brows -->
+    <g fill="#3a2217" filter="url(#tp-blur-xs)">
+      <path d="M136 158C143 146 162 140 180 143C186 144 190 147 192 150C190 153 186 153 182 151C168 147 152 150 141 160C138 162 135 161 136 158Z"/>
+      <path d="M264 158C257 146 238 140 220 143C214 144 210 147 208 150C210 153 214 153 218 151C232 147 248 150 259 160C262 162 265 161 264 158Z"/>
+    </g>
+
+    <!-- sockets, lids and creases -->
+    <g filter="url(#tp-blur)" fill="#cf8670" opacity="0.42">
+      <ellipse cx="164" cy="176" rx="28" ry="10"/>
+      <ellipse cx="236" cy="176" rx="28" ry="10"/>
+    </g>
+    <g fill="#c77a8f" opacity="0.22" filter="url(#tp-blur-sm)">
+      <path d="M136 186C140 170 156 162 168 162C182 162 192 170 194 182C186 173 176 170 166 170C152 170 142 177 136 186Z"/>
+      <path d="M264 186C260 170 244 162 232 162C218 162 208 170 206 182C214 173 224 170 234 170C248 170 258 177 264 186Z"/>
+    </g>
+    <g fill="none" stroke="#b97660" stroke-width="1.4" stroke-linecap="round" opacity="0.65">
+      <path d="M139 178C146 167 160 162 170 162C181 162 189 167 193 175"/>
+      <path d="M261 178C254 167 240 162 230 162C219 162 211 167 207 175"/>
+    </g>
+
+    <!-- eyes: the group blinks, only the iris moves -->
+    <g class="toon__eye">
+      <path d="M137 188C141 175 154 168 166 168C179 168 189 175 192 186C186 195 176 199 165 199C152 199 142 195 137 188Z" fill="url(#tp-sclera)"/>
+      <g clip-path="url(#tp-eye-l)">
+        <g class="toon__iris">
+          <circle cx="165" cy="185" r="13.5" fill="url(#tp-iris)"/>
+          <circle cx="165" cy="185" r="13.5" fill="none" stroke="#1a0c05" stroke-width="1.5" opacity="0.7"/>
+          <circle cx="165" cy="185" r="6.2" fill="#0f0704"/>
+          <circle cx="169.5" cy="180" r="3.8" fill="#fff"/>
+          <circle cx="160.5" cy="190" r="1.7" fill="#fff" opacity="0.85"/>
+        </g>
+        <rect x="132" y="166" width="64" height="12" fill="url(#tp-lid)"/>
+      </g>
+      <g fill="none" stroke="#1d100a" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M136 189C140 174 154 167 166 167C179 167 190 174 193 185" stroke-width="4"/>
+        <path d="M139 183L133 178.5" stroke-width="2.6"/>
+        <path d="M143.5 177L140 172" stroke-width="1.5"/>
+      </g>
+      <path d="M142 194C150 200 174 201 187 193" fill="none" stroke="#a46a57" stroke-width="1.2" opacity="0.55"/>
+      <path d="M145 199C155 205 174 205 186 198" fill="none" stroke="#fff" stroke-width="1.4" opacity="0.35" filter="url(#tp-blur-xs)"/>
+    </g>
+    <g class="toon__eye">
+      <path d="M263 188C259 175 246 168 234 168C221 168 211 175 208 186C214 195 224 199 235 199C248 199 258 195 263 188Z" fill="url(#tp-sclera)"/>
+      <g clip-path="url(#tp-eye-r)">
+        <g class="toon__iris">
+          <circle cx="235" cy="185" r="13.5" fill="url(#tp-iris)"/>
+          <circle cx="235" cy="185" r="13.5" fill="none" stroke="#1a0c05" stroke-width="1.5" opacity="0.7"/>
+          <circle cx="235" cy="185" r="6.2" fill="#0f0704"/>
+          <circle cx="239.5" cy="180" r="3.8" fill="#fff"/>
+          <circle cx="230.5" cy="190" r="1.7" fill="#fff" opacity="0.85"/>
+        </g>
+        <rect x="204" y="166" width="64" height="12" fill="url(#tp-lid)"/>
+      </g>
+      <g fill="none" stroke="#1d100a" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M264 189C260 174 246 167 234 167C221 167 210 174 207 185" stroke-width="4"/>
+        <path d="M261 183L267 178.5" stroke-width="2.6"/>
+        <path d="M256.5 177L260 172" stroke-width="1.5"/>
+      </g>
+      <path d="M258 194C250 200 226 201 213 193" fill="none" stroke="#a46a57" stroke-width="1.2" opacity="0.55"/>
+      <path d="M255 199C245 205 226 205 214 198" fill="none" stroke="#fff" stroke-width="1.4" opacity="0.35" filter="url(#tp-blur-xs)"/>
+    </g>
+
+    <!-- nose: soft shadow down one side, a lit bulb and a glint -->
+    <path d="M194 190C191 201 189 210 190 217" fill="none" stroke="#c98066" stroke-width="4" stroke-linecap="round" opacity="0.32" filter="url(#tp-blur-sm)"/>
+    <ellipse cx="200" cy="228" rx="14" ry="4.5" fill="#b0614a" opacity="0.45" filter="url(#tp-blur-sm)"/>
+    <ellipse cx="200" cy="218" rx="10" ry="7.5" fill="url(#tp-nose)"/>
+    <circle cx="203" cy="214.5" r="2.4" fill="#fff" opacity="0.75"/>
+    <g fill="none" stroke="#b0654f" stroke-width="1.8" stroke-linecap="round" opacity="0.75">
+      <path d="M189 216C186.5 221 189.5 226 195 225.5"/>
+      <path d="M211 216C213.5 221 210.5 226 205 225.5"/>
+    </g>
+    <g fill="#8a4434" opacity="0.6">
+      <ellipse cx="194.8" cy="224" rx="2.6" ry="1.4"/>
+      <ellipse cx="205.2" cy="224" rx="2.6" ry="1.4"/>
+    </g>
+
+    <!-- the warm closed smile -->
+    <path d="M196 232C198 230 202 230 204 232" fill="none" stroke="#d9957a" stroke-width="1.2" opacity="0.6"/>
+    <path d="M178 240C186 235 194 233 200 236C206 233 214 235 222 240C212 243 188 243 178 240Z" fill="url(#tp-lip-top)"/>
+    <path d="M180 241C190 244 210 244 220 241C216 253 184 253 180 241Z" fill="url(#tp-lip)"/>
+    <path d="M174.5 237.5C179 241 185 242.5 191 242.5C196 243.5 204 243.5 209 242.5C215 242.5 221 241 225.5 237.5" fill="none" stroke="#9a3a4c" stroke-width="1.5" stroke-linecap="round"/>
+    <ellipse cx="205" cy="246.5" rx="8" ry="2.2" fill="#fff" opacity="0.45"/>
+    <g fill="none" stroke="#d08c70" stroke-width="2.4" stroke-linecap="round" opacity="0.25" filter="url(#tp-blur-sm)">
+      <path d="M171 234C170 237 171 240 173 241"/>
+      <path d="M229 234C230 237 229 240 227 241"/>
+    </g>
+  </g>
+
+  <!-- front hair: the side part, the fringe swept to her left, and the
+       lengths falling over both shoulders, built up lock by lock -->
+  <g class="toon__head" data-depth="1">
+    <!-- left of the part -->
+    <path d="M171 60C146 62 126 82 118 112C112 136 112 162 115 188C120 158 134 130 152 114C158 108 164 104 168 100C169.5 88 170.5 74 171 60Z" fill="url(#tp-bangs)"/>
+    <!-- the fringe -->
+    <path d="M171 60C216 52 272 78 288 138C294 162 294 186 290 206C285 186 276 166 263 153C263 160 261 166 256 171C252 154 242 140 228 130C212 120 190 112 168 100C169.5 88 170.5 74 171 60Z" fill="url(#tp-bangs)"/>
+    <g fill="none" stroke-linecap="round" filter="url(#tp-blur-xs)">
+      <path d="M182 104C214 104 246 124 262 156" stroke="#6e4526" stroke-width="1.4" opacity="0.7"/>
+      <path d="M200 86C236 92 264 116 278 160" stroke="#7a4d2c" stroke-width="1.4" opacity="0.6"/>
+    </g>
+    <path d="M170.8 70C170.4 80 169.7 89 168.5 98" fill="none" stroke="#120904" stroke-width="4.5" stroke-linecap="round" opacity="0.4" filter="url(#tp-blur-xs)"/>
+    <path d="M170.8 70C170.4 80 169.7 89 168.5 98" fill="none" stroke="#e9b99f" stroke-width="1.3" stroke-linecap="round" opacity="0.85"/>
+    <path d="M175 66C192 61 214 65 234 78" fill="none" stroke="#b98552" stroke-width="4" stroke-linecap="round" opacity="0.5" filter="url(#tp-blur-sm)"/>
+    <path d="M166 68C158 74 150 84 145 96" fill="none" stroke="#9a6a42" stroke-width="3" stroke-linecap="round" opacity="0.4" filter="url(#tp-blur-sm)"/>
+    <path d="M190 74C232 74 268 100 282 150" fill="none" stroke="#a87348" stroke-width="7" stroke-linecap="round" opacity="0.45" filter="url(#tp-blur-sm)"/>
+    <path d="M196 92C230 96 258 118 272 152" fill="none" stroke="#120904" stroke-width="2" opacity="0.45" filter="url(#tp-blur-xs)"/>
+    <path d="M144 84C152 72 162 68 170 66" fill="none" stroke="#a87348" stroke-width="5" stroke-linecap="round" opacity="0.4" filter="url(#tp-blur-sm)"/>
+
+    <!-- her left side: two locks over the shoulder -->
+    <path d="M286 150C302 196 308 250 304 300C300 340 306 372 318 400L274 400C272 360 278 320 278 280C278 240 274 212 268 192C276 180 284 166 286 150Z" fill="url(#tp-lock)"/>
+    <path d="M272 192C281 232 284 278 280 320C277 352 280 380 288 400L256 400C258 370 262 340 262 310C262 272 262 240 257 218C264 212 269 202 272 192Z" fill="url(#tp-lock-lit)"/>
+    <g fill="none" stroke-linecap="round" filter="url(#tp-blur-sm)">
+      <path d="M294 210C300 252 298 300 302 360" stroke="#e0ad75" stroke-width="3" opacity="0.55"/>
+      <path d="M272 250C275 290 270 330 276 380" stroke="#f0c08a" stroke-width="3" opacity="0.6"/>
+      <path d="M268 200C266 240 268 300 266 360" stroke="#120904" stroke-width="2.4" opacity="0.4"/>
+    </g>
+
+    <!-- her right side: behind the ear, then down in front of the dupatta -->
+    <path d="M116 186C104 230 100 280 104 326C106 356 100 380 92 400L136 400C138 368 142 336 140 300C138 262 132 230 126 206Z" fill="url(#tp-lock)"/>
+    <path d="M126 206C134 238 140 276 140 312C140 346 146 376 154 400L132 400C134 370 130 340 128 310C126 272 122 242 118 218Z" fill="url(#tp-lock-lit)"/>
+    <g fill="none" stroke-linecap="round" filter="url(#tp-blur-sm)">
+      <path d="M114 240C108 280 108 330 104 380" stroke="#e0ad75" stroke-width="3" opacity="0.5"/>
+      <path d="M132 260C134 300 132 340 138 384" stroke="#f0c08a" stroke-width="2.6" opacity="0.55"/>
+      <path d="M124 214C126 260 124 320 126 380" stroke="#120904" stroke-width="2.2" opacity="0.4"/>
+    </g>
+
+    <!-- crown sheen -->
+    <path d="M136 92C156 70 196 62 236 72" fill="none" stroke="#b07d50" stroke-width="10" stroke-linecap="round" opacity="0.35" filter="url(#tp-blur)"/>
+
+    <!-- her right ear and the small gold stud -->
+    <path d="M119 176C110 174 106 187 108 197C110 206 115 211 121 209Z" fill="#e5a98b"/>
+    <path d="M116 184C113 189 113 197 116 203" fill="none" stroke="#c07f63" stroke-width="1.3"/>
+    <circle cx="116" cy="212" r="3.6" fill="url(#tp-gold)"/>
+    <circle cx="115" cy="210.8" r="1" fill="#fff" opacity="0.9"/>
+  </g>
+
+  <!-- the desk in front, with her notebook and pens -->
+  <path d="M0 376L400 372L400 400L0 400Z" fill="url(#tp-desk)"/>
+  <path d="M0 376L400 372" stroke="#f4dcbc" stroke-width="1.5"/>
+  <path d="M166 380L276 374L290 400L158 400Z" fill="#f5efdd"/>
+  <path d="M166 380L276 374" stroke="#d8cdb0" stroke-width="1"/>
+  <g stroke="#c8d3e0" stroke-width="0.9">
+    <path d="M170 386L280 380"/>
+    <path d="M166 393L284 387"/>
+  </g>
+  <g stroke-linecap="round">
+    <path d="M318 400L326 376" stroke="#2f5fbf" stroke-width="5.5"/>
+    <path d="M336 400L348 378" stroke="#2a56ad" stroke-width="5.5"/>
+    <path d="M326 376L327.5 371" stroke="#173a80" stroke-width="4"/>
+    <path d="M348 378L350.5 373" stroke="#173a80" stroke-width="4"/>
+    <path d="M319.5 396L325 380" stroke="#8fb0f0" stroke-width="1.2" opacity="0.7"/>
+  </g>
+</svg>
