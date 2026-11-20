@@ -1,2 +1,6 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
+# the older résumé URL now serves a copy of the current one; index one of them
+Disallow: /Komal_Shehzadi_Resume.pdf
+
+Sitemap: https://dev.komalshehzadi.com/sitemap.xml

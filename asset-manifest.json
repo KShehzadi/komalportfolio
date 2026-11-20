@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/static/css/main.def75c91.css",
-    "main.js": "/static/js/main.f9a453c7.js",
+    "main.css": "/static/css/main.28a8df00.css",
+    "main.js": "/static/js/main.7458eaac.js",
     "static/js/664.61a1bf90.chunk.js": "/static/js/664.61a1bf90.chunk.js",
     "static/js/24.3a7998d5.chunk.js": "/static/js/24.3a7998d5.chunk.js",
     "static/js/157.23b2a317.chunk.js": "/static/js/157.23b2a317.chunk.js",
     "static/js/0.b2209110.chunk.js": "/static/js/0.b2209110.chunk.js",
     "static/js/93.9d2fb282.chunk.js": "/static/js/93.9d2fb282.chunk.js",
-    "static/media/komal.JPG": "/static/media/komal.65abf7468742c37334fb.JPG",
     "static/media/Montserrat-Regular.ttf": "/static/media/Montserrat-Regular.3cd786652b8a2e9d41f2.ttf",
     "static/media/Uet-logo.png": "/static/media/Uet-logo.8f31b48d34b36aae6ada.png",
     "static/media/Agustina.woff": "/static/media/Agustina.eb0c59dda4cc308cba96.woff",
+    "static/media/komal.webp": "/static/media/komal.3215daec0b49958c0b09.webp",
     "static/media/komal-toon.svg": "/static/media/komal-toon.9a320c47367a81a7d928572f0c996dc6.svg",
     "static/media/d3.png": "/static/media/d3.82ec6e1662d1de154bc7.png",
     "static/media/sql.png": "/static/media/sql.e8aa95ab23d2911baebf.png",
@@ -18,7 +18,7 @@
     "index.html": "/index.html"
   },
   "entrypoints": [
-    "static/css/main.def75c91.css",
-    "static/js/main.f9a453c7.js"
+    "static/css/main.28a8df00.css",
+    "static/js/main.7458eaac.js"
   ]
 }
