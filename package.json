@@ -35,7 +35,8 @@
     "eject": "react-scripts eject",
     "format": "prettier --write \"./**/*.{js,css,json,scss}\"",
     "check-format": "prettier -c \"./**/*.{js,css,json,scss}\"",
-    "resume": "node resume/print.js"
+    "resume": "node resume/print.js",
+    "og-image": "node scripts/og-image.js"
   },
   "eslintConfig": {
     "extends": "react-app"

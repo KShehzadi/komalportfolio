@@ -1036,6 +1036,27 @@ img {
   color: var(--text);
 }
 
+.work-card__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  width: fit-content;
+  font-size: var(--t-small);
+  font-weight: 600;
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.work-card__link i {
+  font-size: 0.75em;
+  transition: transform var(--dur) var(--ease);
+}
+
+.work-card__link:hover i,
+.work-card__link:focus-visible i {
+  transform: translateX(3px);
+}
+
 .work-card__summary {
   color: var(--secondary);
   font-size: var(--t-small);

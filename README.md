@@ -116,24 +116,53 @@ Awesome glyphs.
 
 # Résumé
 
-The Résumé button links to `public/Komal_Shehzadi_Resume_2026.pdf` (the current
-revision), which opens in a new tab. The path is set by `profile.resumeUrl` in
-`src/content.js`. The older `public/Komal_Shehzadi_Resume.pdf` is still served at
-its own URL so any link already shared keeps working.
-
-The PDF is generated. Its source is `resume/Komal_Shehzadi_Resume_2026.html`;
-edit that, then print it over the served PDF with:
+The Résumé button links to `public/Komal_Shehzadi_Resume_2026.pdf`, set by
+`profile.resumeUrl` in `src/content.js`. The PDF is generated: its source is
+`resume/Komal_Shehzadi_Resume_2026.html`. Edit that, then run:
 
 ```bash
 npm run resume
 ```
 
-This uses whichever Chrome or Edge is installed (set `CHROME_PATH` to choose
-one). Keep the result to two pages, and keep it in step with `src/content.js`.
+This prints the PDF with whichever Chrome or Edge is installed (set
+`CHROME_PATH` to choose one) and copies it over the older
+`public/Komal_Shehzadi_Resume.pdf`, so links to that URL get the current résumé
+too. Keep it to two pages and in step with `src/content.js`.
 
-**There is no phone number in the source, on purpose** — the PDF is public, and a
-number that never enters the HTML can never leak into the output. Do not add one
-back, and do not drop in an older PDF that has one.
+It is built to read well in applicant tracking systems: Inter is loaded as one
+static file per weight (the variable font embeds as Type3 glyphs that screening
+software misreads), and headings carry almost no letter-spacing (wide tracking
+extracts as "P R I N C I P A L"). Check both after any style change:
+
+```bash
+python -c "import pymupdf; d=pymupdf.open('public/Komal_Shehzadi_Resume_2026.pdf'); print({f[2] for p in d for f in p.get_fonts()}); print(d[0].get_text()[:300])"
+```
+
+**There is no phone number in the source, on purpose**: the PDF is public, and a
+number that never enters the HTML can never leak into it. For direct
+applications, print a private copy:
+
+```bash
+RESUME_PHONE="+92 ..." npm run resume
+```
+
+That writes `resume/private/Komal_Shehzadi_Resume_2026_with_phone.pdf`, which
+is git-ignored and never copied to `public/`.
+
+# Sharing and search
+
+- `public/og-image.png` is the 1200 × 630 picture shown when the site is shared
+  on LinkedIn, WhatsApp, Slack or X. Its source is `scripts/og-image.html`;
+  regenerate it with `npm run og-image` after changing the illustration or title.
+- `public/index.html` carries the description, canonical URL and a schema.org
+  `Person` block; `public/sitemap.xml` and `public/robots.txt` point search
+  engines at the site and the résumé.
+- There is no analytics. The old Universal Analytics tag stopped collecting in
+  July 2023 and was removed; add a GA4 or cookieless snippet here if you want
+  visitor numbers.
+- The Open source section is hidden (`profile.showOpenSource` in
+  `src/content.js`) while the pinned GitHub repositories are coursework. Pin
+  stronger ones, refresh `public/profile.json`, then set it to `true`.
 
 # Credits
 

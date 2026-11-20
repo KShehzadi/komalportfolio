@@ -31,6 +31,9 @@ const translate = (x, y) => `translate(${x.toFixed(2)}px, ${y.toFixed(2)}px)`;
 export default function ToonPortrait({photo, alt}) {
   const svgRef = useRef(null);
   const [showPhoto, setShowPhoto] = useState(false);
+  // the photo is only fetched once someone shows interest in turning the card
+  const [photoWanted, setPhotoWanted] = useState(false);
+  const wantPhoto = () => setPhotoWanted(true);
 
   useEffect(() => {
     const svg = svgRef.current;
@@ -113,7 +116,8 @@ export default function ToonPortrait({photo, alt}) {
   }, []);
 
   /* The whole portrait is the control: click, tap, Enter or Space turns the
-     card over. Both faces stay mounted so the flip is a pure CSS transform. */
+     card over. Both faces stay mounted so the flip is a pure CSS transform;
+     the photo is requested on hover or focus, ahead of the click. */
   return (
     <button
       type="button"
@@ -124,7 +128,12 @@ export default function ToonPortrait({photo, alt}) {
           ? `Photo of ${alt}. Turn over for the illustration`
           : `Illustration of ${alt}. Turn over for the photo`
       }
-      onClick={() => setShowPhoto(shown => !shown)}
+      onPointerEnter={wantPhoto}
+      onFocus={wantPhoto}
+      onClick={() => {
+        wantPhoto();
+        setShowPhoto(shown => !shown);
+      }}
     >
       <span className="flip-card__inner">
         <span className="flip-card__face">
@@ -134,7 +143,9 @@ export default function ToonPortrait({photo, alt}) {
           </span>
         </span>
         <span className="flip-card__face flip-card__face--back">
-          <img src={photo} alt="" width="300" height="300" />
+          {photoWanted && (
+            <img src={photo} alt="" width="300" height="300" decoding="async" />
+          )}
           <span className="flip-card__hint" aria-hidden="true">
             <i className="fas fa-sync-alt" />
           </span>

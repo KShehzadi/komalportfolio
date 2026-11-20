@@ -26,3 +26,7 @@ yarn-error.log*
 #user generated content
 public/profile.json
 public/blogs.json
+
+# private résumé output (has the phone number) and its temp source
+/resume/private
+/resume/.private-print.html

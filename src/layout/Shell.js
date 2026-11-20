@@ -7,6 +7,7 @@ import Hero from "../sections/Hero";
 import Stats from "../sections/Stats";
 import Work from "../sections/Work";
 import Career from "../sections/Career";
+import Practice from "../sections/Practice";
 import AI from "../sections/AI";
 import Stack from "../sections/Stack";
 import Awards from "../sections/Awards";
@@ -55,11 +56,12 @@ export default function Shell() {
         <Stats />
         <Work />
         <Career />
+        <Practice />
         <AI />
         <Stack />
         <Awards />
         <Writing />
-        <OpenSource />
+        {profile.showOpenSource && <OpenSource />}
         <Contact />
       </main>
 

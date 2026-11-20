@@ -46,7 +46,7 @@ export const profile = {
   role: "Principal Software Engineer",
   company: "Techlogix",
   location: "Lahore, Pakistan",
-  summary: `Principal engineer with ${experience} years shipping data-intensive products in domains where being wrong is expensive — investment banking, securities regulation, oil & gas, semiconductor yield, enterprise supply chain. I own frontend architecture end to end: the component systems teams build on, the rendering and state work that keeps million-point interfaces fast, and the observability that explains what actually happened in production. Lately that ownership extends to how the team builds — agentic tooling, purpose-built AI subagents and MCP-connected workflows.`,
+  summary: `Principal engineer with ${experience} years shipping data-heavy products where mistakes are expensive — investment banking, securities regulation, oil & gas, semiconductors. I own frontend architecture and, increasingly, the full stack: fast interfaces, test automation that proves each release, and observability that explains production. I use Claude Code as a pair programmer, under my own review.`,
   titles: [
     "Principal Software Engineer",
     "Frontend Architect",
@@ -61,13 +61,17 @@ export const profile = {
     "Lead Frontend or Full-Stack",
     "AI-Enabled Engineering"
   ],
-  photo: require("./assets/images/komal.JPG"),
+  photo: require("./assets/images/komal.webp"),
   // Served from public/. The phone number has been redacted out of this copy;
   // see README "Résumé" before replacing the file. The 2026 revision is
   // what the Résumé button serves; the older PDF is still in public/ unchanged.
   resumeUrl: "/Komal_Shehzadi_Resume_2026.pdf",
   email: "shehzadikomal303@gmail.com",
-  openToWork: true
+  openToWork: true,
+  /* The "Open source" section lists the pinned GitHub repositories. They are
+     coursework for now, so it stays hidden; set true once stronger ones are
+     pinned (and refresh public/profile.json, see README). */
+  showOpenSource: false
 };
 
 export const socials = [
@@ -94,82 +98,98 @@ export const socials = [
     url: "mailto:shehzadikomal303@gmail.com",
     icon: "fas fa-envelope",
     key: "email"
-  },
-  {
-    name: "Instagram",
-    url: "https://www.instagram.com/komal.shehzadii",
-    icon: "fab fa-instagram",
-    key: "instagram"
-  },
-  {
-    name: "Facebook",
-    url: "https://www.facebook.com/komal.shehzadee",
-    icon: "fab fa-facebook-f",
-    key: "facebook"
   }
 ];
 
-/* Bento stat tiles under the hero — the current engagement, tenure and the
-   résumé's four headline figures. A `figure` that starts with a digit is
+/* Bento stat tiles under the hero: the two UBP headline figures, tenure and
+   the résumé's older headline figures. A `figure` that starts with a digit is
    animated by <CountUp>; any other figure renders as written. app.scss lays
    these out three per row (two below 1000px), so keep this at six. */
 export const stats = [
   {
-    figure: "UBP",
-    label: "investment-banking engagement",
-    detail: "Full-stack delivery & planning, since Sep 2026"
+    figure: "18×",
+    label: "faster batch calculation",
+    detail: "UBP · zero failures"
+  },
+  {
+    figure: "600+",
+    label: "automated end-to-end tests",
+    detail: "UBP · Playwright"
   },
   {
     figure: experience,
-    label: "years shipping production software",
-    detail: "Since Aug 2020 · Techlogix from Oct 2020"
+    label: "years in production software",
+    detail: "Since Aug 2020"
   },
   {
     figure: "70%",
     label: "faster rendering",
-    detail: "Million-pixel semiconductor datasets · WebGL + D3.js"
+    detail: "Million-pixel datasets · WebGL"
   },
   {
     figure: "100K+",
-    label: "product units traceable",
-    detail: "Live supply-chain UI, in real time"
-  },
-  {
-    figure: "50%",
-    label: "cut in report generation",
-    detail: "Oil & gas digital program"
+    label: "units traced in real time",
+    detail: "Supply-chain UI"
   },
   {
     figure: "4×",
     label: "Achiever of the Month",
-    detail: "Plus an AI Hackathon podium finish"
+    detail: "Plus an AI Hackathon podium"
   }
 ];
 
 /* Client and product work, newest first. Enterprise products with no public
    marketing site, so they are described rather than linked. Keep this list at
-   nine entries: the first (the current engagement) spans the full row and
-   Work.js pairs the column spans of the other eight, so no row is left with an
+   eleven entries: the first (the current engagement) spans the full row and
+   Work.js pairs the column spans of the other ten, so no row is left with an
    orphan. */
 export const work = [
   {
     id: "ubp",
     client: "UBP",
-    title: "Investment banking platform",
+    title: "Investment analytics platform",
     summary:
-      "Full-stack engineering for UBP's investment-banking business — features built end to end across the interface, services and data, in a domain where accuracy is non-negotiable. Also part of planning the work: scoping, estimation and sequencing alongside product and engineering leads.",
+      "Upgraded an investment-banking platform's Angular frontend to the current release, then shipped feature releases across Angular, .NET, SQL Server and Cosmos DB.",
     contribution: "Full-stack delivery and planning.",
-    stack: ["Full-stack", "Investment banking", "Delivery planning"],
+    stack: ["Angular", ".NET", "Cosmos DB", "SQL Server"],
+    link: {
+      label: "Read the upgrade story",
+      url: "https://medium.com/@komalshehzadi/the-build-was-green-the-whole-time-dc6718b73272"
+    },
     accent: "pink"
+  },
+  {
+    id: "ubp-recompute",
+    client: "UBP",
+    title: "Batch calculation, 18× faster",
+    summary:
+      "Profiled first, then staged and parallelised the core batch job: 18× faster, zero failures, checked against production value by value.",
+    contribution: "Profiled, redesigned, validated.",
+    stack: [".NET", "Concurrency", "Data validation"],
+    link: {
+      label: "Read how it was done",
+      url: "https://medium.com/@komalshehzadi/how-we-made-a-50-minute-batch-job-finish-before-the-kettle-boils-78b7329aad97"
+    },
+    accent: "violet"
+  },
+  {
+    id: "ubp-testing",
+    client: "UBP",
+    title: "Test automation from zero",
+    summary:
+      "600+ Playwright end-to-end tests, one per documented test case, with screenshot evidence for every QA cycle.",
+    contribution: "Built the suite and the process.",
+    stack: ["Playwright", "xUnit", "Jasmine"],
+    accent: "cyan"
   },
   {
     id: "secp",
     client: "SECP",
     title: "LEAP Portal",
     summary:
-      "Frontend architecture for a national securities-regulator portal, standardised around a dynamic form engine and a shared component library — so new statutory workflows ship as configuration rather than copied screens. Lazy loading and restructured state management keep the heaviest regulatory flows responsive.",
+      "Frontend architecture for a national securities-regulator portal: a dynamic form engine and shared component library, so new workflows ship as configuration.",
     contribution: "Owned the frontend architecture.",
-    stack: ["Angular", "TypeScript", "Design system", "Accessibility"],
+    stack: ["Angular", "TypeScript", "Design system"],
     accent: "emerald"
   },
   {
@@ -177,9 +197,9 @@ export const work = [
     client: "SECP",
     title: "Production observability & root cause",
     summary:
-      "Instrumented the portal with Grafana Faro — tiered HTTP telemetry, named business events, and LogQL queries over Loki that reconstruct one applicant's journey. Turns “it failed for a single user” into a reproducible timeline; it is how recurring API failures were traced to fail-open submit gates and mis-sequenced role APIs.",
-    contribution: "Designed the telemetry and led the RCA.",
-    stack: ["Grafana Faro", "Loki / LogQL", "Telemetry tiering"],
+      "Grafana Faro telemetry and Loki queries that replay one user's journey, which is how recurring API failures were traced and fixed.",
+    contribution: "Designed the telemetry, led the RCA.",
+    stack: ["Grafana Faro", "Loki / LogQL"],
     accent: "amber"
   },
   {
@@ -187,8 +207,8 @@ export const work = [
     client: "Yieldwerx",
     title: "Pixel data visualization system",
     summary:
-      "A high-performance visualization engine built from scratch to interactively render million-pixel semiconductor datasets — ~70% faster render times, making in-browser analysis that was previously impractical routine.",
-    contribution: "Architected and built end to end.",
+      "Million-pixel semiconductor datasets rendered interactively in the browser, ~70% faster than before.",
+    contribution: "Architected and built.",
     stack: ["React", "D3.js", "WebGL"],
     accent: "cyan"
   },
@@ -197,7 +217,7 @@ export const work = [
     client: "Authentix",
     title: "Track & Trace (Oil & Gas)",
     summary:
-      "Frontend for a supply-chain traceability platform carrying 100,000+ product units in real time, cutting manual product verification by ~60%. Rebuilt the data-dense operational reporting for the same oil & gas digital program, halving report generation time.",
+      "Live traceability for 100,000+ product units, cutting manual verification by ~60% and report generation time in half.",
     contribution: "Led the frontend build.",
     stack: ["Angular", "TypeScript", "Reporting"],
     accent: "indigo"
@@ -207,9 +227,9 @@ export const work = [
     client: "HP",
     title: "Label Designer",
     summary:
-      "A canvas-based label designer for precise label creation, adopted quickly across cross-functional teams — cutting label formatting errors by ~30% and eliminating costly manual rework.",
+      "A canvas label designer that cut formatting errors by ~30% and removed manual rework.",
     contribution: "Built the application.",
-    stack: ["Angular", "Konva.js", "Canvas rendering"],
+    stack: ["Angular", "Konva.js", "Canvas"],
     accent: "violet"
   },
   {
@@ -217,7 +237,7 @@ export const work = [
     client: "Yieldwerx",
     title: "Process improvement",
     summary:
-      "Deep-dive analysis of 11 end-to-end workflows, removing bottlenecks for a ~25% cycle-time reduction, plus a library of reusable templates that standardized operations going forward.",
+      "Analysed 11 workflows, removed the bottlenecks for a ~25% shorter cycle time, and left reusable templates behind.",
     contribution: "Analysis and optimization.",
     stack: ["Process design", "Templates"],
     accent: "amber"
@@ -227,7 +247,7 @@ export const work = [
     client: "Techlogix",
     title: "In-house scheduling app",
     summary:
-      "An internal team scheduling product taken from concept to production, replacing fragmented manual coordination with one source of truth and cutting scheduling conflicts by ~40%.",
+      "An internal scheduling app from concept to production: one source of truth and ~40% fewer conflicts.",
     contribution: "Designed and shipped.",
     stack: ["React", "Firestore", "Redux Thunk"],
     accent: "cyan"
@@ -237,9 +257,9 @@ export const work = [
     client: "Techlogix",
     title: "Campus on Cloud",
     summary:
-      "Owned key modules of a full-stack campus management platform spanning student lifecycle, financial operations and academic grading, and automated manual administrative reporting to improve data accuracy for academic and finance teams.",
+      "Key modules of a campus management platform (student lifecycle, finance, grading) plus automated admin reporting.",
     contribution: "Full-stack developer.",
-    stack: ["AngularJS", "Angular", "Kendo UI", ".NET Core"],
+    stack: ["Angular", "Kendo UI", ".NET Core"],
     accent: "indigo"
   }
 ];
@@ -254,16 +274,17 @@ export const career = [
     current: true,
     clients: ["UBP Investment Banking", "SECP LEAP Portal"],
     summary:
-      "Now on UBP's investment-banking engagement, delivering across the full stack and shaping how the work is planned. Before that, owned frontend architecture on a national securities-regulator portal — the component systems, the production observability and the team's AI-assisted delivery workflow.",
+      "Full-stack delivery, test automation and planning on UBP; frontend architecture on SECP before that.",
     points: [
-      "On UBP's investment-banking engagement (Sep 2026 — present), deliver features end to end across frontend, backend services and data, in a domain where accuracy and reliability are non-negotiable.",
-      "Contribute to delivery planning — scoping and breaking down work, estimating effort and sequencing dependencies alongside product and engineering leads.",
-      "On SECP's LEAP Portal (Dec 2025 — Sep 2026), owned frontend architecture for a high-stakes government regulatory platform, standardising it around a dynamic form engine and shared component library so new statutory workflows shipped as configuration rather than copied screens.",
-      "Instrumented the portal with Grafana Faro — tiered HTTP telemetry, named business events and LogQL queries over Loki that reconstruct one applicant's journey, turning “it failed for a single user” into a reproducible timeline.",
-      "Led production root-cause analysis across the frontend/backend boundary: traced recurring API failures to fail-open submit gates and mis-sequenced role APIs, then shipped verified fixes through a dual-branch staging and hotfix release process.",
-      "Built the team's AI-assisted delivery workflow — purpose-built subagents for observability instrumentation and defect-to-PR automation, wired into Jira and Bitbucket through MCP tooling.",
-      "Set engineering standards for conventions, review depth and documentation while mentoring junior engineers and acting as the technical bridge across product, backend and QA.",
-      "Improved responsiveness across complex regulatory workflows through lazy loading and state-management restructuring."
+      "UBP (Sep 2026 — present): upgraded the Angular frontend to the current release, with visual and form regression checks proving nothing broke.",
+      "Made the core batch calculation 18× faster with zero failures, validated against production.",
+      "Built test automation from zero: 600+ Playwright end-to-end tests, plus unit suites on frontend and backend.",
+      "Plan releases and run QA: requirement checks, written test cases, test cycles and defect triage.",
+      "Use Claude Code under my own control: I plan the work, review every change, run the tests and check the app by hand. Nothing merges without code review.",
+      "SECP LEAP (Dec 2025 — Sep 2026): owned frontend architecture around a dynamic form engine and shared component library.",
+      "Added Grafana Faro telemetry and led the root-cause analysis that traced and fixed recurring API failures.",
+      "Built the team's AI workflow: custom subagents wired into Jira and Bitbucket through MCP.",
+      "Set engineering standards and mentored junior engineers."
     ]
   },
   {
@@ -272,16 +293,14 @@ export const career = [
     logo: require("./assets/images/Techlogix-Logo.png"),
     period: "Mar 2023 — Dec 2025",
     clients: ["Yieldwerx", "Authentix", "HP"],
-    summary:
-      "Visualization, traceability and analytics products — high-performance rendering, data-dense reporting, and the company's first GenAI delivery tooling.",
+    summary: "Visualization, traceability and analytics products.",
     points: [
-      "Architected and built a React + D3.js + WebGL visualization engine from scratch for million-pixel semiconductor datasets, achieving ~70% faster rendering and making previously impractical in-browser analysis routine.",
-      "Engineered the frontend for Authentix Track & Trace, supporting real-time traceability across 100,000+ product units and cutting manual product-verification time by ~60%.",
-      "Rebuilt data-dense operational reporting for an oil & gas digital program, reducing report-generation time by ~50% and improving live operational visibility.",
-      "Analysed 11 end-to-end Yieldwerx workflows, removed process bottlenecks for a ~25% cycle-time reduction, and left reusable templates behind for standardised operations.",
-      "Shipped a React + Firestore + Redux Thunk scheduling product from concept to production, replacing fragmented coordination with one source of truth and cutting scheduling conflicts by ~40%.",
-      "Built an AI-powered design-to-code generator on GenAI APIs, compressing multi-day HTML/CSS prototyping cycles into minutes.",
-      "Delivered an Angular + Konva.js canvas label designer for HP, reducing label-formatting errors by ~30% and eliminating manual rework."
+      "Built a React + D3.js + WebGL engine for million-pixel datasets: ~70% faster rendering.",
+      "Led the Authentix Track & Trace frontend: 100,000+ units tracked live, ~60% less manual checking.",
+      "Halved report-generation time for an oil & gas program.",
+      "Cut Yieldwerx cycle time by ~25% across 11 workflows.",
+      "Shipped a scheduling app (~40% fewer conflicts) and an HP label designer (~30% fewer errors).",
+      "Built a GenAI design-to-code generator: 3rd place at the Techlogix AI Hackathon."
     ]
   },
   {
@@ -290,11 +309,10 @@ export const career = [
     logo: require("./assets/images/Techlogix-Logo.png"),
     period: "Oct 2020 — Mar 2023",
     clients: ["Campus on Cloud"],
-    summary:
-      "Full-stack developer on a campus management platform in a complex, data-heavy environment.",
+    summary: "Full-stack developer on a campus management platform.",
     points: [
-      "Developed and owned key modules of a full-stack campus management platform spanning student lifecycle, finance and academic grading, on AngularJS/Angular, Kendo UI and .NET Core.",
-      "Automated manual administrative reporting through robust CRUD services and streamlined UX flows, improving data accuracy and removing repetitive data entry."
+      "Owned modules for student lifecycle, finance and grading on Angular, Kendo UI and .NET Core.",
+      "Automated manual admin reporting."
     ]
   },
   {
@@ -302,12 +320,8 @@ export const career = [
     company: "NetSol Technologies",
     logo: require("./assets/images/Netsol-Logo.png"),
     period: "Aug 2020 — Sep 2020",
-    summary:
-      "First role after graduating — a short stint before joining Techlogix.",
-    points: [
-      "Completed training on the company's in-house application framework and development toolchain.",
-      "Contributed database schema design and query development for its core platform."
-    ]
+    summary: "First role after graduating.",
+    points: ["Framework training, database schema design and queries."]
   }
 ];
 
@@ -318,12 +332,21 @@ export const career = [
    first card takes a full row so the grid never ends on an orphan. */
 export const aiWork = [
   {
+    id: "claude-controlled",
+    kind: "How I use AI",
+    title: "Claude Code, under my review",
+    summary:
+      "A pair programmer for analysis, refactoring and tests. I set the plan, review every change, run the build and tests, and check the app by hand. Nothing merges without code review.",
+    stack: ["Claude Code", "Code review", "Manual checks"],
+    accent: "violet"
+  },
+  {
     id: "fullstack",
     kind: "Delivery",
     title: "Full-stack delivery",
     summary:
-      "On UBP's investment-banking engagement, building features end to end across the interface, services and data layer — with every change reviewed and verified before it ships, in a domain where accuracy is non-negotiable.",
-    stack: ["Full-stack", "Investment banking", "Code review"],
+      "Features built end to end on UBP (interface, services and data), each one reviewed and tested before it ships.",
+    stack: ["Full-stack", "Code review"],
     accent: "amber"
   },
   {
@@ -331,16 +354,16 @@ export const aiWork = [
     kind: "Planning",
     title: "AI-assisted planning",
     summary:
-      "Use AI to turn incoming requirements into scoped, estimable work — breaking features into tasks, drafting acceptance criteria and surfacing dependencies and risks early — so planning starts from a solid draft rather than a blank page.",
-    stack: ["Scoping", "Estimation", "Acceptance criteria"],
+      "AI drafts the task breakdown, acceptance criteria and risks; I check them against the spec before estimating.",
+    stack: ["Scoping", "Estimation"],
     accent: "indigo"
   },
   {
     id: "subagents",
     kind: "Agentic tooling",
-    title: "Purpose-built engineering subagents",
+    title: "Purpose-built subagents",
     summary:
-      "Authored domain-specific AI agents that own real tasks — adding observability instrumentation correctly, and carrying a defect from root cause through to a reviewed pull request — with team conventions encoded as their instructions.",
+      "Custom agents for observability instrumentation and defect-to-PR work, with team conventions as their instructions.",
     stack: ["Custom subagents", "Agentic workflows"],
     accent: "emerald"
   },
@@ -349,26 +372,60 @@ export const aiWork = [
     kind: "Tool integration",
     title: "MCP-connected delivery loop",
     summary:
-      "Connected issue tracking and source control through MCP so triage, root-cause write-ups, branch discipline and PR drafting happen in one continuous loop instead of four context switches.",
+      "Jira and Bitbucket connected through MCP, so triage, write-ups and PR drafts happen in one flow.",
     stack: ["MCP", "Jira", "Bitbucket"],
     accent: "cyan"
-  },
-  {
-    id: "ai-standards",
-    kind: "Practice",
-    title: "Standards for AI-assisted work",
-    summary:
-      "Define where generated code is trusted and where it is not: build verification before every PR, confirmed root causes over plausible-sounding explanations, and review depth that scales with blast radius. Carried from regulatory software into investment banking, where a wrong answer costs just as much.",
-    stack: ["Prompt design", "AI-assisted review"],
-    accent: "violet"
   },
   {
     id: "genai-generator",
     kind: "Product",
     title: "GenAI design-to-code generator",
     summary:
-      "Built an AI-powered HTML/CSS generator on GenAI APIs that turned multi-day design-to-code prototyping into a minutes-long cycle — third place across the engineering org at the Techlogix AI Hackathon.",
+      "Turns a design into HTML/CSS in minutes instead of days. 3rd place at the Techlogix AI Hackathon.",
     stack: ["GenAI APIs", "HTML", "CSS"],
+    accent: "pink"
+  }
+];
+
+/* How the work is done, rather than what was built: the practices formalised
+   on the UBP engagement. Rendered by sections/Practice.js through the same
+   CardGrid as the AI section; keep an even count for two clean rows. Keep
+   every summary to a sentence or two: nobody reads more. */
+export const practice = [
+  {
+    id: "e2e-gate",
+    kind: "Test automation",
+    title: "An end-to-end suite as the release gate",
+    summary:
+      "600+ Playwright tests, one per documented case, each saving screenshot evidence. Test data is backed up and restored automatically.",
+    stack: ["Playwright", "TypeScript"],
+    accent: "cyan"
+  },
+  {
+    id: "release-cycles",
+    kind: "Release quality",
+    title: "Test cycles with exit criteria",
+    summary:
+      "Written test cases, QA cycles, defect triage and requirement-to-test traceability on every release.",
+    stack: ["QA cycles", "Traceability"],
+    accent: "amber"
+  },
+  {
+    id: "verification",
+    kind: "Verification",
+    title: "Prove it before shipping",
+    summary:
+      "Measure first, then compare old and new: visual diffs, captured form payloads and value-by-value checks against production.",
+    stack: ["Visual regression", "Data comparison"],
+    accent: "emerald"
+  },
+  {
+    id: "planning",
+    kind: "Planning",
+    title: "Plan before code",
+    summary:
+      "Requirements checked against the spec, work broken down and estimated, and short PRs that say how they were tested.",
+    stack: ["Release planning", "Code review"],
     accent: "pink"
   }
 ];
@@ -457,8 +514,12 @@ export const stack = [
     ]
   },
   {
-    group: "Observability",
+    group: "Testing & observability",
     items: [
+      {name: "Playwright", icon: "fas fa-theater-masks"},
+      {name: "Jasmine / Karma", icon: "fas fa-vial"},
+      {name: "xUnit", icon: "fas fa-check-double"},
+      {name: "Visual regression", icon: "fas fa-images"},
       {name: "Grafana Faro", icon: "fas fa-chart-area"},
       {name: "Loki / LogQL", icon: "fas fa-scroll"},
       {name: "Telemetry tiering", icon: "fas fa-layer-group"},
@@ -475,6 +536,7 @@ export const stack = [
       },
       {name: "REST APIs", icon: "fas fa-plug"},
       {name: "SQL Server", icon: "fas fa-database"},
+      {name: "Cosmos DB", icon: "fas fa-globe"},
       {
         name: "Firestore",
         icon: "fas fa-fire",
@@ -497,7 +559,7 @@ export const awards = [
     issuer: "Techlogix",
     year: "2021, 2022, 2023 & 2025",
     kind: "award",
-    note: "One of very few engineers to earn this recognition four separate times — sustained, year-over-year excellence in delivery, collaboration and technical impact.",
+    note: "Four times, for sustained delivery, collaboration and impact.",
     url: "https://www.linkedin.com/posts/komal-shehzadi_grateful-and-humbled-to-be-recognized-as-activity-7425277142315405312-nRMl?utm_source=share&utm_medium=member_desktop&rcm=ACoAACgQ5uEB0pFEncIg-6eYUVfo2_ceRVBJwTw"
   },
   {
@@ -505,7 +567,7 @@ export const awards = [
     issuer: "Techlogix",
     year: "2024",
     kind: "award",
-    note: "Top three out of the full engineering organization, prototyping an AI-powered solution under competitive, time-boxed conditions.",
+    note: "Top three across the engineering organization.",
     url: "https://www.linkedin.com/posts/komal-shehzadi_ai-hackathon2024-teamwork-activity-7223387312632586240-8rjQ?utm_source=share&utm_medium=member_desktop&rcm=ACoAACgQ5uEB0pFEncIg-6eYUVfo2_ceRVBJwTw"
   },
   {
@@ -574,6 +636,7 @@ export const techIcons = stack
 export const nav = [
   {id: "work", label: "Work"},
   {id: "career", label: "Career"},
+  {id: "practice", label: "Practice"},
   {id: "ai", label: "AI"},
   {id: "stack", label: "Stack"},
   {id: "awards", label: "Awards"},

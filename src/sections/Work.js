@@ -16,6 +16,8 @@ const SPANS = [
   "col-6",
   "col-6",
   "col-6",
+  "col-6",
+  "col-6",
   "col-6"
 ];
 
@@ -46,6 +48,18 @@ function WorkCard({item, span, delay}) {
           <i className="fas fa-code-branch" aria-hidden="true" />
           {item.contribution}
         </p>
+
+        {item.link && (
+          <a
+            className="work-card__link"
+            href={item.link.url}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {item.link.label}
+            <i className="fas fa-arrow-right" aria-hidden="true" />
+          </a>
+        )}
 
         <ul className="chip-row">
           {item.stack.map(tech => (

@@ -14,9 +14,42 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=block"
+      href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono:400,500&display=block"
     />
     <style>
+      /* Inter as one static file per weight. Google serves modern browsers a
+         variable Inter, which Chrome embeds in the PDF as Type3 glyphs that
+         applicant tracking systems read badly; these are the static files it
+         serves older browsers. */
+      @font-face {
+        font-family: "Inter";
+        font-weight: 400;
+        font-display: block;
+        src: url(https://fonts.gstatic.com/s/inter/v20/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuLyfAZ9hjg.woff)
+          format("woff");
+      }
+      @font-face {
+        font-family: "Inter";
+        font-weight: 500;
+        font-display: block;
+        src: url(https://fonts.gstatic.com/s/inter/v20/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuI6fAZ9hjg.woff)
+          format("woff");
+      }
+      @font-face {
+        font-family: "Inter";
+        font-weight: 600;
+        font-display: block;
+        src: url(https://fonts.gstatic.com/s/inter/v20/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuGKYAZ9hjg.woff)
+          format("woff");
+      }
+      @font-face {
+        font-family: "Inter";
+        font-weight: 700;
+        font-display: block;
+        src: url(https://fonts.gstatic.com/s/inter/v20/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuFuYAZ9hjg.woff)
+          format("woff");
+      }
+
       :root {
         --ink: #111a19;
         --ink-2: #2c3b39;
@@ -72,7 +105,7 @@
         font-family: var(--mono);
         font-weight: 500;
         font-size: 10.5px;
-        letter-spacing: 0.32em;
+        letter-spacing: 0.06em;
         text-transform: uppercase;
         color: var(--muted);
       }
@@ -124,7 +157,7 @@
 
       .contact {
         display: grid;
-        grid-template-columns: 50px auto;
+        grid-template-columns: 60px auto;
         row-gap: 4px;
         align-content: start;
         font-family: var(--mono);
@@ -135,7 +168,7 @@
 
       .contact dt {
         font-size: 8.6px;
-        letter-spacing: 0.12em;
+        letter-spacing: 0.04em;
         color: var(--muted);
         padding-top: 2px;
       }
@@ -173,7 +206,7 @@
         font-family: var(--mono);
         font-weight: 500;
         font-size: 10.5px;
-        letter-spacing: 0.16em;
+        letter-spacing: 0.05em;
         white-space: nowrap;
         text-transform: uppercase;
         color: var(--accent);
@@ -208,6 +241,19 @@
         margin-top: 4px;
       }
 
+      .rule + .section {
+        margin-top: 14px;
+      }
+
+      .section > .skills {
+        padding-top: 0;
+      }
+
+      /* a skill group never splits from its chips across the page break */
+      .skills > div {
+        break-inside: avoid;
+      }
+
       .section__head {
         display: flex;
         align-items: center;
@@ -219,7 +265,7 @@
       .section__head h2 {
         font-size: 10.5px;
         font-weight: 700;
-        letter-spacing: 0.1em;
+        letter-spacing: 0.04em;
         text-transform: uppercase;
         color: var(--ink);
       }
@@ -407,7 +453,7 @@
       .card .kind {
         font-family: var(--mono);
         font-size: 9.4px;
-        letter-spacing: 0.18em;
+        letter-spacing: 0.05em;
         text-transform: uppercase;
         color: var(--accent);
       }
@@ -429,7 +475,7 @@
 
       .triple {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(2, 1fr);
         gap: 18px;
         break-inside: avoid;
       }
@@ -439,7 +485,7 @@
         font-family: var(--mono);
         font-weight: 400;
         font-size: 10.5px;
-        letter-spacing: 0.26em;
+        letter-spacing: 0.05em;
         text-transform: uppercase;
         color: var(--ink-2);
       }
@@ -488,8 +534,8 @@
             <p class="eyebrow">Principal Software Engineer</p>
             <h1 class="head__name">Komal <span>Shehzadi</span></h1>
             <p class="head__tagline">
-              Frontend architecture, performance engineering &amp; AI-enabled
-              delivery
+              Frontend architecture, full-stack delivery &amp; test
+              automation
             </p>
           </div>
           <dl class="contact">
@@ -505,6 +551,12 @@
             <dd>
               <a class="link" href="https://dev.komalshehzadi.com"
                 >dev.komalshehzadi.com</a
+              >
+            </dd>
+            <dt>LINKEDIN</dt>
+            <dd>
+              <a class="link" href="https://www.linkedin.com/in/komal-shehzadi/"
+                >linkedin.com/in/komal-shehzadi</a
               >
             </dd>
             <dt>EXP</dt>
@@ -523,7 +575,136 @@
 
     <hr class="rule" />
 
-    <section class="skills" aria-label="Skills">
+
+    <section class="section">
+      <div class="section__head">
+        <h2>Profile</h2>
+        <span class="num">01</span>
+      </div>
+      <p class="profile">
+        Principal engineer with <b>6+ years shipping data-heavy products</b>
+        where mistakes are expensive — investment banking, securities
+        regulation, oil &amp; gas, semiconductors. I own frontend architecture
+        and, increasingly, the full stack: fast interfaces,
+        <b>test automation that proves each release</b>, and
+        <b>observability that explains production</b>. I use Claude Code as a
+        pair programmer, under my own review.
+      </p>
+      <div class="metrics">
+        <div class="metric">
+          <strong>18×</strong>
+          <span>Faster core batch calculation, zero failures</span>
+        </div>
+        <div class="metric">
+          <strong>600+</strong>
+          <span>Automated end-to-end tests, built from zero</span>
+        </div>
+        <div class="metric">
+          <strong>~70%</strong>
+          <span>Faster rendering on million-pixel datasets</span>
+        </div>
+        <div class="metric">
+          <strong>100K+</strong>
+          <span>Product units traced in real time</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section__head">
+        <h2>Experience</h2>
+        <span class="num">02</span>
+      </div>
+
+      <article class="role role--current">
+        <div class="role__meta">
+          <span class="when">Dec 2025 — Present</span>
+          Lahore, PK
+        </div>
+        <div class="role__body">
+          <h3>Principal Software Engineer</h3>
+          <p class="role__org">Techlogix — UBP Investment Banking · SECP LEAP</p>
+          <div class="engagement">
+            <div class="engagement__head">
+              <strong>UBP Investment Banking</strong>
+              <span>Sep 2026 — Present</span>
+            </div>
+            <ul class="points">
+              <li>Upgraded the <b>Angular frontend to the current release</b>, with visual and form regression checks proving nothing broke.</li>
+              <li>Made the core batch calculation <b>18× faster</b> with zero failures, validated against production.</li>
+              <li>Built <b>test automation from zero</b>: 600+ Playwright end-to-end tests, plus unit suites on frontend and backend.</li>
+              <li>Plan releases and run QA: requirement checks, written test cases, test cycles and defect triage.</li>
+              <li>Use <b>Claude Code under my own control</b>: I plan the work, review every change, run the tests and check the app by hand. Nothing merges without code review.</li>
+            </ul>
+          </div>
+
+          <div class="engagement">
+            <div class="engagement__head">
+              <strong>SECP LEAP — securities-regulator portal</strong>
+              <span>Dec 2025 — Sep 2026</span>
+            </div>
+            <ul class="points">
+              <li>Owned <b>frontend architecture</b> around a dynamic form engine and shared component library.</li>
+              <li>Added <b>Grafana Faro</b> telemetry and led the root-cause analysis that traced and fixed recurring API failures.</li>
+              <li>Built the team's AI workflow: custom subagents wired into Jira and Bitbucket through MCP.</li>
+              <li>Set engineering standards and mentored junior engineers.</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <article class="role">
+        <div class="role__meta">
+          <span class="when">Mar 2023 — Dec 2025</span>
+          Lahore, PK
+        </div>
+        <div class="role__body">
+          <h3>Senior Software Engineer</h3>
+          <p class="role__org">Techlogix — visualization, traceability &amp; analytics products</p>
+          <ul class="points">
+            <li>Built a <b>React + D3.js + WebGL</b> engine for million-pixel datasets: <b>~70% faster rendering</b>.</li>
+            <li>Led the <b>Authentix Track &amp; Trace</b> frontend: 100,000+ units tracked live, ~60% less manual checking.</li>
+            <li>Halved report-generation time for an oil &amp; gas program.</li>
+            <li>Cut Yieldwerx cycle time by ~25% across 11 workflows.</li>
+            <li>Shipped a scheduling app (~40% fewer conflicts) and an HP label designer (~30% fewer errors).</li>
+            <li>Built a GenAI design-to-code generator: 3rd place at the Techlogix AI Hackathon.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="role">
+        <div class="role__meta">
+          <span class="when">Oct 2020 — Mar 2023</span>
+          Lahore, PK
+        </div>
+        <div class="role__body">
+          <h3>Software Engineer</h3>
+          <p class="role__org">Techlogix — Campus on Cloud</p>
+          <ul class="points">
+            <li>Owned modules for student lifecycle, finance and grading on Angular, Kendo UI and .NET Core, and automated manual admin reporting.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="role">
+        <div class="role__meta">
+          <span class="when">Aug 2020 — Sep 2020</span>
+          Lahore, PK
+        </div>
+        <div class="role__body">
+          <h3>Software Engineer</h3>
+          <p class="role__org">NetSol Technologies — framework training, database schema &amp; query work</p>
+
+        </div>
+      </article>
+    </section>
+
+    <section class="section">
+      <div class="section__head">
+        <h2>Skills</h2>
+        <span class="num">03</span>
+      </div>
+      <div class="skills">
       <div>
         <h3>AI &amp; agentic engineering</h3>
         <ul class="chips">
@@ -571,8 +752,12 @@
         </ul>
       </div>
       <div>
-        <h3>Observability</h3>
+        <h3>Testing &amp; observability</h3>
         <ul class="chips">
+          <li class="key">Playwright</li>
+          <li>Jasmine / Karma</li>
+          <li>xUnit</li>
+          <li>Visual regression</li>
           <li class="key">Grafana Faro</li>
           <li>Loki / LogQL</li>
           <li>Telemetry tiering</li>
@@ -585,6 +770,7 @@
           <li>.NET Core</li>
           <li>REST APIs</li>
           <li>SQL Server</li>
+          <li>Cosmos DB</li>
           <li>Firestore</li>
           <li>ClickHouse</li>
           <li>RabbitMQ</li>
@@ -595,283 +781,44 @@
           <li>Bitbucket Pipelines</li>
         </ul>
       </div>
-    </section>
-
-    <section class="section">
-      <div class="section__head">
-        <h2>Profile</h2>
-        <span class="num">01</span>
       </div>
-      <p class="profile">
-        Principal engineer with <b>6+ years shipping data-intensive products</b>
-        in domains where being wrong is expensive — investment banking,
-        securities regulation, oil &amp; gas, semiconductor yield, enterprise
-        supply chain. I own frontend architecture end to end: the component
-        systems teams build on, the rendering and state work that keeps
-        million-point interfaces fast, and the
-        <b>observability that explains what actually happened in production</b>.
-        Lately that ownership extends to how the team builds —
-        <b>agentic tooling, purpose-built AI subagents and MCP-connected
-          workflows</b>
-        that compress triage, root-cause analysis and delivery into a single
-        loop.
-      </p>
-      <div class="metrics">
-        <div class="metric">
-          <strong>~70%</strong>
-          <span>Faster rendering on million-pixel semiconductor datasets</span>
-        </div>
-        <div class="metric">
-          <strong>100K+</strong>
-          <span>Product units traceable in a live supply-chain UI</span>
-        </div>
-        <div class="metric">
-          <strong>~50%</strong>
-          <span>Cut in report-generation time, oil &amp; gas program</span>
-        </div>
-        <div class="metric">
-          <strong>4×</strong>
-          <span>Achiever of the Month, plus AI Hackathon podium</span>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="section__head">
-        <h2>Experience</h2>
-        <span class="num">02</span>
-      </div>
-
-      <article class="role role--current">
-        <div class="role__meta">
-          <span class="when">Dec 2025 — Present</span>
-          Lahore, PK
-        </div>
-        <div class="role__body">
-          <h3>Principal Software Engineer</h3>
-          <p class="role__org">
-            Techlogix — UBP Investment Banking · SECP LEAP
-          </p>
-
-          <div class="engagement">
-            <div class="engagement__head">
-              <strong>UBP Investment Banking</strong>
-              <span>Sep 2026 — Present</span>
-            </div>
-            <ul class="points">
-              <li>
-                Deliver features
-                <b>end to end across frontend, backend services and data</b>
-                for an investment-banking business, where accuracy and
-                reliability are non-negotiable.
-              </li>
-              <li>
-                Contribute to <b>delivery planning</b> — scoping and breaking
-                down work, estimating effort and sequencing dependencies
-                alongside product and engineering leads.
-              </li>
-            </ul>
-          </div>
-
-          <div class="engagement">
-            <div class="engagement__head">
-              <strong>SECP LEAP — national securities-regulator portal</strong>
-              <span>Dec 2025 — Sep 2026</span>
-            </div>
-            <ul class="points">
-              <li>
-                Owned <b>frontend architecture</b> for a high-stakes government
-                regulatory platform, standardising it around a
-                <b>dynamic form engine and shared component library</b> so new
-                statutory workflows shipped as configuration rather than copied
-                screens.
-              </li>
-              <li>
-                Instrumented the portal with <b>Grafana Faro</b> — tiered HTTP
-                telemetry, named business events and LogQL queries over Loki
-                that reconstruct one applicant's journey, turning "it failed for
-                a single user" into a reproducible timeline.
-              </li>
-              <li>
-                Led
-                <b>production root-cause analysis across the frontend/backend
-                  boundary</b>: traced recurring API failures to fail-open submit
-                gates and mis-sequenced role APIs, then shipped verified fixes
-                through a dual-branch staging and hotfix release process.
-              </li>
-              <li>
-                Built the team's <b>AI-assisted delivery workflow</b> —
-                purpose-built subagents for observability instrumentation and
-                defect-to-PR automation, wired into Jira and Bitbucket through
-                MCP tooling.
-              </li>
-              <li>
-                Set engineering standards for conventions, review depth and
-                documentation while <b>mentoring junior engineers</b> and acting
-                as the technical bridge across product, backend and QA.
-              </li>
-              <li>
-                Improved responsiveness across complex regulatory workflows
-                through <b>lazy loading and state-management restructuring</b>.
-              </li>
-            </ul>
-          </div>
-        </div>
-      </article>
-
-      <article class="role">
-        <div class="role__meta">
-          <span class="when">Mar 2023 — Dec 2025</span>
-          Lahore, PK
-        </div>
-        <div class="role__body">
-          <h3>Senior Software Engineer</h3>
-          <p class="role__org">
-            Techlogix — visualization, traceability &amp; analytics products
-          </p>
-          <ul class="points">
-            <li>
-              Architected and built a
-              <b>React + D3.js + WebGL visualization engine</b> from scratch for
-              million-pixel semiconductor datasets, achieving
-              <b>~70% faster rendering</b> and making previously impractical
-              in-browser analysis routine.
-            </li>
-            <li>
-              Engineered the frontend for <b>Authentix Track &amp; Trace</b>,
-              supporting real-time traceability across
-              <b>100,000+ product units</b> and cutting manual
-              product-verification time by ~60%.
-            </li>
-            <li>
-              Rebuilt data-dense operational reporting for an
-              <b>oil &amp; gas digital program</b>, reducing report-generation
-              time by <b>~50%</b> and improving live operational visibility.
-            </li>
-            <li>
-              Analysed <b>11 end-to-end YieldWerx workflows</b>, removed process
-              bottlenecks for a <b>~25% cycle-time reduction</b>, and left
-              reusable templates behind for standardised operations.
-            </li>
-            <li>
-              Shipped a <b>React + Firestore + Redux Thunk</b> scheduling product
-              from concept to production, replacing fragmented coordination with
-              one source of truth and cutting scheduling conflicts by ~40%.
-            </li>
-            <li>
-              Built an <b>AI-powered design-to-code generator</b> on GenAI APIs,
-              compressing multi-day HTML/CSS prototyping cycles into minutes.
-            </li>
-            <li>
-              Delivered an <b>Angular + Konva.js canvas label designer</b> for
-              HP, reducing label-formatting errors by ~30% and eliminating
-              manual rework.
-            </li>
-          </ul>
-        </div>
-      </article>
-
-      <article class="role">
-        <div class="role__meta">
-          <span class="when">Oct 2020 — Mar 2023</span>
-          Lahore, PK
-        </div>
-        <div class="role__body">
-          <h3>Software Engineer</h3>
-          <p class="role__org">Techlogix — Campus on Cloud</p>
-          <ul class="points">
-            <li>
-              Developed and owned key modules of a
-              <b>full-stack campus management platform</b> spanning student
-              lifecycle, finance and academic grading, on AngularJS/Angular,
-              Kendo UI and .NET Core.
-            </li>
-            <li>
-              Automated manual administrative reporting through robust CRUD
-              services and streamlined UX flows, improving data accuracy and
-              removing repetitive data entry.
-            </li>
-          </ul>
-        </div>
-      </article>
-
-      <article class="role">
-        <div class="role__meta">
-          <span class="when">Aug 2020 — Sep 2020</span>
-          Lahore, PK
-        </div>
-        <div class="role__body">
-          <h3>Software Engineer</h3>
-          <p class="role__org">
-            NetSol Technologies — framework training, database schema &amp;
-            query work
-          </p>
-        </div>
-      </article>
     </section>
 
     <section class="section">
       <div class="section__head">
         <h2>AI-enabled engineering</h2>
-        <span class="num">03</span>
+        <span class="num">04</span>
       </div>
       <div class="cards">
         <div class="card">
+          <p class="kind">How I use AI</p>
+          <h3>Claude Code, under my review</h3>
+          <p>A pair programmer for analysis, refactoring and tests. I set the plan, review every change, run the build and tests, and check the app by hand. Nothing merges without code review.</p>
+        </div>
+        <div class="card">
           <p class="kind">Delivery</p>
           <h3>Full-stack delivery</h3>
-          <p>
-            On UBP's investment-banking engagement, building features end to end
-            across the interface, services and data layer — every change
-            reviewed and verified before it ships.
-          </p>
+          <p>Features built end to end on UBP (interface, services and data), each one reviewed and tested before it ships.</p>
         </div>
         <div class="card">
           <p class="kind">Planning</p>
           <h3>AI-assisted planning</h3>
-          <p>
-            Use AI to turn requirements into scoped, estimable work — breaking
-            features into tasks, drafting acceptance criteria and surfacing
-            dependencies and risks early.
-          </p>
+          <p>AI drafts the task breakdown, acceptance criteria and risks; I check them against the spec before estimating.</p>
         </div>
         <div class="card">
           <p class="kind">Agentic tooling</p>
-          <h3>Purpose-built engineering subagents</h3>
-          <p>
-            Authored domain-specific AI agents that own real tasks — adding
-            observability instrumentation correctly, and carrying a defect from
-            root cause through to a reviewed pull request — with team
-            conventions encoded as their instructions.
-          </p>
+          <h3>Purpose-built subagents</h3>
+          <p>Custom agents for observability instrumentation and defect-to-PR work, with team conventions as their instructions.</p>
         </div>
         <div class="card">
           <p class="kind">Tool integration</p>
           <h3>MCP-connected delivery loop</h3>
-          <p>
-            Connected issue tracking and source control through MCP so triage,
-            root-cause write-ups, branch discipline and PR drafting happen in
-            one continuous loop instead of four context switches.
-          </p>
-        </div>
-        <div class="card">
-          <p class="kind">Practice</p>
-          <h3>Standards for AI-assisted work</h3>
-          <p>
-            Define where generated code is trusted and where it is not: build
-            verification before every PR, confirmed root causes over
-            plausible-sounding explanations, and review depth that scales with
-            blast radius.
-          </p>
+          <p>Jira and Bitbucket connected through MCP, so triage, write-ups and PR drafts happen in one flow.</p>
         </div>
         <div class="card">
           <p class="kind">Product</p>
           <h3>GenAI design-to-code generator</h3>
-          <p>
-            Built an AI-powered HTML/CSS generator on GenAI APIs that turned
-            multi-day design-to-code prototyping into a minutes-long cycle —
-            third place across the engineering org at the Techlogix AI
-            Hackathon.
-          </p>
+          <p>Turns a design into HTML/CSS in minutes instead of days. 3rd place at the Techlogix AI Hackathon.</p>
         </div>
       </div>
     </section>
@@ -879,7 +826,7 @@
     <section class="section">
       <div class="section__head">
         <h2>Education &amp; recognition</h2>
-        <span class="num">04</span>
+        <span class="num">05</span>
       </div>
       <div class="triple">
         <div>
@@ -902,17 +849,6 @@
           <div class="item">
             <strong>3rd Place, AI Hackathon</strong>
             <span>Techlogix · 2024 · org-wide</span>
-          </div>
-        </div>
-        <div>
-          <h3>Certifications</h3>
-          <div class="item">
-            <strong>Front-End Web UI Frameworks &amp; Tools</strong>
-            <span>Coursera · HKUST</span>
-          </div>
-          <div class="item">
-            <strong>Node.js, Express &amp; MongoDB Bootcamp</strong>
-            <span>Udemy · 2022</span>
           </div>
         </div>
       </div>

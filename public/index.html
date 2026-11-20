@@ -7,9 +7,11 @@
     <!-- Edit meta tags for SEO -->
     <title>Komal Shehzadi | Principal Software Engineer</title>
     <meta name="title" content="Komal Shehzadi | Principal Software Engineer" />
+    <meta name="author" content="Komal Shehzadi" />
+    <link rel="canonical" href="https://dev.komalshehzadi.com/" />
     <meta
       name="description"
-      content="Portfolio of Komal Shehzadi — Principal Software Engineer working on frontend architecture, performance engineering and AI-enabled delivery in Angular, React and TypeScript."
+      content="Portfolio of Komal Shehzadi, Principal Software Engineer: frontend architecture, full-stack delivery and test automation in Angular, React, .NET and TypeScript."
     />
 
     <!-- Open Graph / Facebook -->
@@ -21,10 +23,20 @@
     />
     <meta
       property="og:description"
-      content="Portfolio of Komal Shehzadi — Principal Software Engineer working on frontend architecture, performance engineering and AI-enabled delivery in Angular, React and TypeScript."
+      content="Portfolio of Komal Shehzadi, Principal Software Engineer: frontend architecture, full-stack delivery and test automation in Angular, React, .NET and TypeScript."
     />
-    <!-- Link to a hosted image -->
-    <!-- <meta property="og:image" content=""> -->
+    <meta property="og:site_name" content="Komal Shehzadi" />
+    <!-- 1200 × 630, made by scripts/og-image.html; absolute URL, as crawlers need -->
+    <meta
+      property="og:image"
+      content="https://dev.komalshehzadi.com/og-image.png"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="Komal Shehzadi, Principal Software Engineer"
+    />
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
@@ -35,10 +47,49 @@
     />
     <meta
       property="twitter:description"
-      content="Portfolio of Komal Shehzadi — Principal Software Engineer working on frontend architecture, performance engineering and AI-enabled delivery in Angular, React and TypeScript."
+      content="Portfolio of Komal Shehzadi, Principal Software Engineer: frontend architecture, full-stack delivery and test automation in Angular, React, .NET and TypeScript."
     />
-    <!-- Link to a hosted image -->
-    <!-- <meta property="twitter:image" content=""> -->
+    <meta
+      property="twitter:image"
+      content="https://dev.komalshehzadi.com/og-image.png"
+    />
+
+    <!-- Who this site is about, for search engines -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Komal Shehzadi",
+        "jobTitle": "Principal Software Engineer",
+        "worksFor": {"@type": "Organization", "name": "Techlogix"},
+        "url": "https://dev.komalshehzadi.com/",
+        "image": "https://dev.komalshehzadi.com/og-image.png",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Lahore",
+          "addressCountry": "PK"
+        },
+        "alumniOf": {
+          "@type": "CollegeOrUniversity",
+          "name": "University of Engineering and Technology, Lahore"
+        },
+        "knowsAbout": [
+          "Frontend architecture",
+          "Angular",
+          "React",
+          "TypeScript",
+          ".NET",
+          "Test automation",
+          "Playwright",
+          "Observability"
+        ],
+        "sameAs": [
+          "https://www.linkedin.com/in/komal-shehzadi/",
+          "https://github.com/kshehzadi",
+          "https://medium.com/@komalshehzadi"
+        ]
+      }
+    </script>
 
     <meta name="msapplication-TileColor" content="#050816" />
     <meta name="theme-color" content="#050816" />
@@ -110,21 +161,6 @@
          be preloaded by name from this static template — the old hard-coded
          hashes here 404'd on every page load. The @font-face rules in
          src/index.css load them with font-display: swap instead. -->
-
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=UA-135618960-2"
-    ></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
-
-      gtag("config", "UA-135618960-2");
-    </script>
 
     <!-- Font Awesome, loaded without blocking the first paint. Warming the
          connection first, then swapping the sheet in on load; the <noscript>
